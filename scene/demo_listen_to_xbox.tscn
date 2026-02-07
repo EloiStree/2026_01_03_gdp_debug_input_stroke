@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bystu5yy86e34"]
+
+[ext_resource type="Script" uid="uid://csbximvjcivoi" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_xbox.gd" id="1_meh20"]
+[ext_resource type="Script" uid="uid://ch7ogjdlna67m" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_four_xbox_to_text_is_connected.gd" id="2_jo2tu"]
+[ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_four_xbox_to_text_buttons.gd" id="3_pu836"]
+[ext_resource type="Script" uid="uid://berhieavextrw" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_four_xbox_to_text_axis.gd" id="4_26e15"]
+[ext_resource type="Script" uid="uid://ca852ms8cey1g" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_four_xbox_to_text_vector2.gd" id="5_a380m"]
+
+[node name="NodeXboxTextDebug" type="Node" unique_id=891630390]
+script = ExtResource("1_meh20")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1513563272]
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.22100002
+offset_bottom = -0.15200806
+
+[node name="LabelConnected" type="Label" parent="VBoxContainer" unique_id=1903980973 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 2
+text = "-"
+vertical_alignment = 1
+script = ExtResource("2_jo2tu")
+ui_text_node = NodePath(".")
+
+[node name="LabelButtonChanged" type="Label" parent="VBoxContainer" unique_id=1259938676 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 2
+text = "-"
+vertical_alignment = 1
+script = ExtResource("3_pu836")
+ui_text_node = NodePath(".")
+
+[node name="LabelAxisChanged" type="Label" parent="VBoxContainer" unique_id=1990465784 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 2
+text = "-"
+vertical_alignment = 1
+script = ExtResource("4_26e15")
+ui_text_node = NodePath(".")
+
+[node name="LabelVectorChanged" type="Label" parent="VBoxContainer" unique_id=1701150881 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 2
+text = "-"
+vertical_alignment = 1
+script = ExtResource("5_a380m")
+ui_text_node = NodePath(".")
+
+[connection signal="on_xbox_index_axis_changed" from="." to="VBoxContainer/LabelAxisChanged" method="set_text_for_axis"]
+[connection signal="on_xbox_index_button_on_off" from="." to="VBoxContainer/LabelButtonChanged" method="set_text_for_button"]
+[connection signal="on_xbox_index_vector2_changed" from="." to="VBoxContainer/LabelVectorChanged" method="set_text_for_vector2"]
+[connection signal="on_xbox_is_connected_changed" from="." to="VBoxContainer/LabelConnected" method="set_text_for_connected"]

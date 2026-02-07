@@ -1,15 +1,18 @@
 [gd_scene format=3 uid="uid://bystu5yy86e34"]
 
-[ext_resource type="Script" uid="uid://csbximvjcivoi" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_xbox.gd" id="1_meh20"]
-[ext_resource type="Script" uid="uid://ch7ogjdlna67m" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_four_xbox_to_text_is_connected.gd" id="2_jo2tu"]
-[ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_four_xbox_to_text_buttons.gd" id="3_pu836"]
-[ext_resource type="Script" uid="uid://berhieavextrw" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_four_xbox_to_text_axis.gd" id="4_26e15"]
-[ext_resource type="Script" uid="uid://ca852ms8cey1g" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_four_xbox_to_text_vector2.gd" id="5_a380m"]
+[ext_resource type="Script" uid="uid://csbximvjcivoi" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_xbox.gd" id="1_lik3n"]
+[ext_resource type="Script" uid="uid://ch7ogjdlna67m" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_is_connected.gd" id="2_qhexx"]
+[ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_buttons.gd" id="3_mwj2e"]
+[ext_resource type="Script" uid="uid://berhieavextrw" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_axis.gd" id="4_wvblv"]
+[ext_resource type="Script" uid="uid://ca852ms8cey1g" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_vector2.gd" id="5_64aus"]
 
-[node name="NodeXboxTextDebug" type="Node" unique_id=891630390]
-script = ExtResource("1_meh20")
+[node name="NodeXboxTextDebug" type="Control" unique_id=1410429519]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_lik3n")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1513563272]
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.5
 anchor_bottom = 0.22100002
@@ -19,28 +22,28 @@ offset_bottom = -0.15200806
 layout_mode = 2
 text = "-"
 vertical_alignment = 1
-script = ExtResource("2_jo2tu")
+script = ExtResource("2_qhexx")
 ui_text_node = NodePath(".")
 
 [node name="LabelButtonChanged" type="Label" parent="VBoxContainer" unique_id=1259938676 node_paths=PackedStringArray("ui_text_node")]
 layout_mode = 2
 text = "-"
 vertical_alignment = 1
-script = ExtResource("3_pu836")
+script = ExtResource("3_mwj2e")
 ui_text_node = NodePath(".")
 
 [node name="LabelAxisChanged" type="Label" parent="VBoxContainer" unique_id=1990465784 node_paths=PackedStringArray("ui_text_node")]
 layout_mode = 2
 text = "-"
 vertical_alignment = 1
-script = ExtResource("4_26e15")
+script = ExtResource("4_wvblv")
 ui_text_node = NodePath(".")
 
 [node name="LabelVectorChanged" type="Label" parent="VBoxContainer" unique_id=1701150881 node_paths=PackedStringArray("ui_text_node")]
 layout_mode = 2
 text = "-"
 vertical_alignment = 1
-script = ExtResource("5_a380m")
+script = ExtResource("5_64aus")
 ui_text_node = NodePath(".")
 
 [connection signal="on_xbox_index_axis_changed" from="." to="VBoxContainer/LabelAxisChanged" method="set_text_for_axis"]

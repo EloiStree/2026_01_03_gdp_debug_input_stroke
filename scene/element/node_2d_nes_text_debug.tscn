@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://cdw3rbo884rot"]
+
+[ext_resource type="Script" uid="uid://lufh06wiiip1" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_nes_from_joystick.gd" id="1_4a38f"]
+[ext_resource type="Script" uid="uid://ch7ogjdlna67m" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_is_connected.gd" id="2_av8uy"]
+[ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_buttons.gd" id="2_ougmu"]
+[ext_resource type="Script" uid="uid://cm5tmybtkyfrn" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_buttons_id.gd" id="4_av8uy"]
+
+[node name="NodeNesTextDebug" type="Control" unique_id=1410429519]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4a38f")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1513563272]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.5
+anchor_bottom = 0.22100002
+offset_bottom = -0.15200806
+
+[node name="LabelConnectedChanged" type="Label" parent="VBoxContainer" unique_id=1259938676 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 2
+text = "-"
+vertical_alignment = 1
+script = ExtResource("2_av8uy")
+ui_text_node = NodePath(".")
+devise_id_name = "NES"
+
+[node name="LabelButtonChanged" type="Label" parent="VBoxContainer" unique_id=734005069 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 2
+text = "-"
+vertical_alignment = 1
+script = ExtResource("2_ougmu")
+ui_text_node = NodePath(".")
+devise_id_name = "NES"
+
+[node name="LabelButtonIdChanged" type="Label" parent="VBoxContainer" unique_id=888759743 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 2
+text = "-"
+vertical_alignment = 1
+script = ExtResource("4_av8uy")
+ui_text_node = NodePath(".")
+devise_id_name = "NES"
+
+[connection signal="on_nes_index_button_on_off" from="." to="VBoxContainer/LabelButtonChanged" method="set_text_for_button"]
+[connection signal="on_nes_index_button_with_id_on_off" from="." to="VBoxContainer/LabelButtonIdChanged" method="set_text_for_button"]
+[connection signal="on_nes_is_connected_changed" from="." to="VBoxContainer/LabelConnectedChanged" method="set_text_for_connected"]

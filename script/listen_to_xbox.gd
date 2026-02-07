@@ -1,12 +1,12 @@
 
 class_name ListenToFourXbox extends Node
 
-signal on_xbox_is_connected_changed(gamepad_index:int, value_is_connected:bool)
-signal on_xbox_is_name_found(gamepad_index:int, joy_name:String)
+signal on_xbox_is_connected_changed(godot_joystick_index:int, gamepad_index:int, value_is_connected:bool)
+signal on_xbox_is_name_found(godot_joystick_index:int,gamepad_index:int, joy_name:String)
 
-signal on_xbox_index_button_on_off(gamepad_index:int,label_name:String, value_is_down:bool)
-signal on_xbox_index_axis_changed(gamepad_index:int,label_name:String, value_axis_11:float)
-signal on_xbox_index_vector2_changed(gamepad_index:int,label_name:String, value_joystick:Vector2)
+signal on_xbox_index_button_on_off(godot_joystick_index:int,gamepad_index:int,label_name:String, value_is_down:bool)
+signal on_xbox_index_axis_changed(godot_joystick_index:int,gamepad_index:int,label_name:String, value_axis_11:float)
+signal on_xbox_index_vector2_changed(godot_joystick_index:int,gamepad_index:int,label_name:String, value_joystick:Vector2)
 
 @export var label_stick_left:= "stick_left" # For Vector2
 @export var label_stick_right:= "stick_right" # For Vector2
@@ -242,6 +242,12 @@ func _process(_delta):
 		read_controller(joy_id)
 
 
+var apparitions_of_joy_id: Array[int] = []
+func _get_gamepad_index_from_apparitions_list(joy_id: int) -> int:
+	for i in range(apparitions_of_joy_id.size()):
+		if apparitions_of_joy_id[i] == joy_id:
+			return i
+	return -1
 
 
 func read_controller(joy_id: int) -> void:
@@ -252,6 +258,11 @@ func read_controller(joy_id: int) -> void:
 	var is_xbox_controller := is_xbox_device(name)
 	if not is_xbox_controller:
 		return
+
+	if not apparitions_of_joy_id.has(joy_id):
+		apparitions_of_joy_id.append(joy_id)
+
+	var gamepad_index := _get_gamepad_index_from_apparitions_list(joy_id)
 
 	var state := _get_state(joy_id)
 	var joystick_int := joy_id
@@ -264,8 +275,8 @@ func read_controller(joy_id: int) -> void:
 		
 		print("Joypad %d connected: %s, is_xbox_controller: %s" % [joy_id, name_when_connected, str(is_xbox_controller)])
 
-		on_xbox_is_connected_changed.emit(joy_id, is_connected)
-		on_xbox_is_name_found.emit(joy_id, name_when_connected)
+		on_xbox_is_connected_changed.emit(joy_id, gamepad_index, is_connected)
+		on_xbox_is_name_found.emit(joy_id, gamepad_index, name_when_connected)
 
 	for label in button_list_from_labels:
 		var button_index := _get_button_index_from_label(label)
@@ -273,7 +284,7 @@ func read_controller(joy_id: int) -> void:
 			var temp := Input.is_joy_button_pressed(joy_id, button_index)
 			if _get_button_state(state, label) != temp:
 				_set_button_state(state, label, temp)
-				emit_signal("on_xbox_index_button_on_off", joy_id, label, temp)
+				emit_signal("on_xbox_index_button_on_off", joy_id, gamepad_index, label, temp)
 
 	for label in axis_list_from_labels:
 		var axis_index := _get_axis_index_from_label(label)
@@ -283,10 +294,10 @@ func read_controller(joy_id: int) -> void:
 				temp_axis = -temp_axis
 			if _get_axis_state(state, label) != temp_axis:
 				_set_axis_state(state, label, temp_axis)
-				emit_signal("on_xbox_index_axis_changed", joy_id, label, temp_axis)
+				emit_signal("on_xbox_index_axis_changed", joy_id, gamepad_index, label, temp_axis)
 
 	for label in vector2_list_from_labels:
 		var temp_vector2 := _get_joystick_vector2(joy_id, label)
 		if _get_vector2_state(state, label) != temp_vector2:
 			_set_vector2_state(state, label, temp_vector2)
-			emit_signal("on_xbox_index_vector2_changed", joy_id, label, temp_vector2)
+			emit_signal("on_xbox_index_vector2_changed", joy_id, gamepad_index, label, temp_vector2)

@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://b0fbpro0orjwl"]
+
+[ext_resource type="Script" uid="uid://ddfv8tt7lnmps" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_joystick_list_as_text.gd" id="1_elttr"]
+[ext_resource type="Script" uid="uid://bgmerpy4s30ar" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_string_to_label.gd" id="2_g1kmo"]
+
+[node name="NodeDebugJoystickList" type="Control" unique_id=511065496]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_elttr")
+
+[node name="Label" type="Label" parent="." unique_id=711830440 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.99000007
+anchor_bottom = 0.99200004
+offset_right = 0.1199646
+offset_bottom = 0.09597778
+theme_override_font_sizes/font_size = 10
+script = ExtResource("2_g1kmo")
+ui_text_node = NodePath(".")
+
+[connection signal="on_refresh_debug_text" from="." to="Label" method="set_text_from_string"]

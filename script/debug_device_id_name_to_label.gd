@@ -7,5 +7,5 @@ func _ready() -> void:
 		push_error("ui_text_node is not assigned.")
 
 
-func set_text_from_string(device_id:int, text_given:String) -> void:
-	ui_text_node.text = "Device %d: %s" % [device_id, text_given]
+func set_text_from_string(device_id:int, gamepad_index:int, text_given:String) -> void:
+	ui_text_node.text = "Device %d (gamepad %d): %s" % [device_id, gamepad_index, text_given]

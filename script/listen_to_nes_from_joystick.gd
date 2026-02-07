@@ -1,10 +1,10 @@
 extends Node
 class_name ListenToNesAsJoystick
 
-signal on_nes_is_connected_changed(gamepad_index: int, value_is_connected: bool)
-signal on_nes_is_name_found(gamepad_index:int, joy_name:String)
-signal on_nes_index_button_on_off(gamepad_index: int, label_name: String, value_is_down: bool)
-signal on_nes_index_button_with_id_on_off(gamepad_index: int, button_id: int, value_is_down:bool)
+signal on_nes_is_connected_changed(joy_id: int, gamepad_index: int, value_is_connected: bool)
+signal on_nes_is_name_found(joy_id: int, gamepad_index:int, joy_name:String)
+signal on_nes_index_button_on_off(joy_id: int, gamepad_index: int, label_name: String, value_is_down: bool)
+signal on_nes_index_button_with_id_on_off(joy_id: int, gamepad_index: int, button_id: int, value_is_down:bool)
 
 const AXIS_THRESHOLD := 0.5
 
@@ -172,15 +172,20 @@ func is_xbox_device(name:String)->bool:
 			return true
 	return false
 
+
+
+var apparitions_of_joy_id: Array[int] = []
+func _get_gamepad_index_from_apparitions_list(joy_id: int) -> int:
+	for i in range(apparitions_of_joy_id.size()):
+		if apparitions_of_joy_id[i] == joy_id:
+			return i
+	return -1
+
 # -------------------------
 # Core logic
 # -------------------------
 func read_controller(joy_id: int) -> void:
 
-	if joy_id >= nes_found_list.size():
-		nes_found_list.resize(joy_id + 1)
-		nes_found_list[joy_id] = NesValueState.new()
-	var state := nes_found_list[joy_id]
 
 	# --- CONNECTION ---
 	var is_connected := Input.is_joy_known(joy_id)
@@ -190,10 +195,21 @@ func read_controller(joy_id: int) -> void:
 	if is_xbox_controller:
 		return
 
+	if joy_id >= nes_found_list.size():
+		nes_found_list.resize(joy_id + 1)
+		nes_found_list[joy_id] = NesValueState.new()
+	var state := nes_found_list[joy_id]
+		
+	if not apparitions_of_joy_id.has(joy_id):
+		apparitions_of_joy_id.append(joy_id)
+
+	var nes_index := _get_gamepad_index_from_apparitions_list(joy_id)
+
+
 	if state.is_connected != is_connected:
 		state.is_connected = is_connected
-		on_nes_is_connected_changed.emit(joy_id, is_connected)
-		on_nes_is_name_found.emit(joy_id,name)
+		on_nes_is_connected_changed.emit(joy_id, nes_index, is_connected)
+		on_nes_is_name_found.emit(joy_id, nes_index, name)
 
 	# Get all the button of the device and check it state compare to before
 	# store in an double array the id>button_index bool value for that
@@ -209,7 +225,7 @@ func read_controller(joy_id: int) -> void:
 		var is_down := Input.is_joy_button_pressed(joy_id, button_id)
 		if device_state.get_button_on_off(button_id) != is_down:
 			device_state.set_button_on_off(button_id, is_down)
-			on_nes_index_button_with_id_on_off.emit(joy_id, button_id, is_down)
+			on_nes_index_button_with_id_on_off.emit(joy_id, nes_index, button_id, is_down)
 		
 
 
@@ -225,8 +241,8 @@ func read_controller(joy_id: int) -> void:
 			var is_down := Input.is_joy_button_pressed(joy_id, button_id)
 			if _get_button_state(state, label) != is_down:
 				_set_button_state(state, label, is_down)
-				on_nes_index_button_on_off.emit(joy_id, label, is_down)
-				on_nes_index_button_with_id_on_off.emit(joy_id, button_id, is_down)
+				on_nes_index_button_on_off.emit(joy_id, nes_index, label, is_down)
+				on_nes_index_button_with_id_on_off.emit(joy_id, nes_index, button_id, is_down)
 
 
 

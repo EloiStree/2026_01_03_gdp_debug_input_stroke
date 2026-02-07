@@ -7,5 +7,5 @@ func _ready() -> void:
 		push_error("ui_text_node is not assigned.")
 		return
 
-func set_text_for_connected(joy_id: int, is_connected: bool) -> void:
-	ui_text_node.text = "%s %d is %s" % [devise_id_name,joy_id + 1, "connected" if is_connected else "disconnected"]
+func set_text_for_connected(joy_id: int, gamepad_index: int, is_connected: bool) -> void:
+	ui_text_node.text = "%s %d (gamepad %d) is %s" % [devise_id_name, joy_id + 1, gamepad_index, "connected" if is_connected else "disconnected"]

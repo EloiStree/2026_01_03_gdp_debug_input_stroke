@@ -5,5 +5,5 @@ func _ready() -> void:
 	if ui_text_node == null:
 		push_error("ui_text_node is not assigned.")
 
-func set_text_for_vector2(joy_id: int, label_name: String, value_joystick: Vector2) -> void:
-	ui_text_node.text = "%s %d: %s is (%.2f, %.2f)" % [devise_id_name,joy_id + 1, label_name, value_joystick.x, value_joystick.y]
+func set_text_for_vector2(joy_id: int, gamepad_index: int, label_name: String, value_joystick: Vector2) -> void:
+	ui_text_node.text = "%s %d (gamepad %d): %s is (%.2f, %.2f)" % [devise_id_name,joy_id + 1, gamepad_index, label_name, value_joystick.x, value_joystick.y]

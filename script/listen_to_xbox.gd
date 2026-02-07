@@ -2,6 +2,8 @@
 class_name ListenToFourXbox extends Node
 
 signal on_xbox_is_connected_changed(gamepad_index:int, value_is_connected:bool)
+signal on_xbox_is_name_found(gamepad_index:int, joy_name:String)
+
 signal on_xbox_index_button_on_off(gamepad_index:int,label_name:String, value_is_down:bool)
 signal on_xbox_index_axis_changed(gamepad_index:int,label_name:String, value_axis_11:float)
 signal on_xbox_index_vector2_changed(gamepad_index:int,label_name:String, value_joystick:Vector2)
@@ -37,12 +39,25 @@ signal on_xbox_index_vector2_changed(gamepad_index:int,label_name:String, value_
 @export var label_arrow_right:= "arrow_right"
 
 
+	 
+@export var xbox_name_keyword :Array[String]=["xinput","xbox"]
+func is_xbox_device(name:String)->bool:
+	name = name.to_lower()
+	for w in xbox_name_keyword:
+		var ww = w.to_lower()
+		if name.find(ww) != -1:
+			return true
+	return false
+
+
 var xbox_state_1 := XboxValueState.new()
 var xbox_state_2 := XboxValueState.new()
 var xbox_state_3 := XboxValueState.new()
 var xbox_state_4 := XboxValueState.new()
 
 class XboxValueState:
+	var joystick_godot_int :int = -1
+	var joystick_player_int :int = -1
 	var is_connected: bool = false
 	var stick_left: Vector2 = Vector2.ZERO
 	var stick_right: Vector2 = Vector2.ZERO
@@ -226,62 +241,31 @@ func _process(_delta):
 	for joy_id in Input.get_connected_joypads():
 		read_controller(joy_id)
 
+
+
+
 func read_controller(joy_id: int) -> void:
-	var state := _get_state(joy_id)
 
 	# --- CONNECTION ---
 	var is_connected := Input.is_joy_known(joy_id)
+	var name := Input.get_joy_name(joy_id)
+	var is_xbox_controller := is_xbox_device(name)
+	if not is_xbox_controller:
+		return
+
+	var state := _get_state(joy_id)
+	var joystick_int := joy_id
+
 	if state.is_connected != is_connected:
 		state.is_connected = is_connected
-		emit_signal("on_xbox_is_connected_changed", joy_id, is_connected)
+		var name_when_connected := Input.get_joy_name(joy_id).to_lower()
 
-	if not is_connected:
-		# Reset to zero
-		state.stick_left = Vector2.ZERO
-		state.stick_right = Vector2.ZERO
-		state.trigger_left = 0.0
-		state.trigger_right = 0.0
-		state.stick_left_horizontal = 0.0
-		state.stick_left_vertical = 0.0
-		state.stick_right_horizontal = 0.0
-		state.stick_right_vertical = 0.0
-		state.button_a = false
-		state.button_b = false
-		state.button_x = false
-		state.button_y = false
-		state.button_menu_left = false
-		state.button_menu_right = false
-		state.button_left_side = false
-		state.button_right_side = false
-		state.button_joystick_left = false
-		state.button_joystick_right = false
-		state.arrow_up = false
-		state.arrow_down = false
-		state.arrow_left = false
-		state.arrow_right = false
-		on_xbox_index_axis_changed.emit(joy_id, label_trigger_left, 0.0)
-		on_xbox_index_axis_changed.emit(joy_id, label_trigger_right, 0.0)
-		on_xbox_index_axis_changed.emit(joy_id, label_stick_left_horizontal, 0.0)
-		on_xbox_index_axis_changed.emit(joy_id, label_stick_left_vertical, 0.0)
-		on_xbox_index_axis_changed.emit(joy_id, label_stick_right_horizontal, 0.0)
-		on_xbox_index_axis_changed.emit(joy_id, label_stick_right_vertical, 0.0)
-		on_xbox_index_vector2_changed.emit(joy_id, label_stick_left, Vector2.ZERO)
-		on_xbox_index_vector2_changed.emit(joy_id, label_stick_right, Vector2.ZERO)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_a, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_b, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_x, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_y, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_menu_left, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_menu_right, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_left_side, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_right_side, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_joystick_left, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_button_joystick_right, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_arrow_up, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_arrow_down, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_arrow_left, false)
-		on_xbox_index_button_on_off.emit(joy_id, label_arrow_right, false)
-		return
+		#state.joystick_player_int = # get xinput controller id
+		
+		print("Joypad %d connected: %s, is_xbox_controller: %s" % [joy_id, name_when_connected, str(is_xbox_controller)])
+
+		on_xbox_is_connected_changed.emit(joy_id, is_connected)
+		on_xbox_is_name_found.emit(joy_id, name_when_connected)
 
 	for label in button_list_from_labels:
 		var button_index := _get_button_index_from_label(label)

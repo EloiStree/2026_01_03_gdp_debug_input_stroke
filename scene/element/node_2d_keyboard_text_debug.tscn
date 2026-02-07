@@ -1,12 +1,20 @@
 [gd_scene format=3 uid="uid://dpkno0w5mpnhn"]
 
-[ext_resource type="Script" uid="uid://csbximvjcivoi" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_xbox.gd" id="1_oyohr"]
-[ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_buttons.gd" id="3_14pl5"]
+[ext_resource type="Script" uid="uid://c663om5dn6r5r" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_keyboard.gd" id="1_b8l5q"]
+[ext_resource type="Script" uid="uid://dx8dqqoicsdss" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_keyboard_to_text_key_id.gd" id="2_tcg6f"]
+[ext_resource type="Script" uid="uid://dflrj2fbg2jkq" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_keyboard_to_text_key_id_with_label.gd" id="3_ort26"]
+
+[sub_resource type="GDScript" id="GDScript_tcg6f"]
 
 [node name="NodeKeyboardTextDebug" type="Control" unique_id=1410429519]
 layout_mode = 3
 anchors_preset = 0
-script = ExtResource("1_oyohr")
+script = ExtResource("1_b8l5q")
+dictionary_key_id_to_label_name_to_load = Dictionary[int, String]({
+32: "space",
+4194306: "tab"
+})
+default_key_to_label_to_load = Array[SubResource("GDScript_tcg6f")]([null, null, null, null, null])
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1513563272]
 layout_mode = 1
@@ -15,11 +23,19 @@ anchor_right = 0.5
 anchor_bottom = 0.22100002
 offset_bottom = -0.15200806
 
-[node name="LabelKeyChanged" type="Label" parent="VBoxContainer" unique_id=1259938676 node_paths=PackedStringArray("ui_text_node")]
+[node name="LabelKeyIdChanged" type="Label" parent="VBoxContainer" unique_id=1646397341 node_paths=PackedStringArray("ui_text_node")]
 layout_mode = 2
 text = "-"
 vertical_alignment = 1
-script = ExtResource("3_14pl5")
+script = ExtResource("2_tcg6f")
 ui_text_node = NodePath(".")
 
-[connection signal="on_xbox_index_button_on_off" from="." to="VBoxContainer/LabelKeyChanged" method="set_text_for_button"]
+[node name="LabelKeyIdLabelChanged" type="Label" parent="VBoxContainer" unique_id=1259938676 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 2
+text = "-"
+vertical_alignment = 1
+script = ExtResource("3_ort26")
+ui_text_node = NodePath(".")
+
+[connection signal="on_key_on_off" from="." to="VBoxContainer/LabelKeyIdChanged" method="set_text_for_key_id"]
+[connection signal="on_key_on_off_with_label" from="." to="VBoxContainer/LabelKeyIdLabelChanged" method="set_text_for_key_id_with_label"]

@@ -2,6 +2,7 @@ extends Node
 class_name ListenToNesAsJoystick
 
 signal on_nes_is_connected_changed(gamepad_index: int, value_is_connected: bool)
+signal on_nes_is_name_found(gamepad_index:int, joy_name:String)
 signal on_nes_index_button_on_off(gamepad_index: int, label_name: String, value_is_down: bool)
 signal on_nes_index_button_with_id_on_off(gamepad_index: int, button_id: int, value_is_down:bool)
 
@@ -108,6 +109,68 @@ class DeviceState:
 var on_off_buttons_per_device : Array[DeviceState]
 
 
+func set_nes_button_a_id( joystick_id:int):
+	button_a_id = [joystick_id]
+	
+func set_nes_button_a_ids( joystick_id:Array[int]):
+	button_a_id = joystick_id
+
+func set_nes_button_b_id( joystick_id:int):
+	button_b_id = [joystick_id]
+
+func set_nes_button_b_ids( joystick_id:Array[int]):
+	button_b_id = joystick_id
+
+# menu left 
+func set_nes_button_menu_left_id( joystick_id:int):
+	button_menu_left_id = [joystick_id]
+
+func set_nes_button_menu_left_ids( joystick_id:Array[int]):
+	button_menu_left_id = joystick_id
+
+# menu right
+func set_nes_button_menu_right_id( joystick_id:int):
+	button_menu_right_id = [joystick_id]
+
+func set_nes_button_menu_right_ids( joystick_id:Array[int]):
+	button_menu_right_id = joystick_id
+
+# arrow up
+func set_nes_arrow_up_id( joystick_id:int):
+	arrow_up_id = [joystick_id]
+
+func set_nes_arrow_up_ids( joystick_id:Array[int]):
+	arrow_up_id = joystick_id
+
+# arrow down
+func set_nes_arrow_down_id( joystick_id:int):
+	arrow_down_id = [joystick_id]
+
+func set_nes_arrow_down_ids( joystick_id:Array[int]):
+	arrow_down_id = joystick_id
+
+# arrow left
+func set_nes_arrow_left_id( joystick_id:int):
+	arrow_left_id = [joystick_id]
+
+func set_nes_arrow_left_ids( joystick_id:Array[int]):
+	arrow_left_id = joystick_id
+
+# arrow right
+func set_nes_arrow_right_id( joystick_id:int):
+	arrow_right_id = [joystick_id]
+
+func set_nes_arrow_right_ids( joystick_id:Array[int]):
+	arrow_right_id = joystick_id
+
+@export var xbox_name_keyword :Array[String]=["xinput","xbox"]
+func is_xbox_device(name:String)->bool:
+	name = name.to_lower()
+	for w in xbox_name_keyword:
+		var ww = w.to_lower()
+		if name.find(ww) != -1:
+			return true
+	return false
 
 # -------------------------
 # Core logic
@@ -121,9 +184,16 @@ func read_controller(joy_id: int) -> void:
 
 	# --- CONNECTION ---
 	var is_connected := Input.is_joy_known(joy_id)
+
+	var name := Input.get_joy_name(joy_id)
+	var is_xbox_controller := is_xbox_device(name)
+	if is_xbox_controller:
+		return
+
 	if state.is_connected != is_connected:
 		state.is_connected = is_connected
 		on_nes_is_connected_changed.emit(joy_id, is_connected)
+		on_nes_is_name_found.emit(joy_id,name)
 
 	# Get all the button of the device and check it state compare to before
 	# store in an double array the id>button_index bool value for that
@@ -156,7 +226,7 @@ func read_controller(joy_id: int) -> void:
 			if _get_button_state(state, label) != is_down:
 				_set_button_state(state, label, is_down)
 				on_nes_index_button_on_off.emit(joy_id, label, is_down)
-				on_nes_index_button_with_id_on_off.emit(joy_id, label, button_id, is_down)
+				on_nes_index_button_with_id_on_off.emit(joy_id, button_id, is_down)
 
 
 

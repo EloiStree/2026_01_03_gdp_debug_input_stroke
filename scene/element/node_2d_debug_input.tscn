@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://t541jgkqbe76"]
+
+[ext_resource type="PackedScene" uid="uid://dpkno0w5mpnhn" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_2d_keyboard_text_debug.tscn" id="1_wyyem"]
+[ext_resource type="PackedScene" uid="uid://cdw3rbo884rot" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_2d_nes_text_debug.tscn" id="2_wvlqp"]
+[ext_resource type="PackedScene" uid="uid://bystu5yy86e34" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_2d_xbox_text_debug.tscn" id="3_mkbsp"]
+[ext_resource type="PackedScene" uid="uid://b3s8kjhiv4c6c" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_2d_char_text_debug.tscn" id="4_wvlqp"]
+
+[node name="Node2dDebugInput" type="Control" unique_id=1375779504]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NodeKeyboardTextDebug" parent="." unique_id=1410429519 instance=ExtResource("1_wyyem")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.208
+
+[node name="NodeXboxTextDebug" parent="." unique_id=2090331614 instance=ExtResource("3_mkbsp")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.277
+anchor_right = 1.0
+anchor_bottom = 0.59800005
+offset_top = 0.17599487
+
+[node name="NodeNesTextDebug" parent="." unique_id=705390034 instance=ExtResource("2_wvlqp")]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.739
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.6319885
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NodeCharTextDebug" parent="." unique_id=376628810 instance=ExtResource("4_wvlqp")]
+layout_mode = 1

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://lufh06wiiip1" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_nes_from_joystick.gd" id="1_4a38f"]
 [ext_resource type="Script" uid="uid://ch7ogjdlna67m" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_is_connected.gd" id="2_av8uy"]
 [ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_buttons.gd" id="2_ougmu"]
+[ext_resource type="Script" uid="uid://cmhnortaumxbd" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_device_id_name_to_label.gd" id="3_wav0k"]
 [ext_resource type="Script" uid="uid://cm5tmybtkyfrn" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_buttons_id.gd" id="4_av8uy"]
 
 [node name="NodeNesTextDebug" type="Control" unique_id=1410429519]
@@ -25,6 +26,13 @@ script = ExtResource("2_av8uy")
 ui_text_node = NodePath(".")
 devise_id_name = "NES"
 
+[node name="LabelDeviceName" type="Label" parent="VBoxContainer" unique_id=725283760 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 2
+text = "-"
+vertical_alignment = 1
+script = ExtResource("3_wav0k")
+ui_text_node = NodePath(".")
+
 [node name="LabelButtonChanged" type="Label" parent="VBoxContainer" unique_id=734005069 node_paths=PackedStringArray("ui_text_node")]
 layout_mode = 2
 text = "-"
@@ -44,3 +52,4 @@ devise_id_name = "NES"
 [connection signal="on_nes_index_button_on_off" from="." to="VBoxContainer/LabelButtonChanged" method="set_text_for_button"]
 [connection signal="on_nes_index_button_with_id_on_off" from="." to="VBoxContainer/LabelButtonIdChanged" method="set_text_for_button"]
 [connection signal="on_nes_is_connected_changed" from="." to="VBoxContainer/LabelConnectedChanged" method="set_text_for_connected"]
+[connection signal="on_nes_is_name_found" from="." to="VBoxContainer/LabelDeviceName" method="set_text_from_string"]

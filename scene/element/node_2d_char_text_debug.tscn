@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://b3s8kjhiv4c6c"]
+
+[ext_resource type="Script" uid="uid://csyxmasdg1fky" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_char.gd" id="1_cvm4r"]
+[ext_resource type="Script" uid="uid://bgmerpy4s30ar" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_string_to_label.gd" id="2_hhahu"]
+
+[node name="NodeCharTextDebug" type="Control" unique_id=376628810]
+layout_mode = 3
+anchor_top = 0.90900004
+anchor_right = 1.057
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -3.40802
+offset_right = -23.184021
+grow_vertical = 2
+script = ExtResource("1_cvm4r")
+
+[node name="Label" type="Label" parent="." unique_id=2128980816 node_paths=PackedStringArray("ui_text_node")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -6.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "="
+vertical_alignment = 1
+script = ExtResource("2_hhahu")
+ui_text_node = NodePath(".")
+
+[connection signal="on_char_detected" from="." to="Label" method="set_text_from_string"]

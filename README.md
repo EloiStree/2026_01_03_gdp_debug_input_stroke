@@ -1,6 +1,6 @@
 ```
 git submodule add https://github.com/EloiStree/2026_01_03_gdp_input_to_primitive.git addons/2026_01_03_gdp_input_to_primitive
-git submodule update --init --recursive
+
 
 ```
 

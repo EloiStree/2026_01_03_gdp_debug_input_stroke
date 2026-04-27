@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dpheotq1kcu8u"]
+
+[ext_resource type="PackedScene" uid="uid://b3s8kjhiv4c6c" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_char_text_debug.tscn" id="1_swwlm"]
+[ext_resource type="PackedScene" uid="uid://t541jgkqbe76" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_debug_input.tscn" id="2_shftu"]
+[ext_resource type="PackedScene" uid="uid://b0fbpro0orjwl" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_debug_joystick_list.tscn" id="3_a6ti1"]
+[ext_resource type="PackedScene" uid="uid://dpkno0w5mpnhn" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_keyboard_text_debug.tscn" id="4_v3whh"]
+[ext_resource type="PackedScene" uid="uid://cdw3rbo884rot" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_nes_text_debug.tscn" id="5_dm5uf"]
+[ext_resource type="PackedScene" uid="uid://bystu5yy86e34" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_xbox_text_debug.tscn" id="6_0vjv6"]
+[ext_resource type="PackedScene" uid="uid://dwdtasu4ghnjw" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_e2d_listen_to_devices_axis_and_buttons.tscn" id="7_vtdhu"]
+
+[node name="DemoInputToPrimitive" type="Control" unique_id=1124651793]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ListenToDevicesAxisAndButtons" parent="." unique_id=1922160281 instance=ExtResource("7_vtdhu")]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1095559874]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.531
+anchor_bottom = 0.998
+offset_right = 0.28796387
+offset_bottom = 0.29595947
+
+[node name="NodeCharTextDebug" parent="VBoxContainer" unique_id=376628810 instance=ExtResource("1_swwlm")]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="Node2dDebugInput" parent="VBoxContainer" unique_id=1375779504 instance=ExtResource("2_shftu")]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="NodeDebugJoystickList" parent="VBoxContainer" unique_id=511065496 instance=ExtResource("3_a6ti1")]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="NodeKeyboardTextDebug" parent="VBoxContainer" unique_id=1410429519 instance=ExtResource("4_v3whh")]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="NodeNesTextDebug" parent="VBoxContainer" unique_id=1494518023 instance=ExtResource("5_dm5uf")]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+
+[node name="NodeXboxTextDebug" parent="VBoxContainer" unique_id=1455376397 instance=ExtResource("6_0vjv6")]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2

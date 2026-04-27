@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://bystu5yy86e34"]
 
-[ext_resource type="Script" uid="uid://csbximvjcivoi" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_xbox.gd" id="1_lik3n"]
-[ext_resource type="Script" uid="uid://ch7ogjdlna67m" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_is_connected.gd" id="2_qhexx"]
-[ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_buttons.gd" id="3_mwj2e"]
-[ext_resource type="Script" uid="uid://cmhnortaumxbd" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_device_id_name_to_label.gd" id="3_qhexx"]
-[ext_resource type="Script" uid="uid://berhieavextrw" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_axis.gd" id="4_wvblv"]
-[ext_resource type="Script" uid="uid://ca852ms8cey1g" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_vector2.gd" id="5_64aus"]
+[ext_resource type="Script" uid="uid://csbximvjcivoi" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/listen_to_xbox.gd" id="1_lik3n"]
+[ext_resource type="Script" uid="uid://ch7ogjdlna67m" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_devices_to_text_is_connected.gd" id="2_qhexx"]
+[ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_devices_to_text_buttons.gd" id="3_mwj2e"]
+[ext_resource type="Script" uid="uid://cmhnortaumxbd" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_device_id_name_to_label.gd" id="3_qhexx"]
+[ext_resource type="Script" uid="uid://berhieavextrw" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_devices_to_text_axis.gd" id="4_wvblv"]
+[ext_resource type="Script" uid="uid://ca852ms8cey1g" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_devices_to_text_vector2.gd" id="5_64aus"]
+
 
 [node name="NodeXboxTextDebug" type="Control" unique_id=1410429519]
 layout_mode = 3

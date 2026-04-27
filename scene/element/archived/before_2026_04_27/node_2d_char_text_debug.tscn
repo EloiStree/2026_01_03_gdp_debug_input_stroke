@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b3s8kjhiv4c6c"]
 
-[ext_resource type="Script" uid="uid://csyxmasdg1fky" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_char.gd" id="1_cvm4r"]
-[ext_resource type="Script" uid="uid://bgmerpy4s30ar" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_string_to_label.gd" id="2_hhahu"]
+[ext_resource type="Script" uid="uid://csyxmasdg1fky" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/listen_to_char.gd" id="1_cvm4r"]
+[ext_resource type="Script" uid="uid://bgmerpy4s30ar" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_string_to_label.gd" id="2_hhahu"]
 
 [node name="NodeCharTextDebug" type="Control" unique_id=376628810]
 layout_mode = 3

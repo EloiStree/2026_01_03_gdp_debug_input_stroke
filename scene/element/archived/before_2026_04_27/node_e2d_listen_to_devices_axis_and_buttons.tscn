@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://dwdtasu4ghnjw"]
 
-[ext_resource type="Script" uid="uid://dyfg66bk2vk0i" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_devices_axis_and_buttons.gd" id="1_morjb"]
-[ext_resource type="Script" uid="uid://dmyxgi5a4b6wj" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_devices_axis_and_buttons_text_debugger.gd" id="2_vred5"]
+[ext_resource type="Script" uid="uid://dyfg66bk2vk0i" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/listen_to_devices_axis_and_buttons.gd" id="1_morjb"]
+[ext_resource type="Script" uid="uid://dmyxgi5a4b6wj" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/listen_to_devices_axis_and_buttons_text_debugger.gd" id="2_vred5"]
+
 
 [node name="ListenToDevicesAxisAndButtons" type="Node" unique_id=1922160281]
 script = ExtResource("1_morjb")

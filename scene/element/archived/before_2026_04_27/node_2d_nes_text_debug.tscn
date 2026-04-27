@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://cdw3rbo884rot"]
 
-[ext_resource type="Script" uid="uid://lufh06wiiip1" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/listen_to_nes_from_joystick.gd" id="1_4a38f"]
-[ext_resource type="Script" uid="uid://ch7ogjdlna67m" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_is_connected.gd" id="2_av8uy"]
-[ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_buttons.gd" id="2_ougmu"]
-[ext_resource type="Script" uid="uid://cmhnortaumxbd" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_device_id_name_to_label.gd" id="3_wav0k"]
-[ext_resource type="Script" uid="uid://cm5tmybtkyfrn" path="res://addons/2026_01_03_gdp_debug_input_stroke/script/debug_devices_to_text_buttons_id.gd" id="4_av8uy"]
+[ext_resource type="Script" uid="uid://lufh06wiiip1" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/listen_to_nes_from_joystick.gd" id="1_4a38f"]
+[ext_resource type="Script" uid="uid://ch7ogjdlna67m" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_devices_to_text_is_connected.gd" id="2_av8uy"]
+[ext_resource type="Script" uid="uid://onqu413sdwhb" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_devices_to_text_buttons.gd" id="2_ougmu"]
+[ext_resource type="Script" uid="uid://cmhnortaumxbd" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_device_id_name_to_label.gd" id="3_wav0k"]
+[ext_resource type="Script" uid="uid://cm5tmybtkyfrn" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_devices_to_text_buttons_id.gd" id="4_av8uy"]
+
 
 [node name="NodeNesTextDebug" type="Control" unique_id=1410429519]
 layout_mode = 3

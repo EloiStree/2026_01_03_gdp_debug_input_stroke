@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://t541jgkqbe76"]
 
-[ext_resource type="PackedScene" uid="uid://dpkno0w5mpnhn" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_2d_keyboard_text_debug.tscn" id="1_wyyem"]
-[ext_resource type="PackedScene" uid="uid://cdw3rbo884rot" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_2d_nes_text_debug.tscn" id="2_wvlqp"]
-[ext_resource type="PackedScene" uid="uid://bystu5yy86e34" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_2d_xbox_text_debug.tscn" id="3_mkbsp"]
-[ext_resource type="PackedScene" uid="uid://b3s8kjhiv4c6c" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_2d_char_text_debug.tscn" id="4_wvlqp"]
-[ext_resource type="PackedScene" uid="uid://b0fbpro0orjwl" path="res://addons/2026_01_03_gdp_debug_input_stroke/scene/element/node_2d_debug_joystick_list.tscn" id="5_mkbsp"]
+[ext_resource type="PackedScene" uid="uid://dpkno0w5mpnhn" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_keyboard_text_debug.tscn" id="1_wyyem"]
+[ext_resource type="PackedScene" uid="uid://cdw3rbo884rot" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_nes_text_debug.tscn" id="2_wvlqp"]
+[ext_resource type="PackedScene" uid="uid://bystu5yy86e34" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_xbox_text_debug.tscn" id="3_mkbsp"]
+[ext_resource type="PackedScene" uid="uid://b3s8kjhiv4c6c" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_char_text_debug.tscn" id="4_wvlqp"]
+[ext_resource type="PackedScene" uid="uid://b0fbpro0orjwl" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/element/archived/before_2026_04_27/node_2d_debug_joystick_list.tscn" id="5_mkbsp"]
+
 
 [node name="Node2dDebugInput" type="Control" unique_id=1375779504]
 layout_mode = 3

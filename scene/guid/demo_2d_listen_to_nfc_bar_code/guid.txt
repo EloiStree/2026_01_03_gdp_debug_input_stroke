@@ -1,0 +1,3 @@
+9PuzTgJ89XkgFGfBZRsBVHMaDzHF1iLswWfG2wjeJMMb
+Listen to RFID and Barcode
+A simple demo that shows how to listen for input from an NFC/RFID reader and a barcode scanner.

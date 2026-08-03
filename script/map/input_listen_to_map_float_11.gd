@@ -4,12 +4,12 @@ extends Node
 signal on_float_value_updated(value: float)
 signal on_float_value_changed(value: float)
 
-@export var input_map_negative := ""
-@export var input_map_positive := ""
+@export var _input_map_negative := ""
+@export var _input_map_positive := ""
 
 
 @export_group("Debug")
-@export var last_value_fetched: float = 0.0
+@export var _last_value_fetched: float = 0.0
 
 
 func _ready() -> void:
@@ -21,15 +21,16 @@ func _process(_delta: float) -> void:
 
 
 func check_and_notify_value():
-	if input_map_negative == "" or input_map_positive == "":
+	if _input_map_negative == "" or _input_map_positive == "":
 		return
 
-	var current_value := Input.get_axis(
-		input_map_negative,
-		input_map_positive
-	)
-	var value_changed := current_value != last_value_fetched
-	last_value_fetched = current_value
-	if value_changed:
-		on_float_value_changed.emit(current_value)
-	on_float_value_updated.emit(current_value)
+	if InputMap.has_action(_input_map_negative) and InputMap.has_action(_input_map_positive):
+		var current_value := Input.get_axis(
+			_input_map_negative,
+			_input_map_positive
+		)
+		var value_changed := current_value != _last_value_fetched
+		_last_value_fetched = current_value
+		if value_changed:
+			on_float_value_changed.emit(current_value)
+		on_float_value_updated.emit(current_value)

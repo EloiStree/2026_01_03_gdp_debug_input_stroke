@@ -8,7 +8,7 @@ signal on_key_on_off_with_label(key_code: int, label_name: String, value_is_down
 
 
 @export var keys_id_255_to_label_name: Array[String] = []
-
+@export var _use_print_log:bool
 
 func set_label_of_key_id(key_id_0_255: int, label_name: String) -> void:
 	if key_id_0_255 < 0:
@@ -40,8 +40,13 @@ func _process(_delta: float) -> void:
 				key_states[key_code] = is_down
 				on_key_on_off.emit(key_code, is_down)
 				on_key_on_off_with_label.emit(key_code, get_label_of_key_id(key_code), is_down)
+				if _use_print_log:
+					print ("Key code: ", key_code, " is_down: ", is_down, " label: ", get_label_of_key_id(key_code))
+					
 		else:
 			key_states[key_code] = is_down
 			on_first_time_key_on.emit(key_code)
 			on_key_on_off.emit(key_code, is_down)
 			on_key_on_off_with_label.emit(key_code, get_label_of_key_id(key_code), is_down)
+			if _use_print_log:
+				print ("Key code: ", key_code, " is_down: ", is_down, " label: ", get_label_of_key_id(key_code))

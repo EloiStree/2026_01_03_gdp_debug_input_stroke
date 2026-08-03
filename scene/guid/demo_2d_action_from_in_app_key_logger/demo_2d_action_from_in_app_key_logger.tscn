@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://2fb6igtpf0bj"]
+
+[ext_resource type="Script" uid="uid://c8uf84fij4vlp" path="res://addons/2026_01_03_gdp_input_to_primitive/script/in_app_key_log/input_keyboard_local_unicode_typing_logger.gd" id="1_piitx"]
+[ext_resource type="Script" uid="uid://dy6v5butthvf6" path="res://addons/2026_01_03_gdp_input_to_primitive/script/in_app_key_log/input_abstract_typing_key_logger.gd" id="2_2kv08"]
+[ext_resource type="Script" uid="uid://7dcxq5c1203w" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_parse_primitive_to_string.gd" id="2_piitx"]
+[ext_resource type="Script" uid="uid://cm76n7hcopjcs" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_to_alias/input_to_alias_gamepad.gd" id="3_jdgc7"]
+[ext_resource type="Script" uid="uid://cyvvgnco2gkov" path="res://addons/2026_01_03_gdp_input_to_primitive/script/test/test_get_joy_info.gd" id="5_nnfxt"]
+
+[node name="Demo2dActionFromInAppKeyLogger" type="Control" unique_id=965093910]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputKeyboardLocalUnicodeTypingLogger" type="Node" parent="." unique_id=1069217371]
+script = ExtResource("1_piitx")
+
+[node name="InputAbstractTypingKeyLogger" type="Node" parent="." unique_id=31899618]
+script = ExtResource("2_2kv08")
+_max_memory_length = 20
+metadata/_custom_type_script = "uid://dy6v5butthvf6"
+
+[node name="InputToAliasGamepad" type="Node" parent="InputAbstractTypingKeyLogger" unique_id=1552420101]
+script = ExtResource("3_jdgc7")
+metadata/_custom_type_script = "uid://cm76n7hcopjcs"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=751912880]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelStringBuilder" type="Label" parent="VBoxContainer" unique_id=1287591117]
+layout_mode = 2
+
+[node name="LabelChar" type="Label" parent="VBoxContainer" unique_id=2123084908]
+layout_mode = 2
+
+[node name="LabelInt" type="Label" parent="VBoxContainer" unique_id=1519291009]
+layout_mode = 2
+
+[node name="InputParsePrimitiveToString" type="Node" parent="VBoxContainer/LabelInt" unique_id=701771275]
+script = ExtResource("2_piitx")
+metadata/_custom_type_script = "uid://7dcxq5c1203w"
+
+[node name="LabelStringBuilder2" type="Label" parent="VBoxContainer" unique_id=381382073]
+layout_mode = 2
+
+[node name="LabelChar2" type="Label" parent="VBoxContainer" unique_id=1064041844]
+layout_mode = 2
+
+[node name="Node" type="Node" parent="." unique_id=1352108612]
+script = ExtResource("5_nnfxt")
+
+[connection signal="on_any_unicode_character_found" from="InputKeyboardLocalUnicodeTypingLogger" to="InputAbstractTypingKeyLogger" method="inject_key_as_string"]
+[connection signal="on_any_unicode_character_found" from="InputKeyboardLocalUnicodeTypingLogger" to="VBoxContainer/LabelChar" method="set_text"]
+[connection signal="on_any_unicode_integer_found" from="InputKeyboardLocalUnicodeTypingLogger" to="VBoxContainer/LabelInt/InputParsePrimitiveToString" method="push_in_primitive_int"]
+[connection signal="on_string_builder_changed" from="InputKeyboardLocalUnicodeTypingLogger" to="VBoxContainer/LabelStringBuilder" method="set_text"]
+[connection signal="on_key_string_appended" from="InputAbstractTypingKeyLogger" to="VBoxContainer/LabelChar2" method="set_text"]
+[connection signal="on_string_builder_changed" from="InputAbstractTypingKeyLogger" to="VBoxContainer/LabelStringBuilder2" method="set_text"]
+[connection signal="on_new_input_detected" from="InputAbstractTypingKeyLogger/InputToAliasGamepad" to="InputAbstractTypingKeyLogger" method="inject_key_as_string"]
+[connection signal="on_string_parsed" from="VBoxContainer/LabelInt/InputParsePrimitiveToString" to="VBoxContainer/LabelInt" method="set_text"]

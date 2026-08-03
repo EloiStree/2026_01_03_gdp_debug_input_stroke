@@ -14,6 +14,7 @@ var keys_id_to_label_name: Dictionary = {}
 
 @export var dictionary_key_id_to_label_name_to_load: Dictionary[int,String] = {}
 @export var default_key_to_label_to_load: Array[KeyboardToolbox.IntegerIdToName] = []
+@export var _use_debug_print:bool
 
 func _ready() -> void:
 	for key_to_label in default_key_to_label_to_load:
@@ -37,11 +38,16 @@ func _input(event):
 		# Detect first time the key is pressed
 		if is_down and not _key_states[key_code]:
 			on_first_time_key_on.emit(key_code)
+			if _use_debug_print:
+				print("First time key pressed: ", key_code, " label: ", get_label_of_key_id(key_code))
+				
 
 		if _key_states[key_code] != is_down:
 			_key_states[key_code] = is_down
 			on_key_on_off.emit( key_code, is_down)
 			on_key_on_off_with_label.emit( key_code, get_label_of_key_id(key_code), is_down)
+			if _use_debug_print:
+				print("Key code: ", key_code, " is_down: ", is_down, " label: ", get_label_of_key_id(key_code))
 
 func is_key_down(key_code: int) -> bool:
 	return _key_states.get(key_code, false)

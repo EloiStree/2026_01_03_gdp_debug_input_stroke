@@ -2,6 +2,8 @@ class_name InputOnOffKeyboardUnicodeInteger
 extends InputAbstractOnOffEmit
 
 
+signal on_any_unicode_integer_found(unicode_id:int)
+
 @export var unicode_to_listen: int= 32
 @export var use_print_debug: bool = true
 @export var last_input_found: int =0

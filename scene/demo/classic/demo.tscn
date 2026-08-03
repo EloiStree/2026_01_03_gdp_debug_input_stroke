@@ -62,26 +62,18 @@ metadata/_custom_type_script = "uid://7f57e4spy0hy"
 
 [node name="InputMapButton" type="Node" parent="InputMap" unique_id=1813072120]
 script = ExtResource("7_hull0")
-input_map_named = "motor_left_front"
 
 [node name="InputMapFloat" type="Node" parent="InputMap" unique_id=1775675364]
 script = ExtResource("8_5jr7s")
-input_map_named = "motor_left_front"
 
 [node name="InputMapAxis" type="Node" parent="InputMap" unique_id=719878430]
 script = ExtResource("9_ib63b")
-input_map_negative = "motor_left_back"
-input_map_positive = "motor_left_front"
 
 [node name="Float On Off" type="Node" parent="InputMap/InputMapAxis" unique_id=1008418902]
 script = ExtResource("10_omud2")
 
 [node name="InputMapVertex" type="Node" parent="InputMap" unique_id=588965507]
 script = ExtResource("11_hxu48")
-input_map_negative_horizontal = "motor_left_back"
-input_map_positive_horizontal = "motor_left_front"
-input_map_negative_vertical = "motor_right_back"
-input_map_positive_vertical = "motor_right_front"
 
 [node name="Arrow Event" type="Node" parent="InputMap/InputMapVertex" unique_id=152769551]
 script = ExtResource("12_0i0lk")
@@ -169,7 +161,4 @@ transform = Transform3D(1, 0, 0, 0, 0.791437, 0.6112508, 0, -0.6112508, 0.791437
 
 [connection signal="on_float_value_updated" from="InputMap/InputMapAxis" to="InputMap/InputMapAxis/Float On Off" method="push_in"]
 [connection signal="on_float_value_updated" from="InputMap/InputMapVertex" to="InputMap/InputMapVertex/Arrow Event" method="push_in_vector2"]
-[connection signal="on_found_nfc_code" from="InputNfcListener" to="InputNfcListener/InputNfcTextToNodeSpawn" method="try_spawn_node_from_text"]
-[connection signal="on_found_nfc_code" from="InputNfcListener" to="InputNfcListener/InputNfcTextToVariable" method="try_to_emit_store_variable_from_key"]
-[connection signal="on_found_nfc_code" from="InputNfcListener" to="CanvasLayer/Label" method="set_text"]
 [connection signal="on_untyped_variable_found" from="InputNfcListener/InputNfcTextToVariable" to="Node3D2/RigidBody3D" method="set_position"]

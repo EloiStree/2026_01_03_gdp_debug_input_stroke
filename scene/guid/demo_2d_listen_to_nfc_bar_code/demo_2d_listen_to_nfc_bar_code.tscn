@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://h51oervmqplh"]
 
+[ext_resource type="Script" uid="uid://dne1wyvd2r3fi" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_listener.gd" id="1_yeefq"]
+
 [node name="Demo2dListenToNfcBarCode" type="Control" unique_id=57509181]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +9,36 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="InputNfcListener" type="Node" parent="." unique_id=396235374]
+script = ExtResource("1_yeefq")
+use_print_debug = true
+metadata/_custom_type_script = "uid://dne1wyvd2r3fi"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=8474124]
+layout_mode = 0
+offset_right = 579.0
+offset_bottom = 449.0
+
+[node name="Label Builder" type="Label" parent="VBoxContainer" unique_id=1298225711]
+layout_mode = 2
+text = "BUILDER"
+
+[node name="Label Builder Value" type="Label" parent="VBoxContainer" unique_id=1896424372]
+layout_mode = 2
+
+[node name="Label Submit" type="Label" parent="VBoxContainer" unique_id=1741820930]
+layout_mode = 2
+text = "SUBMIT"
+
+[node name="Label Submit Value" type="Label" parent="VBoxContainer" unique_id=1112400828]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer" unique_id=84658558]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[connection signal="on_nfc_builder_code_changed" from="InputNfcListener" to="VBoxContainer/Label Builder Value" method="set_text"]
+[connection signal="on_nfc_code_found" from="InputNfcListener" to="VBoxContainer/Label Submit Value" method="set_text"]
+[connection signal="on_percent_waiting_for_submit_updated" from="InputNfcListener" to="VBoxContainer/HSlider" method="set_value"]

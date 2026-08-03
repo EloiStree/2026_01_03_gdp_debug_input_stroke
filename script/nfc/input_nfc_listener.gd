@@ -1,7 +1,9 @@
 class_name InputNfcListener
 extends Node
 
-signal on_found_nfc_code(nfc_code: String)
+signal on_nfc_code_found(nfc_code: String)
+signal on_nfc_builder_code_changed(nfc_code: String)
+signal on_percent_waiting_for_submit_updated(percent:float)
 
 @export var exit_time_in_seconds: float = 0.3
 @export var use_keyboard_unicode_input: bool = true
@@ -151,11 +153,14 @@ func _input(event: InputEvent) -> void:
 func _process(delta: float) -> void:
 	if exit_time_countdown > 0:
 		exit_time_countdown -= delta
+		var time_left :float= exit_time_countdown/exit_time_in_seconds
+		on_percent_waiting_for_submit_updated.emit(time_left)
 		if exit_time_countdown <= 0:
-			on_found_nfc_code.emit(nfc_builder)
+			on_nfc_code_found.emit(nfc_builder)
 			if use_print_debug:
 				print("Builder: ", nfc_builder)
 			nfc_builder=""
+			on_percent_waiting_for_submit_updated.emit(0)
 
 
 func append_text_to_builder_with_spliter(text:String, spliter:String="|") -> void:
@@ -169,6 +174,7 @@ func append_variable_to_builder(variable) -> void:
 	if use_print_debug:
 		print("Appended variable: ", variable, "\t\tbuilder: ", nfc_builder)
 	exit_time_countdown = exit_time_in_seconds
+	on_nfc_builder_code_changed.emit(nfc_builder)
 
 ## Allow to create code from custom text that arre not the keyboard unicode.
 func append_text_to_builder(text:String) -> void:
@@ -179,3 +185,4 @@ func append_text_to_builder(text:String) -> void:
 	if use_print_debug:
 		print("Appended text: ", text, "\t\tbuilder: ", nfc_builder)
 	exit_time_countdown = exit_time_in_seconds
+	on_nfc_builder_code_changed.emit(nfc_builder)

@@ -89,3 +89,4 @@ var _joy_axis_list:Array = [
 	JOY_AXIS_TRIGGER_LEFT,
 	JOY_AXIS_TRIGGER_RIGHT
 ]
+	

@@ -131,7 +131,7 @@ signal on_key_changed_as_string(value:String, is_on:bool)
 func _init() -> void:
 	pass
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventKey and not event.echo:
 		is_shift_there_last=false
 		is_alt_there_last=false

@@ -15,6 +15,10 @@ signal on_key_string_appended(key_string:String)
 
 
 func inject_key_as_string(key_as_string:String) -> void:
+	inject_key_as_string_with_splitter(key_as_string,"")
+
+func inject_key_as_string_with_splitter(key_as_string:String,splitter:String ="|") -> void:
+	key_as_string = splitter + key_as_string	
 	_memory_list.append(key_as_string)
 	if _memory_list.size() > _max_memory_length:
 		_memory_list.remove_at(0)

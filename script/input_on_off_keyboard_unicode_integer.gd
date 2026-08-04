@@ -3,10 +3,11 @@ extends InputAbstractOnOffEmit
 
 
 signal on_any_unicode_integer_found(unicode_id:int)
+signal on_any_unicode_integer_as_string_found(unicode_id_as_string:String)
 
-@export var unicode_to_listen: int= 32
-@export var use_print_debug: bool = true
-@export var last_input_found: int =0
+@export var _unicode_to_listen: int= 32
+@export var _use_print_debug: bool = true
+@export var _last_input_found: int = 0
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -17,7 +18,10 @@ func _input(event: InputEvent) -> void:
 		if unicode==0:
 			return
 		var unicode_char := char(key_event.unicode)
-		if use_print_debug:
+		if _use_print_debug:
 			print(key_event.unicode)
-		if unicode == unicode_to_listen:
+		_last_input_found = unicode
+		if unicode == _unicode_to_listen:
 			notify_as_changed_state(key_event.pressed)
+		on_any_unicode_integer_found.emit(unicode)
+		on_any_unicode_integer_as_string_found.emit(str(unicode))

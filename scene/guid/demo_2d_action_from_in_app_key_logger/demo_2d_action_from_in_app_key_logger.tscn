@@ -54,7 +54,7 @@ layout_mode = 2
 [node name="LabelChar2" type="Label" parent="VBoxContainer" unique_id=1064041844]
 layout_mode = 2
 
-[node name="Node" type="Node" parent="." unique_id=1352108612]
+[node name="Test GamepadInfo" type="Node" parent="." unique_id=1352108612]
 script = ExtResource("5_nnfxt")
 
 [connection signal="on_any_unicode_character_found" from="InputKeyboardLocalUnicodeTypingLogger" to="InputAbstractTypingKeyLogger" method="inject_key_as_string"]
@@ -63,5 +63,5 @@ script = ExtResource("5_nnfxt")
 [connection signal="on_string_builder_changed" from="InputKeyboardLocalUnicodeTypingLogger" to="VBoxContainer/LabelStringBuilder" method="set_text"]
 [connection signal="on_key_string_appended" from="InputAbstractTypingKeyLogger" to="VBoxContainer/LabelChar2" method="set_text"]
 [connection signal="on_string_builder_changed" from="InputAbstractTypingKeyLogger" to="VBoxContainer/LabelStringBuilder2" method="set_text"]
-[connection signal="on_new_input_detected" from="InputAbstractTypingKeyLogger/InputToAliasGamepad" to="InputAbstractTypingKeyLogger" method="inject_key_as_string"]
+[connection signal="on_new_input_detected" from="InputAbstractTypingKeyLogger/InputToAliasGamepad" to="InputAbstractTypingKeyLogger" method="inject_key_as_string_with_splitter"]
 [connection signal="on_string_parsed" from="VBoxContainer/LabelInt/InputParsePrimitiveToString" to="VBoxContainer/LabelInt" method="set_text"]

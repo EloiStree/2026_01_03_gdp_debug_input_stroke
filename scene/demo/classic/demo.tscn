@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://kj647thywf50" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_unicode_string.gd" id="1_y6fyf"]
 [ext_resource type="Script" uid="uid://3d6kwndfwv20" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_unicode_integer.gd" id="2_ksx3b"]
-[ext_resource type="Script" uid="uid://buabu81k2m1m5" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_mouse.gd" id="3_eq210"]
+[ext_resource type="Script" uid="uid://buabu81k2m1m5" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_mouse/script/input_listen_to_mouse.gd" id="3_eq210"]
 [ext_resource type="Script" uid="uid://b6d0lxvq0uju0" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_key_label_as_string.gd" id="4_v4rm3"]
 [ext_resource type="Script" uid="uid://dbx6thcax6vo1" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_key_label_by_enum.gd" id="5_ge74j"]
 [ext_resource type="Script" uid="uid://7f57e4spy0hy" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_ctrl_shift_alt.gd" id="6_hv6r6"]

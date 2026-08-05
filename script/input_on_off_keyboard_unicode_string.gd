@@ -1,4 +1,4 @@
-class_name InputListenToKeyboardUnicodeString
+class_name InputListenToKeyboardUnicodeAsString
 extends Node
 
 signal on_any_unicode_char_found(unicode_char_as_string:String)

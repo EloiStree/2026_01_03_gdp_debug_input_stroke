@@ -1,11 +1,9 @@
-class_name InputOnOffKeyboardUnicodeInteger
-extends InputAbstractOnOffEmit
-
+class_name InputListenToKeyboardUnicodeAsInteger
+extends Node
 
 signal on_any_unicode_integer_found(unicode_id:int)
 signal on_any_unicode_integer_as_string_found(unicode_id_as_string:String)
 
-@export var _unicode_to_listen: int= 32
 @export var _use_print_debug: bool = true
 @export var _last_input_found: int = 0
 
@@ -21,7 +19,5 @@ func _input(event: InputEvent) -> void:
 		if _use_print_debug:
 			print(key_event.unicode)
 		_last_input_found = unicode
-		if unicode == _unicode_to_listen:
-			notify_as_changed_state(key_event.pressed)
 		on_any_unicode_integer_found.emit(unicode)
 		on_any_unicode_integer_as_string_found.emit(str(unicode))

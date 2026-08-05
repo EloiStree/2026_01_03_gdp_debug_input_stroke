@@ -1,0 +1,97 @@
+[gd_scene format=3 uid="uid://i377isghs00m"]
+
+[ext_resource type="Script" uid="uid://d3wbcnhud6bjx" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_midi/script/input_listen_to_midi.gd" id="1_i1m7s"]
+[ext_resource type="Script" uid="uid://dishfg3euiiev" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_midi/script/input_midi_devices_key_control_dictionary.gd" id="2_cex7b"]
+[ext_resource type="Script" uid="uid://cowds1iqtydsg" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_midi/script/input_midi_device_as_three_text_line.gd" id="3_n1q8w"]
+[ext_resource type="Script" uid="uid://cnx2af0athnyy" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_parse_key_value_variant_to_string_format.gd" id="4_jd70v"]
+
+[node name="Demo2dListenToMidi" type="Control" unique_id=1257018321]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputListenToMidi" type="Node" parent="." unique_id=2094250412]
+script = ExtResource("1_i1m7s")
+_use_print_log = false
+metadata/_custom_type_script = "uid://d3wbcnhud6bjx"
+
+[node name="InputMidiDevicesKeyControlDictionary" type="Node" parent="InputListenToMidi" unique_id=117343100]
+script = ExtResource("2_cex7b")
+metadata/_custom_type_script = "uid://dishfg3euiiev"
+
+[node name="InputMidiDeviceAsThreeTextLine" type="Node" parent="InputListenToMidi/InputMidiDevicesKeyControlDictionary" unique_id=1181016843]
+script = ExtResource("3_n1q8w")
+_midi_info_as_text = "MIDI Device Info:
+0000000...009999000
+0000000...009999000
+
+"
+metadata/_custom_type_script = "uid://cowds1iqtydsg"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1687573911]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.326
+anchor_bottom = 0.26500002
+offset_right = -0.55200195
+offset_bottom = 0.27998352
+
+[node name="Label Note Title" type="Label" parent="VBoxContainer" unique_id=81180369]
+layout_mode = 2
+text = "MIDI NOTE"
+
+[node name="Label Note" type="Label" parent="VBoxContainer" unique_id=1668922265]
+layout_mode = 2
+
+[node name="Label Controller Title" type="Label" parent="VBoxContainer" unique_id=97690334]
+layout_mode = 2
+text = "MIDI  CONTROLLER"
+
+[node name="Label Controller" type="Label" parent="VBoxContainer" unique_id=1421244011]
+layout_mode = 2
+
+[node name="Label Device" type="Label" parent="VBoxContainer" unique_id=1511229150]
+layout_mode = 2
+text = "NEW DEVICE"
+
+[node name="Label Add Device" type="Label" parent="VBoxContainer" unique_id=1599149044]
+layout_mode = 2
+
+[node name="Label Ref Array Title" type="Label" parent="VBoxContainer" unique_id=490344232]
+layout_mode = 2
+text = "DEVICE AS TEXT"
+
+[node name="Label ref  Array" type="Label" parent="VBoxContainer" unique_id=48675759]
+layout_mode = 2
+theme_override_font_sizes/font_size = 7
+
+[node name="Label Note Value" type="Label" parent="VBoxContainer" unique_id=1212592797]
+layout_mode = 2
+
+[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="VBoxContainer/Label Note Value" unique_id=275534050]
+script = ExtResource("4_jd70v")
+_format_string = "Note Key: {key}, Value: {value}"
+metadata/_custom_type_script = "uid://cnx2af0athnyy"
+
+[node name="Label Control Value" type="Label" parent="VBoxContainer" unique_id=633199033]
+layout_mode = 2
+
+[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="VBoxContainer/Label Control Value" unique_id=937817310]
+script = ExtResource("4_jd70v")
+_format_string = "Control Key: {key}, Value: {value}"
+metadata/_custom_type_script = "uid://cnx2af0athnyy"
+
+[connection signal="on_any_midi_in_control_changed" from="InputListenToMidi" to="InputListenToMidi/InputMidiDevicesKeyControlDictionary" method="push_in_midi_control"]
+[connection signal="on_any_midi_in_control_changed_as_string" from="InputListenToMidi" to="VBoxContainer/Label Controller" method="set_text"]
+[connection signal="on_any_midi_in_note_changed" from="InputListenToMidi" to="InputListenToMidi/InputMidiDevicesKeyControlDictionary" method="push_in_midi_note"]
+[connection signal="on_any_midi_in_note_changed_as_string" from="InputListenToMidi" to="VBoxContainer/Label Note" method="set_text"]
+[connection signal="on_unsourced_midi_control_changed" from="InputListenToMidi" to="VBoxContainer/Label Control Value/InputParseKeyValueVariantToStringFormat" method="push_in_int_int"]
+[connection signal="on_unsourced_midi_note_changed" from="InputListenToMidi" to="VBoxContainer/Label Note Value/InputParseKeyValueVariantToStringFormat" method="push_in_int_int"]
+[connection signal="on_midi_device_as_array_ref_changed" from="InputListenToMidi/InputMidiDevicesKeyControlDictionary" to="InputListenToMidi/InputMidiDevicesKeyControlDictionary/InputMidiDeviceAsThreeTextLine" method="push_in_device_info"]
+[connection signal="on_new_device_added" from="InputListenToMidi/InputMidiDevicesKeyControlDictionary" to="VBoxContainer/Label Add Device" method="set_text"]
+[connection signal="on_midi_as_string_updated" from="InputListenToMidi/InputMidiDevicesKeyControlDictionary/InputMidiDeviceAsThreeTextLine" to="VBoxContainer/Label ref  Array" method="set_text"]
+[connection signal="on_key_value_variant_to_string_format" from="VBoxContainer/Label Note Value/InputParseKeyValueVariantToStringFormat" to="VBoxContainer/Label Note Value" method="set_text"]
+[connection signal="on_key_value_variant_to_string_format" from="VBoxContainer/Label Control Value/InputParseKeyValueVariantToStringFormat" to="VBoxContainer/Label Control Value" method="set_text"]

@@ -1,0 +1,6 @@
+
+when typing with fast typing
+when submitting text
+when ending by text.
+
+compare the list and emit the found text.

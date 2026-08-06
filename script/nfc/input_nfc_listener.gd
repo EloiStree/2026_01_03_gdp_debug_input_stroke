@@ -1,7 +1,7 @@
-class_name InputNfcListener
+class_name InputListenToFastTypingNfc
 extends Node
 
-signal on_nfc_code_found(nfc_code: String)
+signal on_nfc_submit_code_found(nfc_code: String)
 signal on_nfc_builder_code_changed(nfc_code: String)
 signal on_percent_waiting_for_submit_updated(percent:float)
 
@@ -14,7 +14,6 @@ signal on_percent_waiting_for_submit_updated(percent:float)
 @export var nfc_builder=""
 
 @export var use_print_debug:bool
-
 
 
 var bool_joystick_left_left = false
@@ -147,16 +146,13 @@ func _input(event: InputEvent) -> void:
 			append_text_to_builder_with_spliter(to_add, "|")
 			
 
-
-
-			
 func _process(delta: float) -> void:
 	if exit_time_countdown > 0:
 		exit_time_countdown -= delta
 		var time_left :float= exit_time_countdown/exit_time_in_seconds
 		on_percent_waiting_for_submit_updated.emit(time_left)
 		if exit_time_countdown <= 0:
-			on_nfc_code_found.emit(nfc_builder)
+			on_nfc_submit_code_found.emit(nfc_builder)
 			if use_print_debug:
 				print("Builder: ", nfc_builder)
 			nfc_builder=""

@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://d1ybrbnp4uvhe"]
+
+[ext_resource type="Script" uid="uid://bbxm2lsuvep4b" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_merge_trigger_bool_float_event/script/input_listen_to_merge_trigger_event.gd" id="1_6bpit"]
+[ext_resource type="Script" uid="uid://dk2031jlyj3kt" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_merge_trigger_bool_float_event/script/input_listen_to_merge_key_bool.gd" id="5_d03eh"]
+[ext_resource type="Script" uid="uid://es48epxp748w" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_merge_trigger_bool_float_event/script/input_listen_to_merge_key_float.gd" id="6_cli48"]
+[ext_resource type="Script" uid="uid://4ck824ib6nk0" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_merge_trigger_bool_float_event/script/input_push_to_merge_instance_in_scene.gd" id="7_d03eh"]
+[ext_resource type="Script" uid="uid://bms7dq325dg1y" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_merge_trigger_bool_float_event/script/ui2d/input_ui_2d_button_to_trigger.gd" id="8_3jl5n"]
+[ext_resource type="Script" uid="uid://1d0owkid77fd" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_merge_trigger_bool_float_event/script/ui2d/input_ui_2d_toggle_to_key_bool.gd" id="9_g2004"]
+[ext_resource type="Script" uid="uid://buqqyrtlfxbme" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_merge_trigger_bool_float_event/script/ui2d/input_ui_2d_slider_to_key_float.gd" id="10_73frj"]
+
+[node name="Demo2dMergeTriggerBoolFloatEvent" type="Control" unique_id=166951282]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Listen" type="Node" parent="." unique_id=222540173]
+
+[node name="InputListenToMergeTriggerEvent" type="Node" parent="Listen" unique_id=1713302752 node_paths=PackedStringArray("_debug_labels")]
+script = ExtResource("1_6bpit")
+_debug_labels = [NodePath("../../VBoxContainerListener/Label Trigger")]
+metadata/_custom_type_script = "uid://bbxm2lsuvep4b"
+
+[node name="InputListenToMergeKeyBoolEvent" type="Node" parent="Listen" unique_id=448391751 node_paths=PackedStringArray("_debug_labels")]
+script = ExtResource("5_d03eh")
+_debug_labels = [NodePath("../../VBoxContainerListener/Label Key Bool")]
+metadata/_custom_type_script = "uid://dk2031jlyj3kt"
+
+[node name="InputListenToMergeKeyFloatEvent" type="Node" parent="Listen" unique_id=349331932 node_paths=PackedStringArray("_debug_labels")]
+script = ExtResource("6_cli48")
+_debug_labels = [NodePath("../../VBoxContainerListener/Label Key Float")]
+metadata/_custom_type_script = "uid://es48epxp748w"
+
+[node name="VBoxContainerPusher" type="VBoxContainer" parent="." unique_id=1958253776]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.418
+anchor_bottom = 0.98300004
+offset_right = -0.53601074
+offset_bottom = 0.015991211
+metadata/_edit_use_anchors_ = true
+
+[node name="Button" type="Button" parent="VBoxContainerPusher" unique_id=1246751499]
+layout_mode = 2
+text = "Hello World"
+
+[node name="InputPushToMergeInstanceInScene" type="Node" parent="VBoxContainerPusher/Button" unique_id=1130909239]
+script = ExtResource("7_d03eh")
+metadata/_custom_type_script = "uid://4ck824ib6nk0"
+
+[node name="InputUiButtonToTriggerEvent" type="Node" parent="VBoxContainerPusher/Button" unique_id=2098320582 node_paths=PackedStringArray("_buttons")]
+script = ExtResource("8_3jl5n")
+_buttons = [NodePath("..")]
+_trigger_name = "Hello World Trigger"
+metadata/_custom_type_script = "uid://bms7dq325dg1y"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainerPusher" unique_id=771693987]
+layout_mode = 2
+text = "IsGame On"
+
+[node name="InputPushToMergeInstanceInScene" type="Node" parent="VBoxContainerPusher/CheckButton" unique_id=388414184]
+script = ExtResource("7_d03eh")
+metadata/_custom_type_script = "uid://4ck824ib6nk0"
+
+[node name="InputUiToggleToKeyBoolEvent" type="Node" parent="VBoxContainerPusher/CheckButton" unique_id=1794811686 node_paths=PackedStringArray("_toggle")]
+script = ExtResource("9_g2004")
+_toggle = NodePath("..")
+_key_name = "Hello World Button"
+metadata/_custom_type_script = "uid://1d0owkid77fd"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainerPusher" unique_id=42500792]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="InputPushToMergeInstanceInScene" type="Node" parent="VBoxContainerPusher/HSlider" unique_id=362394530]
+script = ExtResource("7_d03eh")
+metadata/_custom_type_script = "uid://4ck824ib6nk0"
+
+[node name="InputUiSliderToKeyFloatEvent" type="Node" parent="VBoxContainerPusher/HSlider" unique_id=10307104 node_paths=PackedStringArray("_slider")]
+script = ExtResource("10_73frj")
+_slider = NodePath("..")
+_key_name = "Hello World Float"
+metadata/_custom_type_script = "uid://buqqyrtlfxbme"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainerPusher" unique_id=1389125877]
+layout_mode = 2
+
+[node name="InputPushToMergeInstanceInScene" type="Node" parent="VBoxContainerPusher/LineEdit" unique_id=1874560322]
+script = ExtResource("7_d03eh")
+metadata/_custom_type_script = "uid://4ck824ib6nk0"
+
+[node name="VBoxContainerListener" type="VBoxContainer" parent="." unique_id=1312664612]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.48524305
+anchor_right = 0.98310417
+anchor_bottom = 0.98300004
+offset_right = -0.53601074
+offset_bottom = 0.015991211
+metadata/_edit_use_anchors_ = true
+
+[node name="Label Trigger" type="Label" parent="VBoxContainerListener" unique_id=1286735944]
+layout_mode = 2
+
+[node name="Label Key Bool" type="Label" parent="VBoxContainerListener" unique_id=199086107]
+layout_mode = 2
+
+[node name="Label Key Float" type="Label" parent="VBoxContainerListener" unique_id=862378005]
+layout_mode = 2
+
+[connection signal="button_down" from="VBoxContainerPusher/Button" to="VBoxContainerPusher/Button/InputPushToMergeInstanceInScene" method="push_trigger_event" binds= ["Hello World"]]
+[connection signal="on_triggered_event_submitted" from="VBoxContainerPusher/Button/InputUiButtonToTriggerEvent" to="VBoxContainerPusher/Button/InputPushToMergeInstanceInScene" method="push_trigger_event"]
+[connection signal="on_bool_event_submitted" from="VBoxContainerPusher/CheckButton/InputUiToggleToKeyBoolEvent" to="VBoxContainerPusher/CheckButton/InputPushToMergeInstanceInScene" method="push_key_bool_value"]
+[connection signal="on_float_event_submitted" from="VBoxContainerPusher/HSlider/InputUiSliderToKeyFloatEvent" to="VBoxContainerPusher/HSlider/InputPushToMergeInstanceInScene" method="push_key_float_value"]
+[connection signal="text_submitted" from="VBoxContainerPusher/LineEdit" to="VBoxContainerPusher/LineEdit/InputPushToMergeInstanceInScene" method="push_trigger_event"]
+[connection signal="text_submitted" from="VBoxContainerPusher/LineEdit" to="VBoxContainerPusher/LineEdit/InputPushToMergeInstanceInScene" method="parse_and_push_line_from_context"]

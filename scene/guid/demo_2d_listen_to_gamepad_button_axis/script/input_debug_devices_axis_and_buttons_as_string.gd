@@ -1,7 +1,7 @@
-class_name ListenToDevicesAxisAndButtonsTextDebugger 
+class_name InputDebugDevicesAxisAndButtonsAsString
 extends Node
 
-@export var listen_to_axis_and_buttons:ListenToDevicesAxisAndButtons 
+@export var listen_to_axis_and_buttons:InputListenToDevicesAxisAndButtons 
 
 signal on_new_device_name_detected(text:String)
 signal on_last_device_name_to_changed(text:String)
@@ -38,11 +38,11 @@ func _on_button_changed(device_index: int, apparition_index: int, button_index: 
 	if device != null:
 		on_last_device_button_id_to_changed.emit(device.get_button_apparition_string_id_name_with_gamepad_name())
 
-func _on_any_event_to_device_reference(device: ListenToDevicesAxisAndButtons.DeviceTracked) -> void:
-	on_last_device_name_to_changed.emit(device.joystick_name)
+func _on_any_event_to_device_reference(device: InputListenToDevicesAxisAndButtons.DeviceTracked) -> void:
+	on_last_device_name_to_changed.emit(device._device_name)
 
-func _on_any_event_to_device_and_manager_reference(device: ListenToDevicesAxisAndButtons.DeviceTracked, manager: ListenToDevicesAxisAndButtons) -> void:
+func _on_any_event_to_device_and_manager_reference(device: InputListenToDevicesAxisAndButtons.DeviceTracked, manager: InputListenToDevicesAxisAndButtons) -> void:
 	pass
 
-func _on_any_button_event_to_device_reference(device: ListenToDevicesAxisAndButtons.DeviceTracked) -> void:
-	on_last_device_name_to_have_button_changed.emit(device.joystick_name)
+func _on_any_button_event_to_device_reference(device: InputListenToDevicesAxisAndButtons.DeviceTracked) -> void:
+	on_last_device_name_to_have_button_changed.emit(device._device_name)

@@ -1,4 +1,4 @@
-class_name ListenToDevicesAxisAndButtons extends Node
+class_name InputListenToDevicesAxisAndButtons extends Node
 
 signal on_new_device_tracked(device_index: int, apparition_index: int, device_name: String)
 signal on_new_supposed_xbox_tracked(device_index: int, apparition_index: int, device_name: String)
@@ -6,11 +6,11 @@ signal on_axis_changed(device_index: int, apparition_index: int, axis_index: int
 signal on_button_changed(device_index: int, apparition_index: int, button_index: int,  new_button_value: bool)
 signal on_any_event_to_device_reference(device: DeviceTracked)
 signal on_any_button_event_to_device_reference(device:DeviceTracked)
-signal on_any_event_to_device_and_manager_reference(device: DeviceTracked, manager: ListenToDevicesAxisAndButtons)
+signal on_any_event_to_device_and_manager_reference(device: DeviceTracked, manager: InputListenToDevicesAxisAndButtons)
 
 
-@export var is_xbox_if_has_in_name: Array[String] = ["xbox","steam deck", "x-box", "x box", "xbox360", "x-box360", "x box360", "xbox one", "x-box one", "x box one" ]
-@export var use_print_debug: bool = false
+@export var _is_xbox_if_has_in_name: Array[String] = ["xbox","steam deck", "x-box", "x box", "xbox360", "x-box360", "x box360", "xbox one", "x-box one", "x box one" ]
+@export var _use_print_debug: bool = false
 
 
 # on_new_device_tracked.emit( )
@@ -21,30 +21,31 @@ signal on_any_event_to_device_and_manager_reference(device: DeviceTracked, manag
 # on_any_event_to_device_and_manager_reference.emit()
 
 
-var list_of_all_devices: Array[DeviceTracked] = []
+var _list_of_all_devices: Array[DeviceTracked] = []
+
 
 func has_xbox_player() -> bool:
-	for device in list_of_all_devices:
+	for device in _list_of_all_devices:
 		if device == null:
 			continue
-		if device.is_xbox:
+		if device._is_xbox:
 			return true
 	return false
 
 func get_xbox_players_count() -> int:
 	var count := 0
-	for device in list_of_all_devices:
+	for device in _list_of_all_devices:
 		if device == null:
 			continue
-		if device.is_xbox:
+		if device._is_xbox:
 			count += 1
 	return count
 func get_non_xbox_players_count() -> int:
 	var count := 0
-	for device in list_of_all_devices:
+	for device in _list_of_all_devices:
 		if device == null:
 			continue
-		if not device.is_xbox:
+		if not device._is_xbox:
 			count += 1
 	return count
 
@@ -54,18 +55,18 @@ func has_xbox_player_1_to_4(player_index_1_to_4: int) -> bool:
 func get_xbox_player_1_to_4(player_index_1_to_4: int) -> DeviceTracked:
 	var count := 0
 	var current_index := 1
-	for device in list_of_all_devices:
+	for device in _list_of_all_devices:
 		if device == null:
 			continue
-		if device.is_xbox:
-			if device.joystick_apparition_index+1 == player_index_1_to_4:
+		if device._is_xbox:
+			if device._joystick_apparition_index+1 == player_index_1_to_4:
 				return device
 	return null
 
 
 func is_device_name_consider_xbox(device_name: String) -> bool:
 	var lower_name := device_name.to_lower()
-	for xbox_name_part in is_xbox_if_has_in_name:
+	for xbox_name_part in _is_xbox_if_has_in_name:
 		if xbox_name_part in lower_name:
 			return true
 	return false
@@ -73,32 +74,32 @@ func is_device_name_consider_xbox(device_name: String) -> bool:
 func is_device_index_is_in_list_of_all_devices(device_index: int) -> bool:
 	if device_index < 0:
 		return false
-	if device_index >= list_of_all_devices.size():
+	if device_index >= _list_of_all_devices.size():
 		return false
-	return list_of_all_devices[device_index] != null
+	return _list_of_all_devices[device_index] != null
 
 func _add_tracked_device(device_index: int) -> void:
-	var bool_is_device_setup = device_index >= 0 and device_index < list_of_all_devices.size() and list_of_all_devices[device_index] != null
+	var bool_is_device_setup = device_index >= 0 and device_index < _list_of_all_devices.size() and _list_of_all_devices[device_index] != null
 	if bool_is_device_setup:
 		return
 	var device_name := Input.get_joy_name(device_index)
 	var device_apparition_index = get_exact_name_count_in_track_devices(device_name,true, true)
-	if use_print_debug:
+	if _use_print_debug:
 		print("Adding device with Godot index: ", device_index, " Apparition index: ", device_apparition_index, " Name: ", device_name)
 	var is_xbox := is_device_name_consider_xbox(device_name)
 	var new_device := DeviceTracked.new()
-	new_device.is_xbox = is_xbox
-	new_device.joystick_godot_index = device_index
-	new_device.joystick_apparition_index = device_apparition_index
-	new_device.joystick_name = device_name
-	new_device.axis_list = []
-	new_device.button_list = []
+	new_device._is_xbox = is_xbox
+	new_device._joystick_godot_index = device_index
+	new_device._joystick_apparition_index = device_apparition_index
+	new_device._device_name = device_name
+	new_device._axis_list = []
+	new_device._button_list = []
 
 
 	# Resize the list to accommodate the new device index if necessary
-	if device_index >= list_of_all_devices.size():
-		list_of_all_devices.resize(device_index + 1)
-	list_of_all_devices[device_index] = new_device
+	if device_index >= _list_of_all_devices.size():
+		_list_of_all_devices.resize(device_index + 1)
+	_list_of_all_devices[device_index] = new_device
 
 
 	on_new_device_tracked.emit(device_index, device_apparition_index, device_name)
@@ -118,10 +119,10 @@ func get_exact_name_count_in_track_devices(device_name: String, use_lowercase: b
 		device_name = device_name.to_lower()
 
 	
-	for device in list_of_all_devices:
+	for device in _list_of_all_devices:
 		if device == null:
 			continue
-		var name_to_check := device.joystick_name
+		var name_to_check := device._device_name
 		if use_trim:
 			name_to_check = name_to_check.strip_edges()
 		if use_lowercase:
@@ -133,23 +134,23 @@ func get_exact_name_count_in_track_devices(device_name: String, use_lowercase: b
 func is_device_tracked(device_index: int) -> bool:
 	if device_index < 0:
 		return false
-	if device_index >= list_of_all_devices.size():
+	if device_index >= _list_of_all_devices.size():
 		return false
-	return list_of_all_devices[device_index] != null
+	return _list_of_all_devices[device_index] != null
 
 func get_device_by_godot_index(device_index: int) -> DeviceTracked:
 	if device_index < 0:
 		return null
-	if device_index >= list_of_all_devices.size():
+	if device_index >= _list_of_all_devices.size():
 		return null
-	return list_of_all_devices[device_index]
+	return _list_of_all_devices[device_index]
 
 
 func get_device_axis_by_godot_index(device_index: int, axis_index: int) -> DeviceAxis:
 	var device := get_device_by_godot_index(device_index)
 	if device == null:
 		return null
-	for axis in device.axis_list:
+	for axis in device._axis_list:
 		if axis == null:
 			continue
 		if axis.axis_index == axis_index:
@@ -160,7 +161,7 @@ func get_device_button_by_godot_index(device_index: int, button_index: int) -> D
 	var device := get_device_by_godot_index(device_index)
 	if device == null:
 		return null
-	for button in device.button_list:
+	for button in device._button_list:
 		if button == null:
 			continue
 		if button.button_index == button_index:
@@ -168,19 +169,19 @@ func get_device_button_by_godot_index(device_index: int, button_index: int) -> D
 	return null
 
 func get_device_by_apparition_index(apparition_index: int) -> DeviceTracked:
-	for device in list_of_all_devices:
+	for device in _list_of_all_devices:
 		if device == null:
 			continue
-		if device.joystick_apparition_index == apparition_index:
+		if device._joystick_apparition_index == apparition_index:
 			return device
 	return null
 
 func get_device_by_exact_name(device_name: String, use_lowercase: bool = true, use_trim: bool = true) -> Array[DeviceTracked]:
 	var matching_devices: Array[DeviceTracked] = []
-	for device in list_of_all_devices:
+	for device in _list_of_all_devices:
 		if device == null:
 			continue
-		var name_to_check := device.joystick_name
+		var name_to_check := device._device_name
 		if use_trim:
 			name_to_check = name_to_check.strip_edges()
 		if use_lowercase:
@@ -191,10 +192,10 @@ func get_device_by_exact_name(device_name: String, use_lowercase: bool = true, u
 
 func get_device_with_name_containing(device_name_part: String, use_lowercase: bool = true, use_trim: bool = true) -> Array[DeviceTracked]:
 	var matching_devices: Array[DeviceTracked] = []
-	for device in list_of_all_devices:
+	for device in _list_of_all_devices:
 		if device == null:
 			continue
-		var name_to_check := device.joystick_name
+		var name_to_check := device._device_name
 		if use_trim:
 			name_to_check = name_to_check.strip_edges()
 		if use_lowercase:
@@ -212,13 +213,13 @@ func _set_axis_value_for_device(device_index: int, axis_index: int, axis_value: 
 
 	if device == null:
 		return
-	for axis in device.axis_list:
+	for axis in device._axis_list:
 		if axis == null:
 			continue
 		if axis.axis_index == axis_index:
 			var previous_axis_value := axis.axis_value
 			axis.axis_value = axis_value
-			on_axis_changed.emit(device_index, device.joystick_apparition_index, axis_index, previous_axis_value, axis_value)
+			on_axis_changed.emit(device_index, device._joystick_apparition_index, axis_index, previous_axis_value, axis_value)
 			on_any_event_to_device_reference.emit(device)
 			on_any_event_to_device_and_manager_reference.emit(device, self)
 			return
@@ -227,9 +228,9 @@ func _set_axis_value_for_device(device_index: int, axis_index: int, axis_value: 
 	new_axis.axis_name = "Axis " + str(axis_index)
 	new_axis.axis_index = axis_index
 	new_axis.axis_value = axis_value
-	device.axis_list.append(new_axis)
+	device._axis_list.append(new_axis)
 
-	on_axis_changed.emit(device_index, device.joystick_apparition_index, axis_index, 0.0, axis_value)
+	on_axis_changed.emit(device_index, device._joystick_apparition_index, axis_index, 0.0, axis_value)
 	on_any_event_to_device_reference.emit(device)
 	on_any_event_to_device_and_manager_reference.emit(device, self)
 
@@ -237,7 +238,7 @@ func get_device_name_by_godot_index(device_index: int) -> String:
 	var device := get_device_by_godot_index(device_index)
 	if device == null:
 		return "Unknown Device "+str(device_index)
-	return device.joystick_name
+	return device._device_name
 
 
 
@@ -248,13 +249,13 @@ func _set_button_value_for_device(device_index: int, button_index: int, button_v
 	var device := get_device_by_godot_index(device_index)
 	if device == null:
 		return
-	for button in device.button_list:
+	for button in device._button_list:
 		if button == null:
 			continue
 		if button.button_index == button_index:
 			var previous_button_value := button.button_value
 			button.button_value = button_value
-			on_button_changed.emit(device_index, device.joystick_apparition_index, button_index,  button_value)
+			on_button_changed.emit(device_index, device._joystick_apparition_index, button_index,  button_value)
 			on_any_event_to_device_reference.emit(device)
 			on_any_button_event_to_device_reference.emit(device)
 			on_any_event_to_device_and_manager_reference.emit(device, self)
@@ -265,8 +266,8 @@ func _set_button_value_for_device(device_index: int, button_index: int, button_v
 	new_button.button_name = "Button " + str(button_index)
 	new_button.button_index = button_index
 	new_button.button_value = button_value
-	device.button_list.append(new_button)	
-	on_button_changed.emit(device_index, device.joystick_apparition_index, button_index,  button_value)
+	device._button_list.append(new_button)	
+	on_button_changed.emit(device_index, device._joystick_apparition_index, button_index,  button_value)
 	on_any_event_to_device_reference.emit(device)
 	on_any_button_event_to_device_reference.emit(device)
 	on_any_event_to_device_and_manager_reference.emit(device, self)
@@ -274,7 +275,7 @@ func _set_button_value_for_device(device_index: int, button_index: int, button_v
 func get_one_line_description_for_device_godot_index(device_index: int) -> String:
 	var device := get_device_by_godot_index(device_index)
 	if device == null:
-		return "Device not tracked "+str(device_index)+ " List size: "+str(list_of_all_devices.size())
+		return "Device not tracked "+str(device_index)+ " List size: "+str(_list_of_all_devices.size())
 	return device.get_one_line_description()
 
 func _input(event: InputEvent) -> void:
@@ -285,7 +286,7 @@ func _input(event: InputEvent) -> void:
 		var axis_value := joy_event.axis_value
 		var device_name := Input.get_joy_name(device_index)
 		_set_axis_value_for_device(device_index, axis_index, axis_value)
-		if use_print_debug:
+		if _use_print_debug:
 			print(get_one_line_description_for_device_godot_index(device_index))
 
 	elif event is InputEventJoypadButton:
@@ -295,7 +296,7 @@ func _input(event: InputEvent) -> void:
 		var button_pressed := button_event.pressed
 		var device_name := Input.get_joy_name(device_index)
 		_set_button_value_for_device(device_index, button_index, button_pressed)
-		if use_print_debug:
+		if _use_print_debug:
 			print(get_one_line_description_for_device_godot_index(device_index))
 
 class DeviceAxis:
@@ -306,11 +307,11 @@ class DeviceAxis:
 
 	func get_axis_apparition_string_id_name() -> String:
 		#>NAME|APPARITION_INDEX
-		return "A>"+str(linked_device.joystick_name) + "|" + str(linked_device.joystick_apparition_index) + "|"+str(axis_index)
+		return "A>"+str(linked_device._device_name) + "|" + str(linked_device._joystick_apparition_index) + "|"+str(axis_index)
 	
 	func get_axis_apparition_string_id_name_with_gamepad_name() -> String:
 		#>NAME|APPARITION_INDEX|DEFAULT_NAME
-		return "A>"+str(linked_device.joystick_name) + "|" + str(linked_device.joystick_apparition_index) + "|"+str(axis_index) + "(" + get_axis_default_name() + ")"
+		return "A>"+str(linked_device._device_name) + "|" + str(linked_device._joystick_apparition_index) + "|"+str(axis_index) + "(" + get_axis_default_name() + ")"
 
 	func get_axis_default_name() -> String:
 		match axis_index:
@@ -332,11 +333,11 @@ class DeviceButton:
 
 	func get_button_apparition_string_id_name() -> String:
 		#>NAME|APPARITION_INDEX
-		return "B>"+str(linked_device.joystick_name) + "|" + str(linked_device.joystick_apparition_index) + "|"+str(button_index)
+		return "B>"+str(linked_device._device_name) + "|" + str(linked_device._joystick_apparition_index) + "|"+str(button_index)
 
 	func get_button_apparition_string_id_name_with_gamepad_name() -> String:
 		#>NAME|APPARITION_INDEX|DEFAULT_NAME
-		return "B>"+str(linked_device.joystick_name) + "|" + str(linked_device.joystick_apparition_index) + "|"+str(button_index) + "(" + get_button_default_name() + ")"
+		return "B>"+str(linked_device._device_name) + "|" + str(linked_device._joystick_apparition_index) + "|"+str(button_index) + "(" + get_button_default_name() + ")"
 
 	func get_button_default_name() -> String:
 
@@ -362,42 +363,72 @@ class DeviceButton:
 
 
 class DeviceTracked:
-	var is_xbox: bool
-	var joystick_godot_index: int
-	var joystick_apparition_index: int
-	var joystick_name: String
-	var axis_list: Array[DeviceAxis] = []
-	var button_list: Array[DeviceButton] = []
+	var _is_xbox: bool
+	var _joystick_godot_index: int
+	var _joystick_apparition_index: int
+	var _device_name: String
+	var _axis_list: Array[DeviceAxis] = []
+	var _button_list: Array[DeviceButton] = []
 	# End of script
+
+	func  get_three_line_debug() -> String:
+		var debug_str := "Device: " + str(_device_name) + " (Godot index: " + str(_joystick_godot_index) + ", Apparition index: " + str(_joystick_apparition_index) + ", Is Xbox: " + str(_is_xbox) + ")\n"
+		debug_str += "Axes: "
+		for axis in _axis_list:
+			if axis == null:
+				continue
+			debug_str +=  str(axis.axis_index) + "|" + "%.1f" % axis.axis_value + " "
+		debug_str += "Buttons: "
+		for button in _button_list:
+			if button == null:
+				continue
+			debug_str +=  str(button.button_index) + "|" + str(button.button_value) + " "
+		return debug_str
+
 
 	func get_apparition_string_id_name() -> String:
 		#>NAME|APPARITION_INDEX
-		return "D>"+str(joystick_name) + "|" + str(joystick_apparition_index)
+		return "D>"+str(_device_name) + "|" + str(_joystick_apparition_index)
 
 
 	func get_one_line_description() -> String:
 		# GODOT_INDEX|APPARITION_INDEX|IS_XBOX|NAME| A1 0.00 ::: B2 1.00 ::: 
-		var description := str(joystick_godot_index) + "|" + str(joystick_apparition_index) + "|" + str(is_xbox) + "|" + joystick_name + "| "
-		for axis in axis_list:
+		var description := str(_joystick_godot_index) + "|" + str(_joystick_apparition_index) + "|" + str(_is_xbox) + "|" + _device_name + "| "
+		for axis in _axis_list:
 			if axis == null:
 				continue
 			description += "A" + str(axis.axis_index) + " " + str(axis.axis_value) + ", "
-		for button in button_list:
+		for button in _button_list:
 			if button == null:
 				continue	
 			description += "B" + str(button.button_index) + " " + str(button.button_value) + ", "
 		return description
 
+	func get_axis_count() -> int:
+		return _axis_list.size()
+		
 	func get_axis_value_by_axis_index(axis_index: int) -> float:
-		for axis in axis_list:
+		if  axis_index < 0:
+			return 0.0
+		if axis_index >= _axis_list.size():
+			_axis_list.resize(axis_index + 1)
+
+		for axis in _axis_list:
 			if axis == null:
 				continue
 			if axis.axis_index == axis_index:
 				return axis.axis_value
 		return 0.0
 
+	func get_button_count() -> int:
+		return _button_list.size()
 	func get_button_value_by_button_index(button_index: int) -> bool:
-		for button in button_list:
+		if  button_index < 0:
+			return false
+		if button_index >= _button_list.size():
+			_button_list.resize(button_index + 1)
+
+		for button in _button_list:
 			if button == null:
 				continue
 			if button.button_index == button_index:

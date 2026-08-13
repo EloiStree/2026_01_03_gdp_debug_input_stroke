@@ -17,9 +17,12 @@ use_print_debug = true
 metadata/_custom_type_script = "uid://dne1wyvd2r3fi"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=8474124]
-layout_mode = 0
-offset_right = 579.0
-offset_bottom = 449.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label Builder" type="Label" parent="VBoxContainer" unique_id=1298225711]
 layout_mode = 2
@@ -53,5 +56,4 @@ text_to_scene_name_dico = null
 metadata/_custom_type_script = "uid://dl1atyi78up5p"
 
 [connection signal="on_nfc_builder_code_changed" from="InputNfcListener" to="VBoxContainer/Label Builder Value" method="set_text"]
-[connection signal="on_nfc_code_found" from="InputNfcListener" to="VBoxContainer/Label Submit Value" method="set_text"]
 [connection signal="on_percent_waiting_for_submit_updated" from="InputNfcListener" to="VBoxContainer/HSlider" method="set_value"]

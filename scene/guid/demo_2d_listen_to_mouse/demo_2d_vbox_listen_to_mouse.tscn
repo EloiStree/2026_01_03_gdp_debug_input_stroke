@@ -5,10 +5,11 @@
 
 [node name="Demo2dListenToMouse" type="Panel" unique_id=297125749]
 custom_minimum_size = Vector2(10, 10)
-anchors_preset = -1
-anchor_right = 0.5451389
-anchor_bottom = 0.8734568
-metadata/_edit_use_anchors_ = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="InputListenToMouse" type="Node" parent="." unique_id=574560619]
 script = ExtResource("1_rqvio")
@@ -16,12 +17,11 @@ metadata/_custom_type_script = "uid://buabu81k2m1m5"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=877311670]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.9998853
-anchor_bottom = 0.98751765
-offset_right = 0.071998596
-offset_bottom = 0.06499481
-metadata/_edit_use_anchors_ = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label Position" type="Label" parent="VBoxContainer" unique_id=899095544]
 layout_mode = 2

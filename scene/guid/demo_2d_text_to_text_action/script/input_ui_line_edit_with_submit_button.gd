@@ -1,4 +1,4 @@
-class_name InputUILineEditWithSubmitButton
+class_name InputUiLineEditWithSubmitButton
 extends Node
 
 
@@ -13,10 +13,10 @@ signal on_line_edit_any_action(text:String)
 
 func _ready():
 	if line_edit:
-		line_edit.connect("text_changed", Callable(self, "_on_line_edit_text_changed"))
-		line_edit.connect("text_submitted", Callable(self, "_on_line_edit_submit"))
+		line_edit.text_changed.connect(Callable(self, "_on_line_edit_text_changed"))
+		line_edit.text_submitted.connect( Callable(self, "_on_line_edit_submit"))
 	if submit_button:
-		submit_button.connect("pressed", Callable(self, "_on_submit_button_pressed"))
+		submit_button.pressed.connect( Callable(self, "_on_submit_button_pressed"))
 	
 func _on_line_edit_text_changed(new_text:String):
 	on_line_edit_text_changed.emit(new_text)

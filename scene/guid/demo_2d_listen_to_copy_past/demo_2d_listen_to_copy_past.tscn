@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://lee8dfjmvx1s"]
+
+[ext_resource type="Script" uid="uid://ndp5a0i3ov0r" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_copy_past/input_listen_to_copy_past.gd" id="1_14i3c"]
+
+[node name="Demo2dListenToCopyPast" type="Control" unique_id=558129070]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputListenToCopyPast" type="Node" parent="." unique_id=2099804427]
+script = ExtResource("1_14i3c")
+metadata/_custom_type_script = "uid://ndp5a0i3ov0r"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=305046397]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label Title" type="Label" parent="VBoxContainer" unique_id=1120289022]
+layout_mode = 2
+text = "Listen to Copy Past Action"
+
+[node name="Label Last Found" type="Label" parent="VBoxContainer" unique_id=1632889041]
+layout_mode = 2
+
+[node name="CheckButton Copy" type="CheckButton" parent="VBoxContainer" unique_id=1129570900]
+layout_mode = 2
+text = "Copy"
+
+[node name="CheckButton Past" type="CheckButton" parent="VBoxContainer" unique_id=345467052]
+layout_mode = 2
+text = "Past"
+
+[node name="CheckButton Cut" type="CheckButton" parent="VBoxContainer" unique_id=977144175]
+layout_mode = 2
+text = "Cut"
+
+[connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="VBoxContainer/Label Last Found" method="set_text"]
+[connection signal="on_copy_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Copy" method="set_pressed"]
+[connection signal="on_cut_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Cut" method="set_pressed"]
+[connection signal="on_past_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Past" method="set_pressed"]

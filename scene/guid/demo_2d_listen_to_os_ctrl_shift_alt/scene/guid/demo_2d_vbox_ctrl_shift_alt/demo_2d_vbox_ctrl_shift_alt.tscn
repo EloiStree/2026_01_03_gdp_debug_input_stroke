@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://c64isfnfdg043"]
+
+[ext_resource type="Script" uid="uid://7f57e4spy0hy" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_ctrl_shift_alt.gd" id="1_nam8u"]
+
+[node name="Demo2dVboxCtrlShiftAlt" type="Control" unique_id=1506564625]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputOnOffKeyboardCtrlShiftAlt" type="Node" parent="." unique_id=45456468]
+script = ExtResource("1_nam8u")
+metadata/_custom_type_script = "uid://7f57e4spy0hy"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2064729980]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=320528131]
+layout_mode = 2
+
+[node name="CheckButtonControl" type="CheckButton" parent="VBoxContainer" unique_id=160390032]
+layout_mode = 2
+text = "Ctrl"
+
+[node name="CheckButtonShift" type="CheckButton" parent="VBoxContainer" unique_id=844985992]
+layout_mode = 2
+text = "Shift"
+
+[node name="CheckButtonAlt" type="CheckButton" parent="VBoxContainer" unique_id=2045367181]
+layout_mode = 2
+text = "Alt"
+
+[node name="CheckButtonOsButton" type="CheckButton" parent="VBoxContainer" unique_id=1934882346]
+layout_mode = 2
+text = "OS"
+
+[connection signal="on_alt_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/CheckButtonAlt" method="set_pressed"]
+[connection signal="on_control_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/CheckButtonControl" method="set_pressed"]
+[connection signal="on_os_key_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/CheckButtonOsButton" method="set_pressed"]
+[connection signal="on_shift_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/CheckButtonShift" method="set_pressed"]
+[connection signal="on_value_changed_as_debug_string" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/Label" method="set_text"]

@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://ba3og4m0880ou"]
+
+[ext_resource type="Script" uid="uid://dmyxgi5a4b6wj" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_gamepad_button_axis/script/input_debug_devices_axis_and_buttons_as_string.gd" id="1_dl1af"]
+[ext_resource type="Script" uid="uid://cc2wfvi266qp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_gamepad_button_axis/script/input_listen_to_devices_axis_and_buttons.gd" id="1_oqeph"]
+
+[node name="ListenToDevicesAxisAndButtons" type="Control" unique_id=25078802]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="." unique_id=587008177]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -3.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputListenToDevicesAxisAndButtons" type="Node" parent="Panel" unique_id=1889011984]
+script = ExtResource("1_oqeph")
+metadata/_custom_type_script = "uid://cc2wfvi266qp"
+
+[node name="ListenToDevicesAxisAndButtonsTextDebugger" type="Node" parent="Panel" unique_id=29578537 node_paths=PackedStringArray("listen_to_axis_and_buttons")]
+script = ExtResource("1_dl1af")
+listen_to_axis_and_buttons = NodePath("../InputListenToDevicesAxisAndButtons")
+metadata/_custom_type_script = "uid://dmyxgi5a4b6wj"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1027758831]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -2.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label Name" type="Label" parent="Panel/VBoxContainer" unique_id=1667254152]
+layout_mode = 2
+text = "- "
+
+[node name="Label Last Device Used" type="Label" parent="Panel/VBoxContainer" unique_id=1641251112]
+layout_mode = 2
+text = "- "
+
+[node name="Label Last Button Device Used" type="Label" parent="Panel/VBoxContainer" unique_id=606426213]
+layout_mode = 2
+text = "- "
+
+[node name="Label Axis Changed" type="Label" parent="Panel/VBoxContainer" unique_id=136388345]
+layout_mode = 2
+text = "- "
+
+[node name="Label Button Changed" type="Label" parent="Panel/VBoxContainer" unique_id=530912691]
+layout_mode = 2
+text = "- "
+
+[node name="Label Axis Value Changed" type="Label" parent="Panel/VBoxContainer" unique_id=304882838]
+layout_mode = 2
+text = "- "
+
+[node name="Label Button Value Changed" type="Label" parent="Panel/VBoxContainer" unique_id=1233770635]
+layout_mode = 2
+text = "- "
+
+[connection signal="on_last_device_axis_debug_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Axis Value Changed" method="set_text"]
+[connection signal="on_last_device_axis_id_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Axis Changed" method="set_text"]
+[connection signal="on_last_device_button_debug_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Button Value Changed" method="set_text"]
+[connection signal="on_last_device_button_id_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Button Changed" method="set_text"]
+[connection signal="on_last_device_name_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Last Device Used" method="set_text"]
+[connection signal="on_last_device_name_to_have_button_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Last Button Device Used" method="set_text"]
+[connection signal="on_new_device_name_detected" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Name" method="set_text"]

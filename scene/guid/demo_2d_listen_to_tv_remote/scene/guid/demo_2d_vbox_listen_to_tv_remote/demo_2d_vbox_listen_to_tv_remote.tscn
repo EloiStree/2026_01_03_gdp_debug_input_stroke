@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://brttoxwq0pfav"]
+
+[ext_resource type="Script" uid="uid://b6i1l1vu5bbrw" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_tv_remote/scene/guid/input_listen_to_tv_remote.gd" id="1_nsb1t"]
+
+[node name="Demo2dVboxListenToTvRemote" type="Control" unique_id=836566719]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputListenToTvRemote" type="Node" parent="." unique_id=596645324]
+script = ExtResource("1_nsb1t")
+metadata/_custom_type_script = "uid://b6i1l1vu5bbrw"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=631868406]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label Last Key Press" type="Label" parent="VBoxContainer" unique_id=2063822226]
+layout_mode = 2
+text = "Last TV key pressed"
+
+[node name="Label Name" type="Label" parent="VBoxContainer" unique_id=349742106]
+layout_mode = 2
+text = "-"
+
+[node name="Label Int" type="Label" parent="VBoxContainer" unique_id=1962118174]
+layout_mode = 2
+text = "-"
+
+[node name="CheckButton Up" type="CheckButton" parent="VBoxContainer" unique_id=1794672467]
+layout_mode = 2
+text = "Arrow Up"
+
+[node name="CheckButton Right" type="CheckButton" parent="VBoxContainer" unique_id=1351331078]
+layout_mode = 2
+text = "Arrow Right"
+
+[node name="CheckButton Down" type="CheckButton" parent="VBoxContainer" unique_id=670465361]
+layout_mode = 2
+text = "Arrow Down"
+
+[node name="CheckButton Left" type="CheckButton" parent="VBoxContainer" unique_id=1654113688]
+layout_mode = 2
+text = "Arrow Left"
+
+[node name="CheckButton Accept" type="CheckButton" parent="VBoxContainer" unique_id=29287928]
+layout_mode = 2
+text = "Arrow Accept"
+
+[node name="CheckButton Cancel" type="CheckButton" parent="VBoxContainer" unique_id=1309749335]
+layout_mode = 2
+text = "Arrow Cancel"
+
+[connection signal="on_tv_pressed_key_accept_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Accept" method="set_pressed"]
+[connection signal="on_tv_pressed_key_back_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Cancel" method="set_pressed"]
+[connection signal="on_tv_pressed_key_down_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Down" method="set_pressed"]
+[connection signal="on_tv_pressed_key_left_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Left" method="set_pressed"]
+[connection signal="on_tv_pressed_key_right_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Right" method="set_pressed"]
+[connection signal="on_tv_pressed_key_up_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Up" method="set_pressed"]
+[connection signal="on_tv_remote_pressed_int_as_string" from="InputListenToTvRemote" to="VBoxContainer/Label Int" method="set_text"]
+[connection signal="on_tv_remote_pressed_name_as_string" from="InputListenToTvRemote" to="VBoxContainer/Label Name" method="set_text"]

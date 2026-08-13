@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://dckv1ctic56d3"]
+
+[ext_resource type="Script" uid="uid://q8u7ky0mku8v" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_ui_line_edit_with_submit_button.gd" id="1_ng1k0"]
+[ext_resource type="Script" uid="uid://d3ycd8k67dbbm" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_ui_text_edit_with_submit_button.gd" id="2_pc8kv"]
+[ext_resource type="Script" uid="uid://ysih2ue3s8ac" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_text_dictionary_action_if_finishing_by.gd" id="4_6iqdm"]
+[ext_resource type="Script" uid="uid://b5ehbb8ry71dq" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_text_dictionary_action_if_equals_to.gd" id="5_q25cb"]
+
+[node name="Demo2dTextToTextList" type="Control" unique_id=741190881]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1119136147]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.208
+anchor_bottom = 0.30100003
+offset_right = 0.3840027
+offset_bottom = -0.04801941
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1451126611]
+layout_mode = 2
+text = "LINE EDIT UI"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1908107208]
+layout_mode = 2
+text = "123"
+
+[node name="InputUILineEditWithSubmitButton" type="Node" parent="VBoxContainer/LineEdit" unique_id=405635522 node_paths=PackedStringArray("line_edit", "submit_button")]
+script = ExtResource("1_ng1k0")
+line_edit = NodePath("..")
+submit_button = NodePath("../../Button Submit Line")
+metadata/_custom_type_script = "uid://q8u7ky0mku8v"
+
+[node name="Button Submit Line" type="Button" parent="VBoxContainer" unique_id=1136819238]
+layout_mode = 2
+text = "Submit"
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=261176016]
+layout_mode = 2
+text = "TEXT EDIT UI"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer" unique_id=1092470899]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "qwer"
+
+[node name="InputUITextEditWithSubmitButton" type="Node" parent="VBoxContainer/TextEdit" unique_id=1742098190 node_paths=PackedStringArray("text_edit", "submit_button")]
+script = ExtResource("2_pc8kv")
+text_edit = NodePath("..")
+submit_button = NodePath("../../Button Submit Text")
+metadata/_custom_type_script = "uid://d3ycd8k67dbbm"
+
+[node name="Button Submit Text" type="Button" parent="VBoxContainer" unique_id=967096286]
+layout_mode = 2
+text = "Submit"
+
+[node name="Label Found Title" type="Label" parent="VBoxContainer" unique_id=467712902]
+layout_mode = 2
+text = "Found Action"
+
+[node name="Label Found" type="Label" parent="VBoxContainer" unique_id=771745807]
+layout_mode = 2
+text = "-"
+
+[node name="Label Not Found Title" type="Label" parent="VBoxContainer" unique_id=918380436]
+layout_mode = 2
+text = "Not Found Key"
+
+[node name="Label Not Found Key" type="Label" parent="VBoxContainer" unique_id=997946146]
+layout_mode = 2
+text = "-"
+
+[node name="InputTextDictionaryActionIfFinishingBy" type="Node" parent="." unique_id=105307012]
+script = ExtResource("4_6iqdm")
+metadata/_custom_type_script = "uid://ysih2ue3s8ac"
+
+[node name="InputTextDictionaryActionIfEqualsTo" type="Node" parent="." unique_id=758169338]
+script = ExtResource("5_q25cb")
+metadata/_custom_type_script = "uid://b5ehbb8ry71dq"
+
+[connection signal="on_submit_button_pressed" from="VBoxContainer/LineEdit/InputUILineEditWithSubmitButton" to="InputTextDictionaryActionIfFinishingBy" method="emit_if_finishing_by_a_key"]
+[connection signal="on_submit_button_pressed" from="VBoxContainer/LineEdit/InputUILineEditWithSubmitButton" to="InputTextDictionaryActionIfEqualsTo" method="emit_if_equals_text_equals_to_one_key"]
+[connection signal="on_submit_button_pressed" from="VBoxContainer/TextEdit/InputUITextEditWithSubmitButton" to="InputTextDictionaryActionIfFinishingBy" method="emit_if_finishing_by_a_key"]
+[connection signal="on_submit_button_pressed" from="VBoxContainer/TextEdit/InputUITextEditWithSubmitButton" to="InputTextDictionaryActionIfEqualsTo" method="emit_if_equals_text_equals_to_one_key"]
+[connection signal="on_action_found" from="InputTextDictionaryActionIfFinishingBy" to="VBoxContainer/Label Found" method="set_text"]
+[connection signal="on_action_not_found_with_key" from="InputTextDictionaryActionIfFinishingBy" to="VBoxContainer/Label Not Found Key" method="set_text"]
+[connection signal="on_action_found" from="InputTextDictionaryActionIfEqualsTo" to="VBoxContainer/Label Found" method="set_text"]
+[connection signal="on_action_not_found_with_key" from="InputTextDictionaryActionIfEqualsTo" to="VBoxContainer/Label Not Found Key" method="set_text"]

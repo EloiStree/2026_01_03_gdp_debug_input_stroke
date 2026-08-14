@@ -1,0 +1,6 @@
+class_name InputAbstractListenToMouseAreaTriggers
+extends Node
+
+signal on_area_triggered_enter(trigger_name:String)
+signal on_area_triggered_exit(trigger_name:String)
+signal on_area_triggered_inside_value(trigger_name:String, inside_value:bool)

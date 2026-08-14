@@ -1,0 +1,3 @@
+class_name InputAbstractListenToMouseAreaTriggersSingle
+extends InputAbstractListenToMouseAreaTriggers
+signal on_area_value_changed(inside_area_value:bool)

@@ -1,4 +1,4 @@
-class_name c
+class_name InputListenToMouse
 extends Node
 
 signal on_scroll_named_action(action_name: String)
@@ -9,6 +9,8 @@ signal on_mouse_event_received_as_string(text: String)
 signal on_mouse_position_changed_as_pixel(position_pixel: Vector2)
 signal on_mouse_position_changed_as_percent(position_percent: Vector2)
 signal on_mouse_position_changed_as_string(text: String)
+
+
 
 signal on_mouse_left_down_changed(is_pressed: bool)
 signal on_mouse_middle_down_changed(is_pressed: bool)

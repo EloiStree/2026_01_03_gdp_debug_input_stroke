@@ -1,0 +1,338 @@
+[gd_scene format=3 uid="uid://b65unl10jnrtn"]
+
+[ext_resource type="Script" uid="uid://cgetsbse4q6f4" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_button_down_up.gd" id="1_jei3d"]
+[ext_resource type="Texture2D" uid="uid://b23vv6snlv3hx" path="res://_/assets/2d/icon/OMI_PROJECT_ICON.png" id="1_lk50n"]
+[ext_resource type="Script" uid="uid://dgjtgld2ymc5c" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_line_edit.gd" id="3_mfmwv"]
+[ext_resource type="Script" uid="uid://bref327tg3rsl" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_tab_container.gd" id="3_oo8js"]
+[ext_resource type="Script" uid="uid://b3p3aqpkm5hvw" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_spin_box.gd" id="3_oskow"]
+[ext_resource type="Script" uid="uid://b6lb3y71dpop7" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_text_edit.gd" id="4_oo8js"]
+[ext_resource type="Script" uid="uid://ce0w12bsnm566" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_slider.gd" id="4_vx840"]
+[ext_resource type="Script" uid="uid://hwrh5p2ev0va" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_range.gd" id="5_jfk5d"]
+[ext_resource type="Script" uid="uid://dbv2kh4y3gymp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_option_button_int.gd" id="6_ha3fv"]
+[ext_resource type="Script" uid="uid://84cvmh5ftpo0" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_audio_percent_timer.gd" id="9_cfj8y"]
+[ext_resource type="Script" uid="uid://4vduntvcxjkp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_input_ui_value_changed/script/input_ui_value_changed_from_audio_seconds_timer.gd" id="10_hos82"]
+
+[node name="Demo2dInputUiValueChanged" type="Control" unique_id=1318290114]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=511939024]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabContainer" type="TabContainer" parent="VBoxContainer" unique_id=223424400]
+custom_minimum_size = Vector2(0, 400)
+layout_mode = 2
+current_tab = 0
+
+[node name="Button" type="TabBar" parent="VBoxContainer/TabContainer" unique_id=1635837703]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Panel" type="Panel" parent="VBoxContainer/TabContainer/Button" unique_id=2072533801]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainerButton" type="VBoxContainer" parent="VBoxContainer/TabContainer/Button/Panel" unique_id=788827036]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/TabContainer/Button/Panel/HBoxContainerButton" unique_id=725123504]
+layout_mode = 2
+text = "Button"
+
+[node name="InputUiValueChangedFromButton" type="Node" parent="VBoxContainer/TabContainer/Button/Panel/HBoxContainerButton/Button" unique_id=1422758906 node_paths=PackedStringArray("_target")]
+script = ExtResource("1_jei3d")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://cgetsbse4q6f4"
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/TabContainer/Button/Panel/HBoxContainerButton" unique_id=2007737270]
+layout_mode = 2
+text = "CheckButton"
+
+[node name="InputUiValueChangedFromButton" type="Node" parent="VBoxContainer/TabContainer/Button/Panel/HBoxContainerButton/CheckButton" unique_id=1506123065 node_paths=PackedStringArray("_target")]
+script = ExtResource("1_jei3d")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://cgetsbse4q6f4"
+
+[node name="MenuButton" type="MenuButton" parent="VBoxContainer/TabContainer/Button/Panel/HBoxContainerButton" unique_id=1533083999]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+text = "Menu Button"
+item_count = 2
+popup/item_0/text = "test"
+popup/item_0/id = 0
+popup/item_1/text = "tesfds"
+popup/item_1/id = 1
+
+[node name="InputUiValueChangedFromButton2" type="Node" parent="VBoxContainer/TabContainer/Button/Panel/HBoxContainerButton/MenuButton" unique_id=1126555640 node_paths=PackedStringArray("_target")]
+script = ExtResource("1_jei3d")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://cgetsbse4q6f4"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/TabContainer/Button/Panel/HBoxContainerButton" unique_id=1614299096]
+layout_mode = 2
+item_count = 4
+popup/item_0/text = "Option Button"
+popup/item_0/id = 0
+popup/item_1/text = "2"
+popup/item_1/id = 1
+popup/item_2/text = "3"
+popup/item_2/id = 2
+popup/item_3/text = "4"
+popup/item_3/id = 3
+
+[node name="InputUiValueChangedFromButton3" type="Node" parent="VBoxContainer/TabContainer/Button/Panel/HBoxContainerButton/OptionButton" unique_id=1037682883 node_paths=PackedStringArray("_target")]
+script = ExtResource("1_jei3d")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://cgetsbse4q6f4"
+
+[node name="InputUiValueChangedFromOptionButtonInt" type="Node" parent="VBoxContainer/TabContainer/Button/Panel/HBoxContainerButton/OptionButton" unique_id=9970534 node_paths=PackedStringArray("_target")]
+script = ExtResource("6_ha3fv")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://dbv2kh4y3gymp"
+
+[node name="Range" type="TabBar" parent="VBoxContainer/TabContainer" unique_id=1641581117]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Panel2" type="Panel" parent="VBoxContainer/TabContainer/Range" unique_id=223541836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainerRange" type="VBoxContainer" parent="VBoxContainer/TabContainer/Range/Panel2" unique_id=724546017]
+layout_mode = 0
+offset_top = 417.0
+offset_right = 1920.0
+offset_bottom = 523.0
+
+[node name="SpinBox" type="SpinBox" parent="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange" unique_id=1155749944]
+layout_mode = 2
+
+[node name="InputUiValueChangedFromSpinBox" type="Node" parent="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange/SpinBox" unique_id=1413779368 node_paths=PackedStringArray("_target")]
+script = ExtResource("3_oskow")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://b3p3aqpkm5hvw"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange" unique_id=1081473514]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputUiValueChangedFromSlider" type="Node" parent="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange/HSlider" unique_id=1096176789 node_paths=PackedStringArray("_target")]
+script = ExtResource("4_vx840")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://ce0w12bsnm566"
+
+[node name="HScrollBar" type="HScrollBar" parent="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange" unique_id=920862839]
+custom_minimum_size = Vector2(40, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputUiValueChangedFromRange" type="Node" parent="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange/HScrollBar" unique_id=178645673 node_paths=PackedStringArray("_target")]
+script = ExtResource("5_jfk5d")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://hwrh5p2ev0va"
+
+[node name="ProgressBar" type="ProgressBar" parent="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange" unique_id=98962199]
+custom_minimum_size = Vector2(50, 20)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputUiValueChangedFromRange" type="Node" parent="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange/ProgressBar" unique_id=494269759 node_paths=PackedStringArray("_target")]
+script = ExtResource("5_jfk5d")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://hwrh5p2ev0va"
+
+[node name="LineEdit" type="TabBar" parent="VBoxContainer/TabContainer" unique_id=1559629879]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="Panel3" type="Panel" parent="VBoxContainer/TabContainer/LineEdit" unique_id=726582206]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/TabContainer/LineEdit/Panel3" unique_id=264853872]
+layout_mode = 0
+offset_top = 452.0
+offset_right = 958.0
+offset_bottom = 512.0
+size_flags_horizontal = 3
+text = "test"
+
+[node name="InputUiValueChangedFromLineEdit" type="Node" parent="VBoxContainer/TabContainer/LineEdit/Panel3/LineEdit" unique_id=1767130553 node_paths=PackedStringArray("_target")]
+script = ExtResource("3_mfmwv")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://dgjtgld2ymc5c"
+
+[node name="TextEdit" type="TextEdit" parent="VBoxContainer/TabContainer/LineEdit/Panel3" unique_id=754150287]
+layout_mode = 0
+offset_left = 962.0
+offset_top = 452.0
+offset_right = 1920.0
+offset_bottom = 512.0
+size_flags_horizontal = 3
+text = "Test"
+
+[node name="InputUiValueChangedFromTextEdit" type="Node" parent="VBoxContainer/TabContainer/LineEdit/Panel3/TextEdit" unique_id=322355466 node_paths=PackedStringArray("_target")]
+script = ExtResource("4_oo8js")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://b6lb3y71dpop7"
+
+[node name="Tree" type="TabBar" parent="VBoxContainer/TabContainer" unique_id=361730675]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 3
+
+[node name="Panel4" type="Panel" parent="VBoxContainer/TabContainer/Tree" unique_id=1035990465]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tree" type="Tree" parent="VBoxContainer/TabContainer/Tree/Panel4" unique_id=1887298501]
+visible = false
+layout_mode = 0
+offset_top = -31.0
+offset_right = 16.0
+offset_bottom = -14.0
+
+[node name="Texture" type="TabBar" parent="VBoxContainer/TabContainer" unique_id=1294271249]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer/TabContainer/Texture" unique_id=163895440]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.93500006
+anchor_right = 1.0
+anchor_bottom = 0.095000006
+offset_left = 1757.6
+offset_top = 1.0
+offset_right = 1757.8
+offset_bottom = -0.2800064
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+action_mode = 0
+button_mask = 7
+texture_normal = ExtResource("1_lk50n")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="InputUiValueChangedFromButton4" type="Node" parent="VBoxContainer/TabContainer/Texture/TextureButton" unique_id=824719083 node_paths=PackedStringArray("_target")]
+script = ExtResource("1_jei3d")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://cgetsbse4q6f4"
+
+[node name="Audio" type="TabBar" parent="VBoxContainer/TabContainer" unique_id=1081799415]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 5
+
+[node name="Panel5" type="Panel" parent="VBoxContainer/TabContainer/Audio" unique_id=672417548]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 31.0
+offset_bottom = 31.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VBoxContainer/TabContainer/Audio/Panel5" unique_id=896761146]
+
+[node name="InputUiValueChangedFromAudioPercentTimer" type="Node" parent="VBoxContainer/TabContainer/Audio/Panel5/AudioStreamPlayer" unique_id=817430878 node_paths=PackedStringArray("_target")]
+script = ExtResource("9_cfj8y")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://84cvmh5ftpo0"
+
+[node name="InputUiValueChangedFromAudioSecondsTimer" type="Node" parent="VBoxContainer/TabContainer/Audio/Panel5/AudioStreamPlayer" unique_id=1444385327 node_paths=PackedStringArray("_target")]
+script = ExtResource("10_hos82")
+_target = NodePath("..")
+
+[node name="Video" type="TabBar" parent="VBoxContainer/TabContainer" unique_id=390261468]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 6
+
+[node name="Panel6" type="Panel" parent="VBoxContainer/TabContainer/Video" unique_id=1750083244]
+visible = false
+layout_mode = 0
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="VBoxContainer/TabContainer/Video/Panel6" unique_id=868561606]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Joystick" type="TabBar" parent="VBoxContainer/TabContainer" unique_id=1112523190]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 7
+
+[node name="Panel6" type="Panel" parent="VBoxContainer/TabContainer/Joystick" unique_id=1454704924]
+visible = false
+layout_mode = 0
+
+[node name="VirtualJoystick" type="VirtualJoystick" parent="VBoxContainer/TabContainer/Joystick/Panel6" unique_id=1155015892]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.90700006
+anchor_top = 0.88900006
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1741.4402
+offset_top = 910.33606
+offset_right = 1741.4402
+offset_bottom = 910.33606
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputUiValueChangedFromTabContainer" type="Node" parent="VBoxContainer/TabContainer" unique_id=1678486151 node_paths=PackedStringArray("_target")]
+script = ExtResource("3_oo8js")
+_target = NodePath("..")
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer" unique_id=1091621242]
+visible = false
+layout_mode = 2
+item_count = 2
+item_0/text = "tests 1"
+item_1/text = "tests 2"
+
+[connection signal="value_changed" from="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange/HScrollBar" to="VBoxContainer/TabContainer/Range/Panel2/HBoxContainerRange/ProgressBar" method="set_value"]

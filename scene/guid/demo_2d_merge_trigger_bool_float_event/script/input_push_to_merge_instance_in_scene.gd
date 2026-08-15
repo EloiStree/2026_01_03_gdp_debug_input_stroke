@@ -3,6 +3,7 @@ extends Node
 
 
 const splitters:Array[String] = [":", ",", ";", "|", " "]
+
 func parse_and_push_line_from_context(text:String):
 	if InputMergeToTriggerEvent.get_instance():
 		var key_value_pairs:PackedStringArray = []

@@ -1,0 +1,3 @@
+class_name  InputUiValueChangedFromSpinBox
+extends InputUiValueChangedFromRange
+

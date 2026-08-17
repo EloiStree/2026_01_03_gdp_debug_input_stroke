@@ -1,0 +1,1 @@
+That an input to know if you have an internet connection.

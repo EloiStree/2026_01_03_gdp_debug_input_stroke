@@ -14,8 +14,8 @@ signal on_value_changed_debug_text(debug_text:String)
 
 
 func _process(delta:float) -> void:
-	if _target:
-		var value = _target.get_stream_playback_position() / _target.stream.get_length()
+	if _target and _target.stream:
+		var value = _target.get_playback_position() / _target.stream.get_length()
 		_on_value_changed(value)
 
 

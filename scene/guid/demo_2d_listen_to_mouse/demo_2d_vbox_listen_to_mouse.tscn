@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://cnx2af0athnyy" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_parse_key_value_variant_to_string_format.gd" id="2_fht6u"]
 
 [node name="Demo2dListenToMouse" type="Panel" unique_id=297125749]
-custom_minimum_size = Vector2(10, 10)
+custom_minimum_size = Vector2(10, 500)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

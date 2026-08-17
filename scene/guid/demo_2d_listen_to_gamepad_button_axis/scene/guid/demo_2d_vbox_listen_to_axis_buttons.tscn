@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://cc2wfvi266qp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_gamepad_button_axis/script/input_listen_to_devices_axis_and_buttons.gd" id="1_oqeph"]
 
 [node name="ListenToDevicesAxisAndButtons" type="Control" unique_id=25078802]
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

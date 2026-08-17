@@ -38,6 +38,11 @@ signal on_mouse_scroll_right_tick()
 @export var _last_scroll_left_event_time: float = 0.0
 @export var _last_scroll_right_event_time: float = 0.0
 
+@export var _last_scroll_event_count_up: int = 0.0
+@export var _last_scroll_event_count_down: int = 0.0
+@export var _last_scroll_event_count_left:  int = 0.0
+@export var _last_scroll_event_count_right:  int = 0.0
+
 @export var _mouse_position_over_screen: Vector2 = Vector2.ZERO
 @export var _mouse_position_over_screen_percent: Vector2 = Vector2.ZERO
 @export var _mouse_space_width: float = 0.0
@@ -52,8 +57,8 @@ func _input(event: InputEvent) -> void:
 		var changed_position: Vector2 = event.position	
 		var is_position_changed: bool = changed_position != _mouse_position_over_screen
 		_mouse_position_over_screen = event.position
-		_mouse_space_width = DisplayServer.window_get_size().x
-		_mouse_space_height = DisplayServer.window_get_size().y
+		_mouse_space_width = get_viewport().get_visible_rect().size.x
+		_mouse_space_height = get_viewport().get_visible_rect().size.y
 		_mouse_position_over_screen_percent = Vector2(
 			changed_position.x / _mouse_space_width,
 			changed_position.y / _mouse_space_height
@@ -100,18 +105,22 @@ func _input(event: InputEvent) -> void:
 			_last_scroll_left_event_time = get_time_utc()
 			on_mouse_scroll_left_tick.emit("MOUSE_SCROLL_LEFT")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Left Event")
+			_last_scroll_event_count_left+=1
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_UP:
 			_last_scroll_up_event_time = get_time_utc()
 			on_mouse_scroll_up_tick.emit("MOUSE_SCROLL_UP")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Up Event")
+			_last_scroll_event_count_up+=1
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_RIGHT:
 			_last_scroll_right_event_time = get_time_utc()
 			on_mouse_scroll_right_tick.emit("MOUSE_SCROLL_RIGHT")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Right Event")
+			_last_scroll_event_count_right+=1
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
 			_last_scroll_down_event_time = get_time_utc()
 			on_mouse_scroll_down_tick.emit("MOUSE_SCROLL_DOWN")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Down Event")
+			_last_scroll_event_count_down+=1
 		elif event.button_index == MouseButton.MOUSE_BUTTON_XBUTTON1:
 			if _mouse_side_button_1_pressing != event.pressed:
 				_mouse_side_button_1_pressing = event.pressed

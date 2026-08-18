@@ -1,7 +1,7 @@
 class_name InputNfcListenerRefFromXr
 extends Node
 
-@export var nfc: InputNfcListener
+@export var nfc: InputListenToFastTypingNfc
 
 @export_group("Debug")
 @export var p_button_a: bool

@@ -1,4 +1,5 @@
-class_name InputListenToDevicesAxisAndButtons extends Node
+class_name InputListenToDevicesAxisAndButtons 
+extends Node
 
 signal on_new_device_tracked(device_index: int, apparition_index: int, device_name: String)
 signal on_new_supposed_xbox_tracked(device_index: int, apparition_index: int, device_name: String)

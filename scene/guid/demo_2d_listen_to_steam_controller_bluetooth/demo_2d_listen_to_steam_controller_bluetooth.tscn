@@ -2,9 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://btn88dqjqeasu" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_mouse/demo_2d_vbox_listen_to_mouse.tscn" id="2_pkrlo"]
 [ext_resource type="PackedScene" uid="uid://ba3og4m0880ou" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_gamepad_button_axis/scene/guid/demo_2d_vbox_listen_to_axis_buttons.tscn" id="2_xho4c"]
-[ext_resource type="PackedScene" uid="uid://bibwipwfhymmj" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_keyboard_input/demo_listen_keyboard_input.tscn" id="4_j5vx1"]
+[ext_resource type="PackedScene" uid="uid://bibwipwfhymmj" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_keyboard_input/demo_vbox_2d_listen_keyboard_input.tscn" id="4_j5vx1"]
 [ext_resource type="Script" uid="uid://sfc7wfmxmrwi" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/experimental/steam_controller/input_listen_joy_connection.gd" id="4_t8ka3"]
 [ext_resource type="Script" uid="uid://cuj1wqceacyso" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_steam_controller_bluetooth/input_listen_to_steam_controller_bluetooth.gd" id="5_t8ka3"]
+
 
 [node name="Demo2dListenToSteamControllerBluetooth" type="Control" unique_id=1224053038]
 layout_mode = 3

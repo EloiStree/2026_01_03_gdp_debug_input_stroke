@@ -17,7 +17,9 @@ func _input(event: InputEvent) -> void:
 			return
 		var unicode_char := char(key_event.unicode)
 		if _use_print_debug:
-			print(key_event.unicode)
+			print(key_event.unicode,"-",unicode_char)
 		_last_input_found = unicode
+
 		on_any_unicode_integer_found.emit(unicode)
 		on_any_unicode_integer_as_string_found.emit(str(unicode))
+	

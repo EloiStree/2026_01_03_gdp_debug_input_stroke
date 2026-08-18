@@ -7,7 +7,7 @@ signal on_new_device_tracked(device_index: int, apparition_index: int, device_na
 signal on_axis_changed(device_index: int, apparition_index: int, axis_index: int, previous_axis_value: float, new_axis_value: float)
 signal on_button_changed(device_index: int, apparition_index: int, button_index: int,  new_button_value: bool)
 
-@export var devices_manager: ListenToDevicesAxisAndButtons
+@export var devices_manager: InputListenToDevicesAxisAndButtons
 
 @export var devices_name_to_filter :Array[String] = ["NES Harward Name","NES"]
 @export var ignore_case_in_device_name_filter : bool = true

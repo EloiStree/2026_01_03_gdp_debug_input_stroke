@@ -7,7 +7,6 @@ signal on_event_key_stroke_label_without_modifiers(text:String, is_on:bool)
 #signal on_event_key_stroke_with_array_of_modifiers(modifiers:Array[String], text:String,is_on:bool )
 
 @export var use_print_debug: bool = true
-@export var last_input_found: String 
 @export var last_input_word_found: String 
 
 func _input(event: InputEvent) -> void:

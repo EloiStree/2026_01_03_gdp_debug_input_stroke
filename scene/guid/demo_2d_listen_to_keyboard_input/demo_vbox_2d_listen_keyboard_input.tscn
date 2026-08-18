@@ -6,7 +6,9 @@
 [ext_resource type="Script" uid="uid://3d6kwndfwv20" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_unicode_integer.gd" id="4_cm3wh"]
 [ext_resource type="Script" uid="uid://dx8dqqoicsdss" path="res://addons/2026_01_03_gdp_input_to_primitive/script/achived/before_2026_04_27/debug_keyboard_to_text_key_id.gd" id="4_nsrbd"]
 [ext_resource type="Script" uid="uid://dbx6thcax6vo1" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_key_label_by_enum.gd" id="5_oryim"]
+[ext_resource type="Script" uid="uid://bqqwg0rappos1" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_translate_text_to_text_list.gd" id="6_2p31x"]
 [ext_resource type="Script" uid="uid://b6d0lxvq0uju0" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_on_off_keyboard_key_label_as_string.gd" id="6_nsrbd"]
+[ext_resource type="Script" uid="uid://bgjplt2ncp53d" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_translate_text_to_text_list_in_out.gd" id="9_wmg3u"]
 
 [node name="Demo2dListenToKeyboardInput" type="Control" unique_id=1833133360]
 layout_mode = 3
@@ -88,13 +90,17 @@ metadata/_custom_type_script = "uid://dbx6thcax6vo1"
 
 [node name="InputListenToKeyboardUnicodeAsString" type="Node" parent="As Unicode Typed" unique_id=1699678968]
 script = ExtResource("3_l4bvn")
-use_print_debug = false
 metadata/_custom_type_script = "uid://kj647thywf50"
+
+[node name="Unicode Char To Actions" type="Node" parent="As Unicode Typed/InputListenToKeyboardUnicodeAsString" unique_id=1532805843]
+script = ExtResource("6_2p31x")
 
 [node name="InputListenToKeyboardUnicodeAsInteger" type="Node" parent="As Unicode Typed" unique_id=1443949103]
 script = ExtResource("4_cm3wh")
-_use_print_debug = false
 metadata/_custom_type_script = "uid://3d6kwndfwv20"
+
+[node name="Integer Char To Actions" type="Node" parent="As Unicode Typed/InputListenToKeyboardUnicodeAsInteger" unique_id=2113027912]
+script = ExtResource("6_2p31x")
 
 [node name="As Keyboard Typed" type="Node" parent="." unique_id=528406659]
 
@@ -103,9 +109,16 @@ script = ExtResource("6_nsrbd")
 use_print_debug = false
 metadata/_custom_type_script = "uid://b6d0lxvq0uju0"
 
+[node name="Keyboard Down Up To Actions" type="Node" parent="As Keyboard Typed/Input Listen To Keyboard" unique_id=1446956370]
+script = ExtResource("9_wmg3u")
+metadata/_custom_type_script = "uid://bgjplt2ncp53d"
+
 [connection signal="on_key_bool_parsed_to_string" from="VBoxContainer2/Label2/InputParseKeyStringAndBoolToStringFormat" to="VBoxContainer2/Label2" method="set_text"]
 [connection signal="on_key_bool_parsed_to_string" from="VBoxContainer2/Label4/InputParseKeyStringAndBoolToStringFormat2" to="VBoxContainer2/Label4" method="set_text"]
 [connection signal="on_any_unicode_char_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsString" to="VBoxContainer/Label2" method="set_text"]
+[connection signal="on_any_unicode_char_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsString" to="As Unicode Typed/InputListenToKeyboardUnicodeAsString/Unicode Char To Actions" method="try_to_emit_store_text_from_key"]
 [connection signal="on_any_unicode_integer_as_string_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsInteger" to="VBoxContainer/Label4" method="set_text"]
+[connection signal="on_any_unicode_integer_as_string_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsInteger" to="As Unicode Typed/InputListenToKeyboardUnicodeAsInteger/Integer Char To Actions" method="try_to_emit_store_text_from_key"]
 [connection signal="on_event_key_stroke_as_given_by_godot" from="As Keyboard Typed/Input Listen To Keyboard" to="VBoxContainer2/Label2/InputParseKeyStringAndBoolToStringFormat" method="push_in_key_string_and_bool"]
 [connection signal="on_event_key_stroke_label_without_modifiers" from="As Keyboard Typed/Input Listen To Keyboard" to="VBoxContainer2/Label4/InputParseKeyStringAndBoolToStringFormat2" method="push_in_key_string_and_bool"]
+[connection signal="on_event_key_stroke_label_without_modifiers" from="As Keyboard Typed/Input Listen To Keyboard" to="As Keyboard Typed/Input Listen To Keyboard/Keyboard Down Up To Actions" method="try_to_emit_store_text_from_key_condition"]

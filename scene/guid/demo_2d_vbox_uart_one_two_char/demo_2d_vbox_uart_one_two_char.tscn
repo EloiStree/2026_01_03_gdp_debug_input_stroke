@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://dymnxhywsvioq"]
+
+[ext_resource type="Script" uid="uid://56cj5ryg1n56" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_vbox_uart_one_two_char/input_listen_to_two_char_255_format.gd" id="1_e350p"]
+[ext_resource type="Script" uid="uid://cb42lnswoib1a" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_vbox_uart_one_two_char/input_trigger_text_action_from_two_char.gd" id="2_v1kyw"]
+[ext_resource type="Script" uid="uid://q8u7ky0mku8v" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_ui_line_edit_with_submit_button.gd" id="3_ut5tv"]
+
+[node name="Demo2dVboxUartOneTwoBytes" type="Control" unique_id=437180777]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputListenToTwoChar255Format" type="Node" parent="." unique_id=1062988439]
+script = ExtResource("1_e350p")
+metadata/_custom_type_script = "uid://56cj5ryg1n56"
+
+[node name="InputTriggerTextActionFromTwoChar" type="Node" parent="InputListenToTwoChar255Format" unique_id=1753234991]
+script = ExtResource("2_v1kyw")
+metadata/_custom_type_script = "uid://cb42lnswoib1a"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=392030061]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=1057001414]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=1066995750]
+layout_mode = 2
+text = "Submit"
+
+[node name="InputUiLineEditWithSubmitButton" type="Node" parent="VBoxContainer/Button" unique_id=1038397257 node_paths=PackedStringArray("line_edit", "submit_button")]
+script = ExtResource("3_ut5tv")
+line_edit = NodePath("../../LineEdit")
+submit_button = NodePath("..")
+metadata/_custom_type_script = "uid://q8u7ky0mku8v"
+
+[node name="Label Found Action" type="Label" parent="VBoxContainer" unique_id=1062620241]
+layout_mode = 2
+text = "Found Action"
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=494943227]
+layout_mode = 2
+text = "-"
+
+[connection signal="on_one_char_format_found" from="InputListenToTwoChar255Format" to="InputListenToTwoChar255Format/InputTriggerTextActionFromTwoChar" method="trigger_action_with_one_char_as_byte"]
+[connection signal="on_two_char_format_found" from="InputListenToTwoChar255Format" to="InputListenToTwoChar255Format/InputTriggerTextActionFromTwoChar" method="trigger_action_with_two_char"]
+[connection signal="on_text_action_found" from="InputListenToTwoChar255Format/InputTriggerTextActionFromTwoChar" to="VBoxContainer/Label" method="set_text"]
+[connection signal="on_submit_button_pressed" from="VBoxContainer/Button/InputUiLineEditWithSubmitButton" to="InputListenToTwoChar255Format" method="push_in_text_and_emit_if_good_size"]

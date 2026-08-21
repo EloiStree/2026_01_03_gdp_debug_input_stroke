@@ -70,10 +70,14 @@ text = "- "
 layout_mode = 2
 text = "- "
 
+[node name="LineEdit Device Name" type="LineEdit" parent="Panel/VBoxContainer" unique_id=1937132741]
+layout_mode = 2
+
 [connection signal="on_last_device_axis_debug_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Axis Value Changed" method="set_text"]
 [connection signal="on_last_device_axis_id_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Axis Changed" method="set_text"]
 [connection signal="on_last_device_button_debug_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Button Value Changed" method="set_text"]
 [connection signal="on_last_device_button_id_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Button Changed" method="set_text"]
 [connection signal="on_last_device_name_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Last Device Used" method="set_text"]
+[connection signal="on_last_device_name_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/LineEdit Device Name" method="set_text"]
 [connection signal="on_last_device_name_to_have_button_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Last Button Device Used" method="set_text"]
 [connection signal="on_new_device_name_detected" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Name" method="set_text"]

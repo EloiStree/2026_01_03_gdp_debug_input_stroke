@@ -18,6 +18,10 @@ func try_to_emit_store_text_from_key(code:String) -> void:
 	else:
 		on_text_key_not_found.emit(code)
 
+func try_to_emit_store_text_from_key_as_integer(code:int) -> void:
+	var code_str = str(code)
+	try_to_emit_store_text_from_key(code_str)
+
 
 func has_key(code:String) -> bool:
 	return _text_to_lists_dico_trigger.has(code)

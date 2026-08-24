@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cfdolvcck26yf"]
+
+[ext_resource type="PackedScene" uid="uid://dhxpot8eve3rg" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_ui_button_clipboard/prefab/prefab_unicode_button_to_clipboard.tscn" id="1_jyphf"]
+
+[node name="Demo2dUiButtonClipboard" type="Control" unique_id=667031308]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=830827116]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1053379924]
+layout_mode = 2
+
+[node name="UnicodeButtonToClipboard" parent="ScrollContainer/VBoxContainer" unique_id=673416116 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "⌘	"
+
+[node name="UnicodeButtonToClipboard15" parent="ScrollContainer/VBoxContainer" unique_id=169158505 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "⬇️⬆️"
+
+[node name="UnicodeButtonToClipboard20" parent="ScrollContainer/VBoxContainer" unique_id=1219143281 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "⬅️➡️"
+
+[node name="UnicodeButtonToClipboard2" parent="ScrollContainer/VBoxContainer" unique_id=2032735274 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🎹"
+
+[node name="UnicodeButtonToClipboard3" parent="ScrollContainer/VBoxContainer" unique_id=590933257 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🎛️"
+
+[node name="UnicodeButtonToClipboard4" parent="ScrollContainer/VBoxContainer" unique_id=2125392642 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🎮"
+
+[node name="UnicodeButtonToClipboard5" parent="ScrollContainer/VBoxContainer" unique_id=577104682 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🕹️"
+
+[node name="UnicodeButtonToClipboard6" parent="ScrollContainer/VBoxContainer" unique_id=1331082099 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🤖"
+
+[node name="UnicodeButtonToClipboard7" parent="ScrollContainer/VBoxContainer" unique_id=1406189712 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "♦️"
+
+[node name="UnicodeButtonToClipboard8" parent="ScrollContainer/VBoxContainer" unique_id=1715276692 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🖱️"
+
+[node name="UnicodeButtonToClipboard9" parent="ScrollContainer/VBoxContainer" unique_id=1100988836 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "⌨️ "
+
+[node name="UnicodeButtonToClipboard10" parent="ScrollContainer/VBoxContainer" unique_id=1871652728 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "⚙"
+
+[node name="UnicodeButtonToClipboard13" parent="ScrollContainer/VBoxContainer" unique_id=1477099757 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🏗️🍪"
+
+[node name="UnicodeButtonToClipboard16" parent="ScrollContainer/VBoxContainer" unique_id=699993160 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🖥️"
+
+[node name="UnicodeButtonToClipboard17" parent="ScrollContainer/VBoxContainer" unique_id=1431400466 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🔴🟢"
+
+[node name="UnicodeButtonToClipboard19" parent="ScrollContainer/VBoxContainer" unique_id=996663717 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "📋📁"
+
+[node name="UnicodeButtonToClipboard21" parent="ScrollContainer/VBoxContainer" unique_id=1025814418 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "☖ ☗"
+
+[node name="UnicodeButtonToClipboard22" parent="ScrollContainer/VBoxContainer" unique_id=854948785 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "◰ ◱ 
+◲ ◳"
+
+[node name="UnicodeButtonToClipboard23" parent="ScrollContainer/VBoxContainer" unique_id=413455848 instance=ExtResource("1_jyphf")]
+layout_mode = 2
+text = "🎲"

@@ -32,9 +32,10 @@ var bool_trigger_right = false
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.is_echo():
-		var unicode_keyboard:String = str(char(event.unicode))
-		if use_keyboard_unicode_input and unicode_keyboard != "":
-			append_text_to_builder(unicode_keyboard)
+		if not event.unicode == 0 and event.unicode != 65293: # Exclude Enter key (unicode 65293)	
+			var unicode_keyboard:String = str(char(event.unicode))
+			if use_keyboard_unicode_input and unicode_keyboard != "":
+				append_text_to_builder(unicode_keyboard)
 
 	if event is InputEventJoypadButton and event.pressed:
 		if use_gamepad_key_input:

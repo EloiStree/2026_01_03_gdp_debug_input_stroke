@@ -12,7 +12,7 @@
 [ext_resource type="Script" uid="uid://cbtav4ho5qarq" path="res://addons/2026_01_03_gdp_input_to_primitive/script/primitive_to_boolean/input_on_off_from_float.gd" id="10_omud2"]
 [ext_resource type="Script" uid="uid://b3lbd88xej6qj" path="res://addons/2026_01_03_gdp_input_to_primitive/script/map/input_listen_to_map_vector2.gd" id="11_hxu48"]
 [ext_resource type="Script" uid="uid://64krvhjfms6x" path="res://addons/2026_01_03_gdp_input_to_primitive/script/primitive_to_boolean/input_on_off_from_vector_2.gd" id="12_0i0lk"]
-[ext_resource type="Script" uid="uid://dne1wyvd2r3fi" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_listener.gd" id="13_5jr7s"]
+[ext_resource type="Script" uid="uid://dne1wyvd2r3fi" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_listen_to_fast_typing_nfc.gd" id="13_5jr7s"]
 [ext_resource type="Script" uid="uid://b06qwasc88noc" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_text_to_node.gd" id="14_ib63b"]
 [ext_resource type="Script" uid="uid://dxlhra4xb5odf" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_listener_from_xr.gd" id="14_vo6qm"]
 [ext_resource type="Script" uid="uid://ddlc35vdwi6oq" path="res://addons/2026_01_03_gdp_input_to_primitive/script/nfc/input_nfc_text_to_scene.gd" id="15_0i0lk"]

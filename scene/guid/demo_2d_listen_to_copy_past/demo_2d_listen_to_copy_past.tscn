@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://lee8dfjmvx1s"]
 
 [ext_resource type="Script" uid="uid://ndp5a0i3ov0r" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_copy_past/input_listen_to_copy_past.gd" id="1_14i3c"]
+[ext_resource type="Script" uid="uid://bpmly7i8fsqxp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_text_dictionary_to_actions.gd" id="2_qxgko"]
+[ext_resource type="Script" uid="uid://bh6jf2v73ktd2" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_text_dictionary_true_false_value_to_actions.gd" id="3_qxgko"]
 
 [node name="Demo2dListenToCopyPast" type="Control" unique_id=558129070]
 layout_mode = 3
@@ -12,7 +14,32 @@ grow_vertical = 2
 
 [node name="InputListenToCopyPast" type="Node" parent="." unique_id=2099804427]
 script = ExtResource("1_14i3c")
+use_print_debug = false
 metadata/_custom_type_script = "uid://ndp5a0i3ov0r"
+
+[node name="If Text Equals To Key" type="Node" parent="InputListenToCopyPast" unique_id=1554739904]
+script = ExtResource("2_qxgko")
+_dictionary_text_to_action = Dictionary[String, Array]({
+"DEVICE_COPY": ["DEVICE COPY TRIGGER"],
+"DEVICE_CUT": ["DEVICE CUT TRIGGER"],
+"DEVICE_PAST": ["DEVICE PAST TRIGGER"]
+})
+_use_debug_log = false
+metadata/_custom_type_script = "uid://bpmly7i8fsqxp"
+
+[node name="If Text Value Equals To Key" type="Node" parent="InputListenToCopyPast" unique_id=1155799318]
+script = ExtResource("3_qxgko")
+_dictionary_text_true_to_action = Dictionary[String, Array]({
+"DEVICE_COPY": ["DEVICE COPY TRUE"],
+"DEVICE_CUT": ["DEVICE CUT TRUE"],
+"DEVICE_PAST": ["DEVICE PAST TRUE"]
+})
+_dictionary_text_false_to_action = Dictionary[String, Array]({
+"DEVICE_COPY": ["DEVICE COPY FALSE"],
+"DEVICE_CUT": ["DEVICE CUT FALSE"],
+"DEVICE_PAST": ["DEVICE PAST FALSE"]
+})
+_use_debug_log = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=305046397]
 layout_mode = 0
@@ -23,8 +50,13 @@ offset_bottom = 40.0
 layout_mode = 2
 text = "Listen to Copy Past Action"
 
-[node name="Label Last Found" type="Label" parent="VBoxContainer" unique_id=1632889041]
+[node name="Label Last Found Trigger" type="Label" parent="VBoxContainer" unique_id=1632889041]
 layout_mode = 2
+text = "-"
+
+[node name="Label Last Found True False" type="Label" parent="VBoxContainer" unique_id=348366268]
+layout_mode = 2
+text = "-"
 
 [node name="CheckButton Copy" type="CheckButton" parent="VBoxContainer" unique_id=1129570900]
 layout_mode = 2
@@ -38,7 +70,11 @@ text = "Past"
 layout_mode = 2
 text = "Cut"
 
-[connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="VBoxContainer/Label Last Found" method="set_text"]
+[connection signal="on_copy_past_key_value_on_off" from="InputListenToCopyPast" to="InputListenToCopyPast/If Text Value Equals To Key" method="emit_if_equals_to_text_in_true_or_false_dictionary"]
+[connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="VBoxContainer/Label Last Found Trigger" method="set_text"]
+[connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="InputListenToCopyPast/If Text Equals To Key" method="emit_if_text_equals_to_one_key"]
 [connection signal="on_copy_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Copy" method="set_pressed"]
 [connection signal="on_cut_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Cut" method="set_pressed"]
 [connection signal="on_past_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Past" method="set_pressed"]
+[connection signal="on_action_found" from="InputListenToCopyPast/If Text Equals To Key" to="VBoxContainer/Label Last Found Trigger" method="set_text"]
+[connection signal="on_action_found" from="InputListenToCopyPast/If Text Value Equals To Key" to="VBoxContainer/Label Last Found True False" method="set_text"]

@@ -1,4 +1,4 @@
-class_name InputTriggerTextActionFromTwoChar
+class_name InputTextDictionaryToActionsFromTwoChar
 extends Node
 
 

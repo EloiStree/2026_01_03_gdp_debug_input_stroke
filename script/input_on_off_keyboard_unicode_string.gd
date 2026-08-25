@@ -8,11 +8,12 @@ signal on_any_unicode_char_found(unicode_char_as_string:String)
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
-		if event.is_echo():
-			return
+		#if event.is_echo():
+			#return
 		var key_event := event as InputEventKey
-		if key_event.unicode == 0:
+		if key_event.unicode == 0 or key_event.unicode == 0xFFFD:
 			return
+
 		var unicode_char := char(key_event.unicode)
 		last_input_found = unicode_char
 

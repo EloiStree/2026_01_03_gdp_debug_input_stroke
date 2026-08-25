@@ -1,4 +1,4 @@
-class_name InputToAliasGamepad
+class_name InputListenToGamepadAsAlias
 extends Node
 
 
@@ -22,6 +22,11 @@ var bool_trigger_left = false
 var bool_trigger_right = false
 
 
+func notify_as_new_input_keyboard(to_add: String) -> void:
+	if _use_print_debug:
+		print("Keyboard input detected: ", to_add)
+	_last_found_input = to_add
+	on_new_input_detected.emit(to_add)
 
 func notify_as_new_input(to_add: String) -> void:
 	if _use_print_debug:
@@ -29,8 +34,16 @@ func notify_as_new_input(to_add: String) -> void:
 	_last_found_input = to_add
 	on_new_input_detected.emit(to_add)
 	
-
+@export var _listen_to_key_event:bool=true
 func _input(event: InputEvent) -> void:
+	
+	if _listen_to_key_event and event is InputEventKey:
+		if not event.is_echo():
+			var key_event := event as InputEventKey
+			if not key_event.unicode == 0:
+				var unicode_char := char(key_event.unicode)
+				notify_as_new_input_keyboard(unicode_char)
+	
 	if event is InputEventJoypadButton and event.pressed:
 			var button_index :int= event.button_index
 			var to_add := ""

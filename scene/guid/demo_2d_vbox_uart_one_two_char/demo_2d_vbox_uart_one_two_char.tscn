@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dymnxhywsvioq"]
 
 [ext_resource type="Script" uid="uid://56cj5ryg1n56" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_vbox_uart_one_two_char/input_listen_to_two_char_255_format.gd" id="1_e350p"]
-[ext_resource type="Script" uid="uid://cb42lnswoib1a" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_vbox_uart_one_two_char/input_trigger_text_action_from_two_char.gd" id="2_v1kyw"]
+[ext_resource type="Script" uid="uid://cb42lnswoib1a" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_vbox_uart_one_two_char/input_text_dictionary_to_actions_from_two_char.gd" id="2_v1kyw"]
 [ext_resource type="Script" uid="uid://q8u7ky0mku8v" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_ui_line_edit_with_submit_button.gd" id="3_ut5tv"]
 
 [node name="Demo2dVboxUartOneTwoBytes" type="Control" unique_id=437180777]

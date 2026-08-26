@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://dite1l04ldj1o"]
+
+[ext_resource type="Script" uid="uid://7dcxq5c1203w" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_parse_primitive_to_string.gd" id="1_27qlv"]
+[ext_resource type="Script" uid="uid://dfy3jf2jsgom" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_vbox_observed_primitive_changed/script/input_check_changed_float.gd" id="1_lch31"]
+[ext_resource type="Script" uid="uid://c0v6whlqnenrk" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_vbox_observed_primitive_changed/script/input_check_changed_int.gd" id="2_70pxr"]
+[ext_resource type="Script" uid="uid://df12kwedr4rxb" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_vbox_observed_primitive_changed/script/input_check_changed_string.gd" id="3_u3wbt"]
+
+[node name="Demo2dVboxObservedPrimitiveChanged" type="Control" unique_id=404506892]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=643223312]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Label Float Changed" type="Label" parent="VBoxContainer" unique_id=73680092]
+layout_mode = 2
+text = "Float Changed"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer" unique_id=1941740852]
+layout_mode = 2
+
+[node name="InputCheckChangedFloat" type="Node" parent="VBoxContainer/HSlider" unique_id=1036065445]
+script = ExtResource("1_lch31")
+metadata/_custom_type_script = "uid://dfy3jf2jsgom"
+
+[node name="Label Int Changed2" type="Label" parent="VBoxContainer" unique_id=1909593808]
+layout_mode = 2
+text = "Int Changed"
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer" unique_id=1763343513]
+layout_mode = 2
+min_value = 1.0
+max_value = 3.0
+value = 3.0
+
+[node name="InputCheckChangedInt" type="Node" parent="VBoxContainer/HSlider2" unique_id=7124366]
+script = ExtResource("2_70pxr")
+metadata/_custom_type_script = "uid://c0v6whlqnenrk"
+
+[node name="Label Integer Changed" type="Label" parent="VBoxContainer" unique_id=1735340706]
+layout_mode = 2
+text = "Integer Changed"
+
+[node name="Lable Text Changed" type="Label" parent="VBoxContainer" unique_id=1152041892]
+layout_mode = 2
+text = "Text Changed"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer" unique_id=619095705]
+layout_mode = 2
+
+[node name="InputCheckChangedString" type="Node" parent="VBoxContainer/LineEdit" unique_id=1350654101]
+script = ExtResource("3_u3wbt")
+metadata/_custom_type_script = "uid://df12kwedr4rxb"
+
+[node name="Label Changed" type="Label" parent="VBoxContainer" unique_id=2124452017]
+layout_mode = 2
+text = "Changed"
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1906185613]
+layout_mode = 2
+
+[node name="InputParsePrimitiveToString" type="Node" parent="VBoxContainer/Label2" unique_id=2059965434]
+script = ExtResource("1_27qlv")
+metadata/_custom_type_script = "uid://7dcxq5c1203w"
+
+[connection signal="value_changed" from="VBoxContainer/HSlider" to="VBoxContainer/HSlider/InputCheckChangedFloat" method="push_in_current_value_from_float"]
+[connection signal="on_value_changed" from="VBoxContainer/HSlider/InputCheckChangedFloat" to="VBoxContainer/Label2/InputParsePrimitiveToString" method="push_in_primitive_float"]
+[connection signal="value_changed" from="VBoxContainer/HSlider2" to="VBoxContainer/HSlider2/InputCheckChangedInt" method="push_in_current_value_from_float"]
+[connection signal="on_value_changed" from="VBoxContainer/HSlider2/InputCheckChangedInt" to="VBoxContainer/Label2/InputParsePrimitiveToString" method="push_in_primitive_int"]
+[connection signal="text_changed" from="VBoxContainer/LineEdit" to="VBoxContainer/LineEdit/InputCheckChangedString" method="push_in_current_value"]
+[connection signal="on_value_changed" from="VBoxContainer/LineEdit/InputCheckChangedString" to="VBoxContainer/Label2/InputParsePrimitiveToString" method="push_in_variant"]
+[connection signal="on_string_parsed" from="VBoxContainer/Label2/InputParsePrimitiveToString" to="VBoxContainer/Label2" method="set_text"]

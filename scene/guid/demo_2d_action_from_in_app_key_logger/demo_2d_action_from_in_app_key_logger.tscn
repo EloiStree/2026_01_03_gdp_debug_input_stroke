@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://c8uf84fij4vlp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_action_from_in_app_key_logger/input_keyboard_local_unicode_typing_logger.gd" id="1_piitx"]
 [ext_resource type="Script" uid="uid://dy6v5butthvf6" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_action_from_in_app_key_logger/input_abstract_typing_key_logger.gd" id="2_2kv08"]
 [ext_resource type="Script" uid="uid://7dcxq5c1203w" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_parse_primitive_to_string.gd" id="2_piitx"]
-[ext_resource type="Script" uid="uid://cm76n7hcopjcs" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_to_alias/input_to_alias_gamepad.gd" id="3_jdgc7"]
+[ext_resource type="Script" uid="uid://cm76n7hcopjcs" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_to_alias/input_listen_to_gamepad_as_alias.gd" id="3_jdgc7"]
 [ext_resource type="Script" uid="uid://cyvvgnco2gkov" path="res://addons/2026_01_03_gdp_input_to_primitive/script/test/test_get_joy_info.gd" id="5_nnfxt"]
 
 [node name="Demo2dActionFromInAppKeyLogger" type="Control" unique_id=965093910]

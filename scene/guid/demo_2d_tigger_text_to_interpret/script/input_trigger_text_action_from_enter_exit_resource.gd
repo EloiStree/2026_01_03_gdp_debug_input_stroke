@@ -1,11 +1,7 @@
-class_name InputTriggerTextActionFromBooleanMethods
+class_name InputTriggerTextActionsFromEnterExitResource
 extends Node
-
-
 signal on_action_triggered(text_action: String)
-
 @export var _action_to_trigger: InputResourceEnterExitTextAction = InputResourceEnterExitTextAction.new()
-
 
 func trigger_enter_actions() -> void:
 	if _action_to_trigger.has_action_on_enter():
@@ -17,9 +13,15 @@ func trigger_exit_actions() -> void:
 		for action in _action_to_trigger.get_actions_on_exit():
 			emit_signal("on_action_triggered", action)
 
-
 func trigger_actions_from_boolean(is_enter: bool) -> void:
 	if is_enter:
+		trigger_enter_actions()
+	else:
+		trigger_exit_actions()
+		
+		
+func trigger_actions_from_inverse_of_boolean(value: bool) -> void:
+	if not value:
 		trigger_enter_actions()
 	else:
 		trigger_exit_actions()
@@ -56,7 +58,6 @@ func trigger_actions_on_changed_from_float_threshold_0_1_to_one(previous_value: 
 
 func trigger_actions_on_changed_from_float_threshold_0_9_to_one(previous_value: float, current_value: float) -> void:
 	trigger_actions_on_changed_from_float_threshold_n_1(previous_value, current_value, 0.9)
-
 
 
 func trigger_actions_on_changed_from_integer_under_zero(previous_value:int, current_value:int) -> void:

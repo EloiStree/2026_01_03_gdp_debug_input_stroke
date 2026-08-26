@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://cxm6r4rradh0i"]
+
+[ext_resource type="AudioStream" uid="uid://c43mbf82234g8" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/input_ui/2d_vbox_audio_stream_player/timer_10_seconds.wav" id="1_it012"]
+[ext_resource type="Script" uid="uid://84cvmh5ftpo0" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/input_ui/2d_vbox_audio_stream_player/script/input_ui_value_changed_from_audio_percent_timer.gd" id="2_tw6iu"]
+[ext_resource type="Script" uid="uid://4vduntvcxjkp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/input_ui/2d_vbox_audio_stream_player/script/input_ui_value_changed_from_audio_seconds_timer.gd" id="3_0wcrf"]
+[ext_resource type="Script" uid="uid://7dcxq5c1203w" path="res://addons/2026_01_03_gdp_input_to_primitive/script/input_parse_primitive_to_string.gd" id="4_wciv7"]
+
+[node name="Demo2dVboxAudioStreamPlayer" type="Control" unique_id=1058776339]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2117977482]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="VBoxContainer" unique_id=1857155710]
+stream = ExtResource("1_it012")
+autoplay = true
+
+[node name="InputUiValueChangedFromAudioPercentTimer" type="Node" parent="VBoxContainer/AudioStreamPlayer" unique_id=1224064149 node_paths=PackedStringArray("_target")]
+script = ExtResource("2_tw6iu")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://84cvmh5ftpo0"
+
+[node name="InputUiValueChangedFromAudioSecondsTimer" type="Node" parent="VBoxContainer/AudioStreamPlayer" unique_id=1080935025 node_paths=PackedStringArray("_target")]
+script = ExtResource("3_0wcrf")
+_target = NodePath("..")
+metadata/_custom_type_script = "uid://4vduntvcxjkp"
+
+[node name="Label Audio Timer" type="Label" parent="VBoxContainer" unique_id=151518901]
+layout_mode = 2
+text = "Audio Timer"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer" unique_id=72054224]
+layout_mode = 2
+max_value = 1.0
+step = 0.001
+
+[node name="Label Percent Title" type="Label" parent="VBoxContainer" unique_id=456778338]
+layout_mode = 2
+text = "Percent"
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1453811766]
+layout_mode = 2
+
+[node name="InputParsePrimitiveToString" type="Node" parent="VBoxContainer/Label" unique_id=999448629]
+script = ExtResource("4_wciv7")
+metadata/_custom_type_script = "uid://7dcxq5c1203w"
+
+[node name="Label Time Title" type="Label" parent="VBoxContainer" unique_id=1851461774]
+layout_mode = 2
+text = "Time"
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1894227584]
+layout_mode = 2
+
+[node name="InputParsePrimitiveToString2" type="Node" parent="VBoxContainer/Label2" unique_id=731610954]
+script = ExtResource("4_wciv7")
+metadata/_custom_type_script = "uid://7dcxq5c1203w"
+
+[connection signal="on_value_changed" from="VBoxContainer/AudioStreamPlayer/InputUiValueChangedFromAudioPercentTimer" to="VBoxContainer/HSlider" method="set_value"]
+[connection signal="on_value_changed" from="VBoxContainer/AudioStreamPlayer/InputUiValueChangedFromAudioPercentTimer" to="VBoxContainer/Label/InputParsePrimitiveToString" method="push_in_primitive_float"]
+[connection signal="on_value_changed" from="VBoxContainer/AudioStreamPlayer/InputUiValueChangedFromAudioSecondsTimer" to="VBoxContainer/Label2/InputParsePrimitiveToString2" method="push_in_primitive_float"]
+[connection signal="on_string_parsed" from="VBoxContainer/Label/InputParsePrimitiveToString" to="VBoxContainer/Label" method="set_text"]
+[connection signal="on_string_parsed" from="VBoxContainer/Label2/InputParsePrimitiveToString2" to="VBoxContainer/Label2" method="set_text"]

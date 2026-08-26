@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://q8u7ky0mku8v" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_ui_line_edit_with_submit_button.gd" id="1_ng1k0"]
 [ext_resource type="Script" uid="uid://d3ycd8k67dbbm" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_ui_text_edit_with_submit_button.gd" id="2_pc8kv"]
-[ext_resource type="Script" uid="uid://ysih2ue3s8ac" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_text_dictionary_action_if_finishing_by.gd" id="4_6iqdm"]
-[ext_resource type="Script" uid="uid://b5ehbb8ry71dq" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_text_dictionary_action_if_equals_to.gd" id="5_q25cb"]
+[ext_resource type="Script" uid="uid://bpmly7i8fsqxp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_text_to_text_action/script/input_text_dictionary_to_actions.gd" id="3_r4md1"]
 
 [node name="Demo2dTextToTextList" type="Control" unique_id=741190881]
 layout_mode = 3
@@ -74,19 +73,16 @@ text = "Not Found Key"
 layout_mode = 2
 text = "-"
 
-[node name="InputTextDictionaryActionIfFinishingBy" type="Node" parent="." unique_id=105307012]
-script = ExtResource("4_6iqdm")
-metadata/_custom_type_script = "uid://ysih2ue3s8ac"
+[node name="InputTextDictionaryActions" type="Node" parent="." unique_id=1092717504]
+script = ExtResource("3_r4md1")
+_dictionary_text_to_action = Dictionary[String, Array]({
+"123": ["log Hello 123"],
+"qwer": ["log Hello qwer"]
+})
+_use_debug_log = false
+metadata/_custom_type_script = "uid://bpmly7i8fsqxp"
 
-[node name="InputTextDictionaryActionIfEqualsTo" type="Node" parent="." unique_id=758169338]
-script = ExtResource("5_q25cb")
-metadata/_custom_type_script = "uid://b5ehbb8ry71dq"
-
-[connection signal="on_submit_button_pressed" from="VBoxContainer/LineEdit/InputUILineEditWithSubmitButton" to="InputTextDictionaryActionIfFinishingBy" method="emit_if_finishing_by_a_key"]
-[connection signal="on_submit_button_pressed" from="VBoxContainer/LineEdit/InputUILineEditWithSubmitButton" to="InputTextDictionaryActionIfEqualsTo" method="emit_if_equals_text_equals_to_one_key"]
-[connection signal="on_submit_button_pressed" from="VBoxContainer/TextEdit/InputUITextEditWithSubmitButton" to="InputTextDictionaryActionIfFinishingBy" method="emit_if_finishing_by_a_key"]
-[connection signal="on_submit_button_pressed" from="VBoxContainer/TextEdit/InputUITextEditWithSubmitButton" to="InputTextDictionaryActionIfEqualsTo" method="emit_if_equals_text_equals_to_one_key"]
-[connection signal="on_action_found" from="InputTextDictionaryActionIfFinishingBy" to="VBoxContainer/Label Found" method="set_text"]
-[connection signal="on_action_not_found_with_key" from="InputTextDictionaryActionIfFinishingBy" to="VBoxContainer/Label Not Found Key" method="set_text"]
-[connection signal="on_action_found" from="InputTextDictionaryActionIfEqualsTo" to="VBoxContainer/Label Found" method="set_text"]
-[connection signal="on_action_not_found_with_key" from="InputTextDictionaryActionIfEqualsTo" to="VBoxContainer/Label Not Found Key" method="set_text"]
+[connection signal="on_submit_button_pressed" from="VBoxContainer/LineEdit/InputUILineEditWithSubmitButton" to="InputTextDictionaryActions" method="emit_if_text_equals_to_one_key"]
+[connection signal="on_submit_button_pressed" from="VBoxContainer/TextEdit/InputUITextEditWithSubmitButton" to="InputTextDictionaryActions" method="emit_if_text_finishing_by_one_key"]
+[connection signal="on_action_found" from="InputTextDictionaryActions" to="VBoxContainer/Label Found" method="set_text"]
+[connection signal="on_action_not_found_with_key" from="InputTextDictionaryActions" to="VBoxContainer/Label Not Found Key" method="set_text"]

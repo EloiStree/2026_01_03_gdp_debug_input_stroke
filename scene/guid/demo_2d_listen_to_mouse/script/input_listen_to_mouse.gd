@@ -101,26 +101,35 @@ func _input(event: InputEvent) -> void:
 			_mouse_right_button_pressing = event.pressed
 			on_mouse_button_action.emit("MOUSE_BUTTON_RIGHT", _mouse_right_button_pressing)
 			on_mouse_event_received_as_string.emit("Mouse Right Button Event: " + str(event.pressed))
+
+
+
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_LEFT:
 			_last_scroll_left_event_time = get_time_utc()
+			_last_scroll_event_count_left+=1
+			on_mouse_scroll_left_tick.emit()
 			on_mouse_scroll_left_tick.emit("MOUSE_SCROLL_LEFT")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Left Event")
-			_last_scroll_event_count_left+=1
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_UP:
 			_last_scroll_up_event_time = get_time_utc()
+			_last_scroll_event_count_up+=1
+			on_mouse_scroll_up_tick.emit()
 			on_mouse_scroll_up_tick.emit("MOUSE_SCROLL_UP")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Up Event")
-			_last_scroll_event_count_up+=1
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_RIGHT:
 			_last_scroll_right_event_time = get_time_utc()
+			_last_scroll_event_count_right+=1
+			on_mouse_scroll_right_tick.emit()
 			on_mouse_scroll_right_tick.emit("MOUSE_SCROLL_RIGHT")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Right Event")
-			_last_scroll_event_count_right+=1
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
 			_last_scroll_down_event_time = get_time_utc()
+			_last_scroll_event_count_down+=1
+			on_mouse_scroll_down_tick.emit()
 			on_mouse_scroll_down_tick.emit("MOUSE_SCROLL_DOWN")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Down Event")
-			_last_scroll_event_count_down+=1
+
+
 		elif event.button_index == MouseButton.MOUSE_BUTTON_XBUTTON1:
 			if _mouse_side_button_1_pressing != event.pressed:
 				_mouse_side_button_1_pressing = event.pressed
@@ -142,10 +151,10 @@ func _input(event: InputEvent) -> void:
 		"br": _mouse_right_button_pressing,
 		"x1": _mouse_side_button_1_pressing,
 		"x2": _mouse_side_button_2_pressing,
-		"s_up": str(fmod(_last_scroll_up_event_time, 10000.0)),
-		"s_down": str(fmod(_last_scroll_down_event_time, 10000.0)),
-		"s_left": str(fmod(_last_scroll_left_event_time, 10000.0)),
-		"s_right": str(fmod(_last_scroll_right_event_time, 10000.0))
+		"s_up": str(_last_scroll_event_count_up),
+		"s_down": str(_last_scroll_event_count_down),
+		"s_left": str(_last_scroll_event_count_left),
+		"s_right": str(_last_scroll_event_count_right)
 	})
 	on_mouse_state_debug_as_string.emit(text)
 

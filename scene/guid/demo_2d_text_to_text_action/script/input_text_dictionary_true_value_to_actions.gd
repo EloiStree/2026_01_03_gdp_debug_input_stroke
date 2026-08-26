@@ -15,6 +15,9 @@ signal on_action_not_found_with_key(key:String)
 @export var _last_found_value:Array
 
 
+func emit_if_text_equals_to_key(key:String) -> void:
+	emit_if_text_equals_to_key_and_value_is_true(key,true)
+	
 func emit_if_text_equals_to_key_and_value_is_true(key:String, boolean_value:bool) -> void:
 	_last_key_received = key
 	_last_boolean_value_received = boolean_value

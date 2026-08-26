@@ -37,13 +37,6 @@ func notify_as_new_input(to_add: String) -> void:
 @export var _listen_to_key_event:bool=true
 func _input(event: InputEvent) -> void:
 	
-	if _listen_to_key_event and event is InputEventKey:
-		if not event.is_echo():
-			var key_event := event as InputEventKey
-			if not key_event.unicode == 0:
-				var unicode_char := char(key_event.unicode)
-				notify_as_new_input_keyboard(unicode_char)
-	
 	if event is InputEventJoypadButton and event.pressed:
 			var button_index :int= event.button_index
 			var to_add := ""

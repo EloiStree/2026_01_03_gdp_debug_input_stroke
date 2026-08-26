@@ -1,5 +1,14 @@
 [gd_scene format=3 uid="uid://xnlog20366in"]
 
+[ext_resource type="Script" uid="uid://dsw8vrxvljxxp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_tigger_text_to_interpret/script/input_trigger_text_action_from_enter_exit_resource.gd" id="1_j6un1"]
+[ext_resource type="Script" uid="uid://dgv4fduxlnr5n" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_tigger_text_to_interpret/script/input_resource_enter_exit_text_action.gd" id="2_n625i"]
+
+[sub_resource type="Resource" id="Resource_7x0ad"]
+script = ExtResource("2_n625i")
+_action_on_enter = Array[String](["on"])
+_action_on_exit = Array[String](["off"])
+metadata/_custom_type_script = "uid://dgv4fduxlnr5n"
+
 [node name="Demo2dTiggerTextToInterpret" type="Control" unique_id=2022053850]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="InputTriggerTextActionFromBooleanMethods" type="Node" parent="." unique_id=1658236937]
+script = ExtResource("1_j6un1")
+_action_to_trigger = SubResource("Resource_7x0ad")
+metadata/_custom_type_script = "uid://dsw8vrxvljxxp"

@@ -107,3 +107,10 @@ func append_several_key_value_in_dictionary_for_false(key:String, action_names:A
 		_dictionary_text_false_to_action[key] = existing_actions
 	else:
 		_dictionary_text_false_to_action[key] = action_names
+
+
+func append_one_key_value_in_dictionary_for_true_or_false(key_name:String,boolean_value:bool, action:String ):
+	if boolean_value:
+		append_one_key_value_in_dictionary_for_true(key_name, action)
+	else:
+		append_one_key_value_in_dictionary_for_false(key_name, action)

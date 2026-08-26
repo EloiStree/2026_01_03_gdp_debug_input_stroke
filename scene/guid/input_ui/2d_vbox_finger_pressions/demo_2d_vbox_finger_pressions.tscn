@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://cbrx77xixvtiv"]
+
+[ext_resource type="Script" uid="uid://cdsu41bf5k7eu" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/input_ui/2d_vbox_finger_pressions/script/input_listen_to_fingers_pression.gd" id="1_agsc6"]
+[ext_resource type="Script" uid="uid://dfy3jf2jsgom" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_vbox_observed_primitive_changed/script/input_check_changed_float.gd" id="2_grdou"]
+
+[node name="Demo2dVboxFingerPressions" type="Control" unique_id=329372520]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InputListenScreenFingersPression" type="Node" parent="." unique_id=225054442 node_paths=PackedStringArray("_debug_pression_sliders")]
+script = ExtResource("1_agsc6")
+_debug_pression_sliders = [NodePath("../VBoxContainer/HSlider"), NodePath("../VBoxContainer/HSlider2"), NodePath("../VBoxContainer/HSlider3"), NodePath("../VBoxContainer/HSlider4"), NodePath("../VBoxContainer/HSlider5"), NodePath("../VBoxContainer/HSlider6"), NodePath("../VBoxContainer/HSlider7"), NodePath("../VBoxContainer/HSlider8"), NodePath("../VBoxContainer/HSlider9"), NodePath("../VBoxContainer/HSlider10")]
+metadata/_custom_type_script = "uid://cdsu41bf5k7eu"
+
+[node name="Finger 0" type="Node" parent="InputListenScreenFingersPression" unique_id=1531333397]
+script = ExtResource("2_grdou")
+metadata/_custom_type_script = "uid://dfy3jf2jsgom"
+
+[node name="Finger 1" type="Node" parent="InputListenScreenFingersPression" unique_id=1212940328]
+script = ExtResource("2_grdou")
+metadata/_custom_type_script = "uid://dfy3jf2jsgom"
+
+[node name="Finger 2" type="Node" parent="InputListenScreenFingersPression" unique_id=477612154]
+script = ExtResource("2_grdou")
+metadata/_custom_type_script = "uid://dfy3jf2jsgom"
+
+[node name="Finger 3" type="Node" parent="InputListenScreenFingersPression" unique_id=988674065]
+script = ExtResource("2_grdou")
+metadata/_custom_type_script = "uid://dfy3jf2jsgom"
+
+[node name="Finger 4" type="Node" parent="InputListenScreenFingersPression" unique_id=740649931]
+script = ExtResource("2_grdou")
+metadata/_custom_type_script = "uid://dfy3jf2jsgom"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=399620818]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1671198198]
+layout_mode = 2
+text = "Pression Fingers"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer" unique_id=497080477]
+layout_mode = 2
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer" unique_id=440157751]
+layout_mode = 2
+
+[node name="HSlider3" type="HSlider" parent="VBoxContainer" unique_id=1583717904]
+layout_mode = 2
+
+[node name="HSlider4" type="HSlider" parent="VBoxContainer" unique_id=455150083]
+layout_mode = 2
+
+[node name="HSlider5" type="HSlider" parent="VBoxContainer" unique_id=1850140866]
+layout_mode = 2
+
+[node name="HSlider6" type="HSlider" parent="VBoxContainer" unique_id=152587513]
+layout_mode = 2
+
+[node name="HSlider7" type="HSlider" parent="VBoxContainer" unique_id=1676218517]
+layout_mode = 2
+
+[node name="HSlider8" type="HSlider" parent="VBoxContainer" unique_id=804820727]
+layout_mode = 2
+
+[node name="HSlider9" type="HSlider" parent="VBoxContainer" unique_id=559458942]
+layout_mode = 2
+
+[node name="HSlider10" type="HSlider" parent="VBoxContainer" unique_id=273946684]
+layout_mode = 2
+
+[connection signal="on_finger_0_pression_update" from="InputListenScreenFingersPression" to="InputListenScreenFingersPression/Finger 0" method="push_in_current_value_from_float"]
+[connection signal="on_finger_1_pression_update" from="InputListenScreenFingersPression" to="InputListenScreenFingersPression/Finger 1" method="push_in_current_value_from_float"]
+[connection signal="on_finger_2_pression_update" from="InputListenScreenFingersPression" to="InputListenScreenFingersPression/Finger 2" method="push_in_current_value_from_float"]
+[connection signal="on_finger_3_pression_update" from="InputListenScreenFingersPression" to="InputListenScreenFingersPression/Finger 3" method="push_in_current_value_from_float"]
+[connection signal="on_finger_4_pression_update" from="InputListenScreenFingersPression" to="InputListenScreenFingersPression/Finger 4" method="push_in_current_value_from_float"]

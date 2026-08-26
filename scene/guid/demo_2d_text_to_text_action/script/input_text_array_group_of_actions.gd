@@ -1,11 +1,10 @@
-class_name InputTextGroupOfActions
+class_name InputTextArrayGroupOfActions
 extends Node
 
 signal on_group_triggered_action(action:String)
 signal on_group_triggered_actions(group_of_actions:Array[String])
 
 @export var _group_of_actions:Array[String]=[]
-
 
 func clear():
 	_group_of_actions.clear()

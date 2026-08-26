@@ -1,4 +1,4 @@
-class_name InputNfcListenerRefFromXr
+class_name InputListenToFastTypingNfcFromXr
 extends Node
 
 @export var nfc: InputListenToFastTypingNfc

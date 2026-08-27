@@ -305,7 +305,14 @@ class DeviceAxis:
 	var axis_name: String
 	var axis_index: int
 	var axis_value: float
-
+	func get_apparition_index(): 
+		return linked_device._joystick_apparition_index
+	func get_axis_index():
+		return axis_index
+	func get_axis_device_name():
+		return linked_device._device_name
+	func get_axis_value():
+		return axis_value
 	func get_axis_apparition_string_id_name() -> String:
 		#>NAME|APPARITION_INDEX
 		return "A>"+str(linked_device._device_name) + "|" + str(linked_device._joystick_apparition_index) + "|"+str(axis_index)
@@ -332,6 +339,15 @@ class DeviceButton:
 	var button_index: int
 	var button_value: bool
 
+	func get_apparition_index(): 
+		return linked_device._joystick_apparition_index
+	func get_button_index():
+		return button_index
+	func get_button_device_name():
+		return linked_device._device_name
+	func get_button_value():
+		return button_value
+		
 	func get_button_apparition_string_id_name() -> String:
 		#>NAME|APPARITION_INDEX
 		return "B>"+str(linked_device._device_name) + "|" + str(linked_device._joystick_apparition_index) + "|"+str(button_index)

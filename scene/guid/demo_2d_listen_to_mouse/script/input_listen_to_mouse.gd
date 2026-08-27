@@ -10,10 +10,9 @@ signal on_mouse_position_changed_as_pixel(position_pixel: Vector2)
 signal on_mouse_position_changed_as_percent(position_percent: Vector2)
 signal on_mouse_position_changed_as_string(text: String)
 
-
-
 signal on_mouse_left_down_changed(is_pressed: bool)
 signal on_mouse_middle_down_changed(is_pressed: bool)
+
 signal on_mouse_right_down_changed(is_pressed: bool)
 signal on_mouse_side_button_1_down_changed(is_pressed: bool)
 signal on_mouse_side_button_2_down_changed(is_pressed: bool)
@@ -22,6 +21,8 @@ signal on_mouse_scroll_down_tick()
 signal on_mouse_scroll_left_tick()
 signal on_mouse_scroll_right_tick()
 
+signal on_ab_input_event(input_name:String, event_name:String)
+signal on_ab_input_key_bool_value(key_input:String, is_on:bool)
 
 @export var _mouse_x_y_format_string: String = "Mouse Position: {X}, {Y}, Pixel: {PX}, {PY}"
 @export var mouse_event_to_listen: int
@@ -47,6 +48,9 @@ signal on_mouse_scroll_right_tick()
 @export var _mouse_position_over_screen_percent: Vector2 = Vector2.ZERO
 @export var _mouse_space_width: float = 0.0
 @export var _mouse_space_height: float = 0.0
+
+@export var _ab_input_preffix_key_value:String="godot_mouse|"
+@export var _ab_input_preffix_event:String="godot_mouse"
 
 func get_time_utc() -> float:
 	return Time.get_unix_time_from_system() * 1000.0
@@ -87,6 +91,7 @@ func _input(event: InputEvent) -> void:
 			_mouse_left_button_pressing = event.pressed
 			on_mouse_button_action.emit("MOUSE_BUTTON_LEFT", _mouse_left_button_pressing)
 			on_mouse_event_received_as_string.emit("Mouse Left Button Event: " + str(event.pressed))
+			on_ab_input_key_bool_value.emit(_ab_input_preffix_key_value+"LEFT", _mouse_left_button_pressing)
 		elif event.button_index == MouseButton.MOUSE_BUTTON_MIDDLE:
 			if _mouse_middle_button_pressing != event.pressed:
 				_mouse_middle_button_pressing = event.pressed
@@ -94,6 +99,7 @@ func _input(event: InputEvent) -> void:
 			_mouse_middle_button_pressing = event.pressed
 			on_mouse_button_action.emit("MOUSE_BUTTON_MIDDLE", _mouse_middle_button_pressing)
 			on_mouse_event_received_as_string.emit("Mouse Middle Button Event: " + str(event.pressed))
+			on_ab_input_key_bool_value.emit(_ab_input_preffix_key_value+"MIDDLE", _mouse_middle_button_pressing)
 		elif event.button_index == MouseButton.MOUSE_BUTTON_RIGHT:
 			if _mouse_right_button_pressing != event.pressed:
 				_mouse_right_button_pressing = event.pressed
@@ -101,6 +107,7 @@ func _input(event: InputEvent) -> void:
 			_mouse_right_button_pressing = event.pressed
 			on_mouse_button_action.emit("MOUSE_BUTTON_RIGHT", _mouse_right_button_pressing)
 			on_mouse_event_received_as_string.emit("Mouse Right Button Event: " + str(event.pressed))
+			on_ab_input_key_bool_value.emit(_ab_input_preffix_key_value+"RIGHT", _mouse_right_button_pressing)
 
 
 
@@ -108,26 +115,26 @@ func _input(event: InputEvent) -> void:
 			_last_scroll_left_event_time = get_time_utc()
 			_last_scroll_event_count_left+=1
 			on_mouse_scroll_left_tick.emit()
-			on_mouse_scroll_left_tick.emit("MOUSE_SCROLL_LEFT")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Left Event")
+			on_ab_input_event.emit(_ab_input_preffix_event , "MOUSE_SCROLL_LEFT")
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_UP:
 			_last_scroll_up_event_time = get_time_utc()
 			_last_scroll_event_count_up+=1
 			on_mouse_scroll_up_tick.emit()
-			on_mouse_scroll_up_tick.emit("MOUSE_SCROLL_UP")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Up Event")
+			on_ab_input_event.emit(_ab_input_preffix_event , "MOUSE_SCROLL_UP")
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_RIGHT:
 			_last_scroll_right_event_time = get_time_utc()
 			_last_scroll_event_count_right+=1
 			on_mouse_scroll_right_tick.emit()
-			on_mouse_scroll_right_tick.emit("MOUSE_SCROLL_RIGHT")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Right Event")
+			on_ab_input_event.emit(_ab_input_preffix_event , "MOUSE_SCROLL_RIGHT")
 		elif event.button_index == MouseButton.MOUSE_BUTTON_WHEEL_DOWN:
 			_last_scroll_down_event_time = get_time_utc()
 			_last_scroll_event_count_down+=1
 			on_mouse_scroll_down_tick.emit()
-			on_mouse_scroll_down_tick.emit("MOUSE_SCROLL_DOWN")
 			on_mouse_event_received_as_string.emit("Mouse Scroll Down Event")
+			on_ab_input_event.emit(_ab_input_preffix_event , "MOUSE_SCROLL_DOWN")
 
 
 		elif event.button_index == MouseButton.MOUSE_BUTTON_XBUTTON1:
@@ -137,6 +144,7 @@ func _input(event: InputEvent) -> void:
 			_mouse_side_button_1_pressing = event.pressed
 			on_mouse_button_action.emit("MOUSE_BUTTON_XBUTTON1", _mouse_side_button_1_pressing)
 			on_mouse_event_received_as_string.emit("Mouse Side Button 1 Event: " + str(event.pressed))
+			on_ab_input_key_bool_value.emit(_ab_input_preffix_key_value+"X1", _mouse_side_button_1_pressing)
 		elif event.button_index == MouseButton.MOUSE_BUTTON_XBUTTON2:
 			if _mouse_side_button_2_pressing != event.pressed:
 				_mouse_side_button_2_pressing = event.pressed
@@ -144,6 +152,7 @@ func _input(event: InputEvent) -> void:
 			_mouse_side_button_2_pressing = event.pressed
 			on_mouse_button_action.emit("MOUSE_BUTTON_XBUTTON2", _mouse_side_button_2_pressing)
 			on_mouse_event_received_as_string.emit("Mouse Side Button 2 Event: " + str(event.pressed))
+			on_ab_input_key_bool_value.emit(_ab_input_preffix_key_value+"X2", _mouse_side_button_2_pressing)
 
 	var text: String = _mouse_state_debug_format_string.format({
 		"bl": _mouse_left_button_pressing,

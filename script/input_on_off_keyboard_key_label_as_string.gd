@@ -4,11 +4,12 @@ extends Node
 
 signal on_event_key_stroke_as_given_by_godot(text:String, is_on:bool)
 signal on_event_key_stroke_label_without_modifiers(text:String, is_on:bool)
+signal on_ab_input_key_bool_value(key_input:String, is_on:bool)
 #signal on_event_key_stroke_with_array_of_modifiers(modifiers:Array[String], text:String,is_on:bool )
 
 @export var use_print_debug: bool = true
 @export var last_input_word_found: String 
-
+@export var _ab_input_preffix:String="godot_keyboard|"
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and not event.echo:
 		var typed := event.as_text()
@@ -23,7 +24,7 @@ func _input(event: InputEvent) -> void:
 		on_event_key_stroke_label_without_modifiers.emit(word, is_on)
 		on_event_key_stroke_as_given_by_godot.emit(typed, is_on)
 		#on_event_key_stroke_with_array_of_modifiers.emit(modifiers, word, is_on)
-		
+		on_ab_input_key_bool_value.emit(_ab_input_preffix+word,is_on)
 		if use_print_debug:
 			print("Typed: ", typed, " On:", is_on)
 

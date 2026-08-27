@@ -17,3 +17,6 @@ func _on_toggle_toggled(pressed:bool) -> void:
 func push_value_with_inspector_key(pressed:bool) -> void:
 	if _key_name != "":
 		on_bool_event_submitted.emit(_key_name, pressed)
+
+func set_key_name(key_name:String):
+	_key_name=key_name

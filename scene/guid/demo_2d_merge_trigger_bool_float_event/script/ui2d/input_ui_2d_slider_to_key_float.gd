@@ -16,3 +16,6 @@ func _on_slider_value_changed(value:float) -> void:
 func push_value_with_inspector_key(value:float) -> void:
 	if _key_name != "":
 		on_float_event_submitted.emit(_key_name, value)
+
+func set_key_name(key_name:String):
+	_key_name=key_name

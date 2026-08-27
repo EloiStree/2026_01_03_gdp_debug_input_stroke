@@ -44,7 +44,7 @@ func remove_midi_device(device_name: String) -> void:
 		_devices_dictionary.erase(device_name)
 		on_device_removed.emit(device_name)
 
-func push_in_midi_note(device_name: String,channel:int, note: int, velocity: int) -> void:
+func push_in_midi_note(device_name: String,spawn_index:int,channel:int, note: int, velocity: int) -> void:
 	var device_status: InputMidiDeviceStatusResource=null
 	if not _devices_dictionary.has(device_name):
 		_devices_dictionary[device_name] = InputMidiDeviceStatusResource.new()
@@ -64,7 +64,7 @@ func push_in_midi_note(device_name: String,channel:int, note: int, velocity: int
 
 
 
-func push_in_midi_control(device_name: String,channel:int, controller_number: int, controller_value: int) -> void:
+func push_in_midi_control(device_name: String,spawn_index:int, controller_number: int, controller_value: int) -> void:
 	var device_status: InputMidiDeviceStatusResource=null
 	if not _devices_dictionary.has(device_name):
 		_devices_dictionary[device_name] = InputMidiDeviceStatusResource.new()

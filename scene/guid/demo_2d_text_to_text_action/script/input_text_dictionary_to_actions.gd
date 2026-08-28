@@ -78,7 +78,7 @@ func append_array_of_key_value_in_dictionary(key:String, action_names:Array[Stri
 
 func append_a_key_value_in_dictionary(key:String, action:String):
 	if _dictionary_text_to_action.has(key):
-		var existing_actions:Array[String] = _dictionary_text_to_action[key]
+		var existing_actions:Array = _dictionary_text_to_action[key]
 		existing_actions.append(action)
 		_dictionary_text_to_action[key] = existing_actions
 	else:

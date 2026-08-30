@@ -13,7 +13,6 @@ grow_vertical = 2
 
 [node name="InputNfcListener" type="Node" parent="." unique_id=396235374]
 script = ExtResource("1_yeefq")
-use_print_debug = true
 metadata/_custom_type_script = "uid://dne1wyvd2r3fi"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=8474124]
@@ -47,12 +46,10 @@ step = 0.01
 
 [node name="InputNfcTextToTextDirect" type="Node" parent="Node" unique_id=1430774721]
 script = ExtResource("2_h2j17")
-text_to_scene_name_dico = null
 metadata/_custom_type_script = "uid://dl1atyi78up5p"
 
 [node name="InputNfcTextToTextSubmit" type="Node" parent="Node" unique_id=1513894270]
 script = ExtResource("2_h2j17")
-text_to_scene_name_dico = null
 metadata/_custom_type_script = "uid://dl1atyi78up5p"
 
 [connection signal="on_nfc_builder_code_changed" from="InputNfcListener" to="VBoxContainer/Label Builder Value" method="set_text"]

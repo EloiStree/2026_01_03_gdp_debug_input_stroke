@@ -11,7 +11,7 @@ signal on_action_not_found_with_key(key:String)
 @export var _dictionary_text_true_to_action:Dictionary[String,Array] = {}
 @export var _dictionary_text_false_to_action:Dictionary[String,Array] = {}
 
-@export var _use_debug_log:bool =true
+@export var _use_debug_log:bool =false
 @export var _last_key_received:String
 @export var _last_boolean_value_received:bool
 @export var _last_found_value:Array

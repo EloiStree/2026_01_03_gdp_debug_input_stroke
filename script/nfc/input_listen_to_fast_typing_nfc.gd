@@ -13,7 +13,7 @@ signal on_percent_waiting_for_submit_updated(percent:float)
 @export var exit_time_countdown: float = 0
 @export var nfc_builder=""
 
-@export var use_print_debug:bool
+@export var use_print_debug:bool=false
 
 
 var bool_joystick_left_left = false

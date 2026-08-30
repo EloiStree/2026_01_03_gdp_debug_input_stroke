@@ -4,7 +4,7 @@ extends Node
 signal on_any_unicode_integer_found(unicode_id:int)
 signal on_any_unicode_integer_as_string_found(unicode_id_as_string:String)
 
-@export var _use_print_debug: bool = true
+@export var _use_print_debug: bool = false
 @export var _last_input_found: int = 0
 
 func _input(event: InputEvent) -> void:

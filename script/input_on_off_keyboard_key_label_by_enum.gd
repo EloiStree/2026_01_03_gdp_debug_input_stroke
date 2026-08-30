@@ -14,7 +14,7 @@ signal on_key_changed_as_string(value:String, is_on:bool)
 @export var required_alt_key: bool= false
 @export var required_shift_key: bool= false
 
-@export var use_print_debug: bool = true
+@export var use_print_debug: bool = false
 @export_group("Debug")
 @export var last_input_found_as_string: String
 @export var last_input_found_as_key_label: KeyLabel

@@ -11,7 +11,7 @@ signal on_past_pressed()
 signal on_past_pressed_changed(is_pressing: bool)
 signal on_cut_pressed()
 signal on_cut_pressed_changed(is_pressing: bool)
-@export var use_print_debug: bool = true
+@export var use_print_debug: bool = false
 @export var _input_name_cut: String = "ui_cut"
 @export var _input_name_copy: String = "ui_copy"
 @export var _input_name_past: String = "ui_paste"

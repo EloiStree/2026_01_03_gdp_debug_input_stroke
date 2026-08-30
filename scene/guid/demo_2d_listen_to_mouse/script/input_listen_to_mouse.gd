@@ -26,7 +26,7 @@ signal on_ab_input_key_bool_value(key_input:String, is_on:bool)
 
 @export var _mouse_x_y_format_string: String = "Mouse Position: {X}, {Y}, Pixel: {PX}, {PY}"
 @export var mouse_event_to_listen: int
-@export var use_print_debug: bool = true
+@export var use_print_debug: bool = false
 
 @export var _mouse_left_button_pressing:bool = false
 @export var _mouse_middle_button_pressing:bool = false

@@ -7,7 +7,7 @@ signal on_event_key_stroke_label_without_modifiers(text:String, is_on:bool)
 signal on_ab_input_key_bool_value(key_input:String, is_on:bool)
 #signal on_event_key_stroke_with_array_of_modifiers(modifiers:Array[String], text:String,is_on:bool )
 
-@export var use_print_debug: bool = true
+@export var use_print_debug: bool = false
 @export var last_input_word_found: String 
 @export var _ab_input_preffix:String="godot_keyboard|"
 func _input(event: InputEvent) -> void:

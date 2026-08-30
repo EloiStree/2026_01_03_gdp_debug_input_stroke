@@ -12,7 +12,7 @@ signal on_changed(is_on:bool)
 @export var required_alt_key: bool= false
 @export var required_shift_key: bool= false
 @export var required_os_key: bool= false
-@export var use_print_debug: bool = true
+@export var use_print_debug: bool = false
 
 @export_group("Debug")
 @export var is_shift_there_last:bool

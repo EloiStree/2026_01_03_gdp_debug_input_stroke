@@ -5,7 +5,7 @@ extends Node
 signal on_new_input_detected(input_name: String)
 
 @export var _last_found_input: String = ""
-@export var _use_print_debug:bool
+@export var _use_print_debug:bool = false
 
 
 var bool_joystick_left_left = false

@@ -3,7 +3,7 @@ extends Node
 
 signal on_any_unicode_char_found(unicode_char_as_string:String)
 
-@export var use_print_debug: bool = true
+@export var use_print_debug: bool = false
 @export var last_input_found: String = ""
 
 func _input(event: InputEvent) -> void:

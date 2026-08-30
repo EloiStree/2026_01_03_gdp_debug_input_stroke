@@ -8,7 +8,7 @@ signal on_action_found(action_name:String)
 signal on_action_not_found_with_key(key:String)
 
 @export var _dictionary_text_to_action:Dictionary[String,Array] = {}
-@export var _use_debug_log:bool =true
+@export var _use_debug_log:bool =false
 @export var _last_received:String
 @export var _last_found_value:Array
 

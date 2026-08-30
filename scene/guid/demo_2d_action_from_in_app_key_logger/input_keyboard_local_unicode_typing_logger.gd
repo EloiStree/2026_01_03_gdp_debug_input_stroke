@@ -13,7 +13,7 @@ signal on_any_unicode_character_found(unicode_char:String)
 @export var _typed_string_builder:String=""
 @export var _max_memory_length:int=100
 
-@export var _use_print_debug: bool = true
+@export var _use_print_debug: bool = false
 @export var _last_input_found: int =0
 
 @export_group("Debug Memory List")

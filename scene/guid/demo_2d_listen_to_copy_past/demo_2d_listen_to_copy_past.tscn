@@ -14,7 +14,6 @@ grow_vertical = 2
 
 [node name="InputListenToCopyPast" type="Node" parent="." unique_id=2099804427]
 script = ExtResource("1_14i3c")
-use_print_debug = false
 metadata/_custom_type_script = "uid://ndp5a0i3ov0r"
 
 [node name="If Text Equals To Key" type="Node" parent="InputListenToCopyPast" unique_id=1554739904]
@@ -24,7 +23,6 @@ _dictionary_text_to_action = Dictionary[String, Array]({
 "DEVICE_CUT": ["DEVICE CUT TRIGGER"],
 "DEVICE_PAST": ["DEVICE PAST TRIGGER"]
 })
-_use_debug_log = false
 metadata/_custom_type_script = "uid://bpmly7i8fsqxp"
 
 [node name="If Text Value Equals To Key" type="Node" parent="InputListenToCopyPast" unique_id=1155799318]
@@ -39,7 +37,6 @@ _dictionary_text_false_to_action = Dictionary[String, Array]({
 "DEVICE_CUT": ["DEVICE CUT FALSE"],
 "DEVICE_PAST": ["DEVICE PAST FALSE"]
 })
-_use_debug_log = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=305046397]
 layout_mode = 0
@@ -71,8 +68,8 @@ layout_mode = 2
 text = "Cut"
 
 [connection signal="on_copy_past_key_value_on_off" from="InputListenToCopyPast" to="InputListenToCopyPast/If Text Value Equals To Key" method="emit_if_equals_to_text_in_true_or_false_dictionary"]
-[connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="VBoxContainer/Label Last Found Trigger" method="set_text"]
 [connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="InputListenToCopyPast/If Text Equals To Key" method="emit_if_text_equals_to_one_key"]
+[connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="VBoxContainer/Label Last Found Trigger" method="set_text"]
 [connection signal="on_copy_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Copy" method="set_pressed"]
 [connection signal="on_cut_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Cut" method="set_pressed"]
 [connection signal="on_past_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Past" method="set_pressed"]

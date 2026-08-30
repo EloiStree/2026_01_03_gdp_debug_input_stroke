@@ -103,6 +103,7 @@ func trigger_action_with_two_char(
 	left_byte: int,
 	right_byte: int
 ) -> void:
+	print("I AM HERE")
 	if not _is_valid_byte(left_byte) or not _is_valid_byte(right_byte):
 		return
 
@@ -111,6 +112,7 @@ func trigger_action_with_two_char(
 	if not _dictionary_to_actions_list_two_byte.has(key):
 		return
 
+	print("I AM HERE: ",left_byte," ",right_byte)
 	for item in _dictionary_to_actions_list_two_byte[key]:
 		_emit_action(item)
 

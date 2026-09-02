@@ -13,7 +13,6 @@ signal on_any_event_to_device_and_manager_reference(device: DeviceTracked, manag
 @export var _is_xbox_if_has_in_name: Array[String] = ["xbox","steam deck", "x-box", "x box", "xbox360", "x-box360", "x box360", "xbox one", "x-box one", "x box one" ]
 @export var _use_print_debug: bool = false
 
-
 # on_new_device_tracked.emit( )
 # on_new_supposed_xbox_tracked.emit()
 # on_axis_changed.emit()
@@ -310,6 +309,10 @@ func get_one_line_description_for_device_godot_index(device_index: int) -> Strin
 		return "Device not tracked "+str(device_index)+ " List size: "+str(_list_of_all_devices.size())
 	return device.get_one_line_description()
 
+
+func append_is_xbox_keyword(text:String):
+	_is_xbox_if_has_in_name.append(text)
+
 func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadMotion:
 		var joy_event := event as InputEventJoypadMotion
@@ -338,13 +341,13 @@ class DeviceAxis:
 	var axis_value: float
 
 	var value_at_last_check: float
-	func get_apparition_index(): 
+	func get_apparition_index()->int: 
 		return linked_device._joystick_apparition_index
-	func get_axis_index():
+	func get_axis_index()->int:
 		return axis_index
-	func get_axis_device_name():
+	func get_axis_device_name()->String:
 		return linked_device._device_name
-	func get_axis_value():
+	func get_axis_value()->float:
 		return axis_value
 	func get_axis_apparition_string_id_name() -> String:
 		#>NAME|APPARITION_INDEX
@@ -372,13 +375,13 @@ class DeviceButton:
 	var button_index: int
 	var button_value: bool
 
-	func get_apparition_index(): 
+	func get_apparition_index()->int: 
 		return linked_device._joystick_apparition_index
-	func get_button_index():
+	func get_button_index()->int:
 		return button_index
-	func get_button_device_name():
+	func get_button_device_name()->String:
 		return linked_device._device_name
-	func get_button_value():
+	func get_button_value()->bool:
 		return button_value
 		
 	func get_button_apparition_string_id_name() -> String:

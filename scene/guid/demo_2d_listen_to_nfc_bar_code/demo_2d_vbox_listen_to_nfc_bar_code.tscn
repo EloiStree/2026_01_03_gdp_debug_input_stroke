@@ -15,33 +15,6 @@ grow_vertical = 2
 script = ExtResource("1_yeefq")
 metadata/_custom_type_script = "uid://dne1wyvd2r3fi"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=8474124]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label Builder" type="Label" parent="VBoxContainer" unique_id=1298225711]
-layout_mode = 2
-text = "BUILDER"
-
-[node name="Label Builder Value" type="Label" parent="VBoxContainer" unique_id=1896424372]
-layout_mode = 2
-
-[node name="Label Submit" type="Label" parent="VBoxContainer" unique_id=1741820930]
-layout_mode = 2
-text = "SUBMIT"
-
-[node name="Label Submit Value" type="Label" parent="VBoxContainer" unique_id=1112400828]
-layout_mode = 2
-
-[node name="HSlider" type="HSlider" parent="VBoxContainer" unique_id=84658558]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-
 [node name="Node" type="Node" parent="." unique_id=2131666749]
 
 [node name="InputNfcTextToTextDirect" type="Node" parent="Node" unique_id=1430774721]
@@ -52,5 +25,38 @@ metadata/_custom_type_script = "uid://dl1atyi78up5p"
 script = ExtResource("2_h2j17")
 metadata/_custom_type_script = "uid://dl1atyi78up5p"
 
-[connection signal="on_nfc_builder_code_changed" from="InputNfcListener" to="VBoxContainer/Label Builder Value" method="set_text"]
-[connection signal="on_percent_waiting_for_submit_updated" from="InputNfcListener" to="VBoxContainer/HSlider" method="set_value"]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=803385400]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=8474124]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label Builder" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1298225711]
+layout_mode = 2
+text = "BUILDER"
+
+[node name="Label Builder Value" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1896424372]
+layout_mode = 2
+
+[node name="Label Submit" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1741820930]
+layout_mode = 2
+text = "SUBMIT"
+
+[node name="Label Submit Value" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1112400828]
+layout_mode = 2
+
+[node name="HSlider" type="HSlider" parent="ScrollContainer/VBoxContainer" unique_id=84658558]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[connection signal="on_nfc_builder_code_changed" from="InputNfcListener" to="ScrollContainer/VBoxContainer/Label Builder Value" method="set_text"]
+[connection signal="on_percent_waiting_for_submit_updated" from="InputNfcListener" to="ScrollContainer/VBoxContainer/HSlider" method="set_value"]

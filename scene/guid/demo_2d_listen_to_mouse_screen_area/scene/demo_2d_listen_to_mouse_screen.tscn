@@ -91,158 +91,164 @@ grow_vertical = 2
 
 [node name="InputListenToMouseInfo" type="Node" parent="." unique_id=1206808646 node_paths=PackedStringArray("_node_to_broadcast")]
 script = ExtResource("1_4bqs5")
-_node_to_broadcast = [NodePath("../InputListenToMouseArea"), NodePath("../VBoxContainer/Border Left Pixel/InputListenToMouseAreaSinglePixels"), NodePath("../VBoxContainer/Border Up Pixel/InputListenToMouseAreaSinglePixels2"), NodePath("../VBoxContainer/Border Right Pixel/InputListenToMouseAreaSinglePixels3"), NodePath("../VBoxContainer/Border Down Pixel/InputListenToMouseAreaSinglePixels4"), NodePath("../VBoxContainer/Border Left Percent/InputListenToMouseAreaSinglePercent"), NodePath("../VBoxContainer/Border Up  Percent/InputListenToMouseAreaSinglePercent2"), NodePath("../VBoxContainer/Border Right  Percent/InputListenToMouseAreaSinglePercent3"), NodePath("../VBoxContainer/Border Down  Percent/InputListenToMouseAreaSinglePercent4"), NodePath("../VBoxContainer/Border Center/InputListenToMouseAreaSingleRectangle"), NodePath("../VBoxContainer/Corner Down Left/InputListenToMouseAreaSingleCorner")]
+_node_to_broadcast = [NodePath("../InputListenToMouseArea"), NodePath("../ScrollContainer/VBoxContainer/Border Left Pixel/InputListenToMouseAreaSinglePixels"), NodePath("../ScrollContainer/VBoxContainer/Border Up Pixel/InputListenToMouseAreaSinglePixels2"), NodePath("../ScrollContainer/VBoxContainer/Border Right Pixel/InputListenToMouseAreaSinglePixels3"), NodePath("../ScrollContainer/VBoxContainer/Border Down Pixel/InputListenToMouseAreaSinglePixels4"), NodePath("../ScrollContainer/VBoxContainer/Border Left Percent/InputListenToMouseAreaSinglePercent"), NodePath("../ScrollContainer/VBoxContainer/Border Up  Percent/InputListenToMouseAreaSinglePercent2"), NodePath("../ScrollContainer/VBoxContainer/Border Right  Percent/InputListenToMouseAreaSinglePercent3"), NodePath("../ScrollContainer/VBoxContainer/Border Down  Percent/InputListenToMouseAreaSinglePercent4"), NodePath("../ScrollContainer/VBoxContainer/Border Center/InputListenToMouseAreaSingleRectangle"), NodePath("../ScrollContainer/VBoxContainer/Corner Down Left/InputListenToMouseAreaSingleCorner")]
 
 [node name="InputListenToMouseArea" type="Node" parent="." unique_id=1951078973]
 script = ExtResource("1_7q8cf")
 
 [node name="InputObserveMouseAreaTriggers" type="Node" parent="." unique_id=847926584 node_paths=PackedStringArray("_mouse_triggers_emitters")]
 script = ExtResource("3_eth33")
-_mouse_triggers_emitters = [NodePath("../VBoxContainer/Border Left Pixel/InputListenToMouseAreaSinglePixels"), NodePath("../VBoxContainer/Border Up Pixel/InputListenToMouseAreaSinglePixels2"), NodePath("../VBoxContainer/Border Right Pixel/InputListenToMouseAreaSinglePixels3"), NodePath("../VBoxContainer/Border Down Pixel/InputListenToMouseAreaSinglePixels4"), NodePath("../VBoxContainer/Border Left Percent/InputListenToMouseAreaSinglePercent"), NodePath("../VBoxContainer/Border Up  Percent/InputListenToMouseAreaSinglePercent2"), NodePath("../VBoxContainer/Border Right  Percent/InputListenToMouseAreaSinglePercent3"), NodePath("../VBoxContainer/Border Down  Percent/InputListenToMouseAreaSinglePercent4"), NodePath("../VBoxContainer/Border Center/InputListenToMouseAreaSingleRectangle"), NodePath("../VBoxContainer/Corner Down Left/InputListenToMouseAreaSingleCorner")]
+_mouse_triggers_emitters = [NodePath("../ScrollContainer/VBoxContainer/Border Left Pixel/InputListenToMouseAreaSinglePixels"), NodePath("../ScrollContainer/VBoxContainer/Border Up Pixel/InputListenToMouseAreaSinglePixels2"), NodePath("../ScrollContainer/VBoxContainer/Border Right Pixel/InputListenToMouseAreaSinglePixels3"), NodePath("../ScrollContainer/VBoxContainer/Border Down Pixel/InputListenToMouseAreaSinglePixels4"), NodePath("../ScrollContainer/VBoxContainer/Border Left Percent/InputListenToMouseAreaSinglePercent"), NodePath("../ScrollContainer/VBoxContainer/Border Up  Percent/InputListenToMouseAreaSinglePercent2"), NodePath("../ScrollContainer/VBoxContainer/Border Right  Percent/InputListenToMouseAreaSinglePercent3"), NodePath("../ScrollContainer/VBoxContainer/Border Down  Percent/InputListenToMouseAreaSinglePercent4"), NodePath("../ScrollContainer/VBoxContainer/Border Center/InputListenToMouseAreaSingleRectangle"), NodePath("../ScrollContainer/VBoxContainer/Corner Down Left/InputListenToMouseAreaSingleCorner")]
 metadata/_custom_type_script = "uid://bvadc7t6fdsh8"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1160433824]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1127736245]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Border Left Pixel" type="CheckButton" parent="VBoxContainer" unique_id=152948992]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1160433824]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Border Left Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=152948992]
 layout_mode = 2
 text = "Border Left"
 
-[node name="InputListenToMouseAreaSinglePixels" type="Node" parent="VBoxContainer/Border Left Pixel" unique_id=1704891806 node_paths=PackedStringArray("_check_button")]
+[node name="InputListenToMouseAreaSinglePixels" type="Node" parent="ScrollContainer/VBoxContainer/Border Left Pixel" unique_id=1704891806 node_paths=PackedStringArray("_check_button")]
 script = ExtResource("2_brg1i")
 _area_border_pixels = SubResource("Resource_wxvfp")
 _check_button = [NodePath("..")]
 
-[node name="Border Up Pixel" type="CheckButton" parent="VBoxContainer" unique_id=294933482]
+[node name="Border Up Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=294933482]
 layout_mode = 2
 text = "Border Up"
 
-[node name="InputListenToMouseAreaSinglePixels2" type="Node" parent="VBoxContainer/Border Up Pixel" unique_id=1860760049 node_paths=PackedStringArray("_check_button")]
+[node name="InputListenToMouseAreaSinglePixels2" type="Node" parent="ScrollContainer/VBoxContainer/Border Up Pixel" unique_id=1860760049 node_paths=PackedStringArray("_check_button")]
 script = ExtResource("2_brg1i")
 _area_border_pixels = SubResource("Resource_rmbtn")
 _check_button = [NodePath("..")]
 
-[node name="Border Right Pixel" type="CheckButton" parent="VBoxContainer" unique_id=1607355839]
+[node name="Border Right Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1607355839]
 layout_mode = 2
 text = "Border Right"
 
-[node name="InputListenToMouseAreaSinglePixels3" type="Node" parent="VBoxContainer/Border Right Pixel" unique_id=1545136303 node_paths=PackedStringArray("_check_button")]
+[node name="InputListenToMouseAreaSinglePixels3" type="Node" parent="ScrollContainer/VBoxContainer/Border Right Pixel" unique_id=1545136303 node_paths=PackedStringArray("_check_button")]
 script = ExtResource("2_brg1i")
 _area_border_pixels = SubResource("Resource_8tdpg")
 _check_button = [NodePath("..")]
 
-[node name="Border Down Pixel" type="CheckButton" parent="VBoxContainer" unique_id=505679718]
+[node name="Border Down Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=505679718]
 layout_mode = 2
 text = "Border Down"
 
-[node name="InputListenToMouseAreaSinglePixels4" type="Node" parent="VBoxContainer/Border Down Pixel" unique_id=1179043343 node_paths=PackedStringArray("_check_button")]
+[node name="InputListenToMouseAreaSinglePixels4" type="Node" parent="ScrollContainer/VBoxContainer/Border Down Pixel" unique_id=1179043343 node_paths=PackedStringArray("_check_button")]
 script = ExtResource("2_brg1i")
 _area_border_pixels = SubResource("Resource_bhtlc")
 _check_button = [NodePath("..")]
 
-[node name="Border Left Percent" type="CheckButton" parent="VBoxContainer" unique_id=1450552004]
+[node name="Border Left Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1450552004]
 layout_mode = 2
 text = "Border Left"
 
-[node name="InputListenToMouseAreaSinglePercent" type="Node" parent="VBoxContainer/Border Left Percent" unique_id=1618951833 node_paths=PackedStringArray("_check_button")]
+[node name="InputListenToMouseAreaSinglePercent" type="Node" parent="ScrollContainer/VBoxContainer/Border Left Percent" unique_id=1618951833 node_paths=PackedStringArray("_check_button")]
 script = ExtResource("3_sdos5")
 _area_border_percent = SubResource("Resource_4bqs5")
 _check_button = [NodePath("..")]
 
-[node name="Border Up  Percent" type="CheckButton" parent="VBoxContainer" unique_id=520804808]
+[node name="Border Up  Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=520804808]
 layout_mode = 2
 text = "Border Up"
 
-[node name="InputListenToMouseAreaSinglePercent2" type="Node" parent="VBoxContainer/Border Up  Percent" unique_id=765789257 node_paths=PackedStringArray("_check_button")]
+[node name="InputListenToMouseAreaSinglePercent2" type="Node" parent="ScrollContainer/VBoxContainer/Border Up  Percent" unique_id=765789257 node_paths=PackedStringArray("_check_button")]
 script = ExtResource("3_sdos5")
 _area_border_percent = SubResource("Resource_eth33")
 _check_button = [NodePath("..")]
 
-[node name="Border Right  Percent" type="CheckButton" parent="VBoxContainer" unique_id=28962787]
+[node name="Border Right  Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=28962787]
 layout_mode = 2
 text = "Border Right"
 
-[node name="InputListenToMouseAreaSinglePercent3" type="Node" parent="VBoxContainer/Border Right  Percent" unique_id=146444500 node_paths=PackedStringArray("_check_button")]
+[node name="InputListenToMouseAreaSinglePercent3" type="Node" parent="ScrollContainer/VBoxContainer/Border Right  Percent" unique_id=146444500 node_paths=PackedStringArray("_check_button")]
 script = ExtResource("3_sdos5")
 _area_border_percent = SubResource("Resource_eqmda")
 _check_button = [NodePath("..")]
 
-[node name="Border Down  Percent" type="CheckButton" parent="VBoxContainer" unique_id=1096477700]
+[node name="Border Down  Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1096477700]
 layout_mode = 2
 text = "Border Down"
 
-[node name="InputListenToMouseAreaSinglePercent4" type="Node" parent="VBoxContainer/Border Down  Percent" unique_id=179488990 node_paths=PackedStringArray("_check_button")]
+[node name="InputListenToMouseAreaSinglePercent4" type="Node" parent="ScrollContainer/VBoxContainer/Border Down  Percent" unique_id=179488990 node_paths=PackedStringArray("_check_button")]
 script = ExtResource("3_sdos5")
 _area_border_percent = SubResource("Resource_sdos5")
 _check_button = [NodePath("..")]
 
-[node name="Border Center" type="CheckButton" parent="VBoxContainer" unique_id=1342570580]
+[node name="Border Center" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1342570580]
 layout_mode = 2
 text = "Border Down"
 
-[node name="InputListenToMouseAreaSingleRectangle" type="Node" parent="VBoxContainer/Border Center" unique_id=2013668347 node_paths=PackedStringArray("_check_button")]
+[node name="InputListenToMouseAreaSingleRectangle" type="Node" parent="ScrollContainer/VBoxContainer/Border Center" unique_id=2013668347 node_paths=PackedStringArray("_check_button")]
 script = ExtResource("6_bhtlc")
 _area_corner_percent = SubResource("Resource_0xn7k")
 _check_button = [NodePath("..")]
 
-[node name="Corner Down Left" type="CheckButton" parent="VBoxContainer" unique_id=1621481185]
+[node name="Corner Down Left" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1621481185]
 layout_mode = 2
 text = "Border Down"
 
-[node name="InputListenToMouseAreaSingleCorner" type="Node" parent="VBoxContainer/Corner Down Left" unique_id=886755369]
+[node name="InputListenToMouseAreaSingleCorner" type="Node" parent="ScrollContainer/VBoxContainer/Corner Down Left" unique_id=886755369]
 script = ExtResource("4_wxvfp")
 _area_corner_percent = SubResource("Resource_brg1i")
 
-[node name="Label Position in Pixel" type="Label" parent="VBoxContainer" unique_id=2090221757]
+[node name="Label Position in Pixel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=2090221757]
 layout_mode = 2
 
-[node name="Label Position in Percent" type="Label" parent="VBoxContainer" unique_id=551477175]
+[node name="Label Position in Percent" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=551477175]
 layout_mode = 2
 
-[node name="Label Screen Size" type="Label" parent="VBoxContainer" unique_id=1303692633]
+[node name="Label Screen Size" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1303692633]
 layout_mode = 2
 
-[node name="Label Title Enter" type="Label" parent="VBoxContainer" unique_id=1382823206]
+[node name="Label Title Enter" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1382823206]
 layout_mode = 2
 text = "Label Title Enter"
 
-[node name="Label Value Enter" type="Label" parent="VBoxContainer" unique_id=1777376163]
+[node name="Label Value Enter" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1777376163]
 layout_mode = 2
 text = "-"
 
-[node name="Label Title Exit" type="Label" parent="VBoxContainer" unique_id=514506556]
+[node name="Label Title Exit" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=514506556]
 layout_mode = 2
 text = "Label Title Exit"
 
-[node name="Label Value Exit" type="Label" parent="VBoxContainer" unique_id=1242292795]
+[node name="Label Value Exit" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1242292795]
 layout_mode = 2
 text = "-"
 
-[node name="Label Title Changed" type="Label" parent="VBoxContainer" unique_id=934607655]
+[node name="Label Title Changed" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=934607655]
 layout_mode = 2
 text = "Label Title Enter"
 
-[node name="Label Value Changed" type="Label" parent="VBoxContainer" unique_id=1716271247]
+[node name="Label Value Changed" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1716271247]
 layout_mode = 2
 text = "-"
 
-[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="VBoxContainer/Label Value Changed" unique_id=356812813]
+[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="ScrollContainer/VBoxContainer/Label Value Changed" unique_id=356812813]
 script = ExtResource("2_b3a80")
 metadata/_custom_type_script = "uid://cnx2af0athnyy"
 
-[connection signal="on_mouse_format_text_updated_percent" from="InputListenToMouseInfo" to="VBoxContainer/Label Position in Percent" method="set_text"]
-[connection signal="on_mouse_format_text_updated_pixel" from="InputListenToMouseInfo" to="VBoxContainer/Label Position in Pixel" method="set_text"]
-[connection signal="on_mouse_format_text_updated_screen_size" from="InputListenToMouseInfo" to="VBoxContainer/Label Screen Size" method="set_text"]
+[connection signal="on_mouse_format_text_updated_percent" from="InputListenToMouseInfo" to="ScrollContainer/VBoxContainer/Label Position in Percent" method="set_text"]
+[connection signal="on_mouse_format_text_updated_pixel" from="InputListenToMouseInfo" to="ScrollContainer/VBoxContainer/Label Position in Pixel" method="set_text"]
+[connection signal="on_mouse_format_text_updated_screen_size" from="InputListenToMouseInfo" to="ScrollContainer/VBoxContainer/Label Screen Size" method="set_text"]
 [connection signal="on_mouse_percent_lrdt_updated" from="InputListenToMouseInfo" to="InputListenToMouseArea" method="push_in_percent_position_lrdt"]
 [connection signal="on_mouse_pixels_lrdt_and_screen_size_updated" from="InputListenToMouseInfo" to="InputListenToMouseArea" method="push_in_pixels_position_lrdt_and_screen_size"]
-[connection signal="on_area_triggered_enter" from="InputListenToMouseArea" to="VBoxContainer/Label Value Enter" method="set_text"]
-[connection signal="on_area_triggered_exit" from="InputListenToMouseArea" to="VBoxContainer/Label Value Exit" method="set_text"]
-[connection signal="on_area_triggered_enter" from="InputObserveMouseAreaTriggers" to="VBoxContainer/Label Value Enter" method="set_text"]
-[connection signal="on_area_triggered_exit" from="InputObserveMouseAreaTriggers" to="VBoxContainer/Label Value Exit" method="set_text"]
-[connection signal="on_area_triggered_inside_value" from="InputObserveMouseAreaTriggers" to="VBoxContainer/Label Value Changed/InputParseKeyValueVariantToStringFormat" method="push_in_string_bool"]
-[connection signal="on_key_value_variant_to_string_format" from="VBoxContainer/Label Value Changed/InputParseKeyValueVariantToStringFormat" to="VBoxContainer/Label Value Changed" method="set_text"]
+[connection signal="on_area_triggered_enter" from="InputListenToMouseArea" to="ScrollContainer/VBoxContainer/Label Value Enter" method="set_text"]
+[connection signal="on_area_triggered_exit" from="InputListenToMouseArea" to="ScrollContainer/VBoxContainer/Label Value Exit" method="set_text"]
+[connection signal="on_area_triggered_enter" from="InputObserveMouseAreaTriggers" to="ScrollContainer/VBoxContainer/Label Value Enter" method="set_text"]
+[connection signal="on_area_triggered_exit" from="InputObserveMouseAreaTriggers" to="ScrollContainer/VBoxContainer/Label Value Exit" method="set_text"]
+[connection signal="on_area_triggered_inside_value" from="InputObserveMouseAreaTriggers" to="ScrollContainer/VBoxContainer/Label Value Changed/InputParseKeyValueVariantToStringFormat" method="push_in_string_bool"]
+[connection signal="on_key_value_variant_to_string_format" from="ScrollContainer/VBoxContainer/Label Value Changed/InputParseKeyValueVariantToStringFormat" to="ScrollContainer/VBoxContainer/Label Value Changed" method="set_text"]

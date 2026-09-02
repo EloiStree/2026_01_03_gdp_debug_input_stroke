@@ -4,35 +4,40 @@
 [ext_resource type="Script" uid="uid://cc2wfvi266qp" path="res://addons/2026_01_03_gdp_input_to_primitive/scene/guid/demo_2d_listen_to_gamepad_button_axis/script/input_listen_to_devices_axis_and_buttons.gd" id="1_oqeph"]
 
 [node name="ListenToDevicesAxisAndButtons" type="Control" unique_id=25078802]
-custom_minimum_size = Vector2(0, 400)
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 metadata/_edit_use_anchors_ = true
 
-[node name="Panel" type="Panel" parent="." unique_id=587008177]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=404248151]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -3.0
-offset_bottom = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="InputListenToDevicesAxisAndButtons" type="Node" parent="Panel" unique_id=1889011984]
+[node name="Panel" type="Panel" parent="ScrollContainer" unique_id=587008177]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InputListenToDevicesAxisAndButtons" type="Node" parent="ScrollContainer/Panel" unique_id=1889011984]
 script = ExtResource("1_oqeph")
 metadata/_custom_type_script = "uid://cc2wfvi266qp"
 
-[node name="ListenToDevicesAxisAndButtonsTextDebugger" type="Node" parent="Panel" unique_id=29578537 node_paths=PackedStringArray("listen_to_axis_and_buttons")]
+[node name="ListenToDevicesAxisAndButtonsTextDebugger" type="Node" parent="ScrollContainer/Panel" unique_id=29578537 node_paths=PackedStringArray("listen_to_axis_and_buttons")]
 script = ExtResource("1_dl1af")
 listen_to_axis_and_buttons = NodePath("../InputListenToDevicesAxisAndButtons")
 metadata/_custom_type_script = "uid://dmyxgi5a4b6wj"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel" unique_id=1027758831]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/Panel" unique_id=1027758831]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,42 +47,42 @@ offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label Name" type="Label" parent="Panel/VBoxContainer" unique_id=1667254152]
+[node name="Label Name" type="Label" parent="ScrollContainer/Panel/VBoxContainer" unique_id=1667254152]
 layout_mode = 2
 text = "- "
 
-[node name="Label Last Device Used" type="Label" parent="Panel/VBoxContainer" unique_id=1641251112]
+[node name="Label Last Device Used" type="Label" parent="ScrollContainer/Panel/VBoxContainer" unique_id=1641251112]
 layout_mode = 2
 text = "- "
 
-[node name="Label Last Button Device Used" type="Label" parent="Panel/VBoxContainer" unique_id=606426213]
+[node name="Label Last Button Device Used" type="Label" parent="ScrollContainer/Panel/VBoxContainer" unique_id=606426213]
 layout_mode = 2
 text = "- "
 
-[node name="Label Axis Changed" type="Label" parent="Panel/VBoxContainer" unique_id=136388345]
+[node name="Label Axis Changed" type="Label" parent="ScrollContainer/Panel/VBoxContainer" unique_id=136388345]
 layout_mode = 2
 text = "- "
 
-[node name="Label Button Changed" type="Label" parent="Panel/VBoxContainer" unique_id=530912691]
+[node name="Label Button Changed" type="Label" parent="ScrollContainer/Panel/VBoxContainer" unique_id=530912691]
 layout_mode = 2
 text = "- "
 
-[node name="Label Axis Value Changed" type="Label" parent="Panel/VBoxContainer" unique_id=304882838]
+[node name="Label Axis Value Changed" type="Label" parent="ScrollContainer/Panel/VBoxContainer" unique_id=304882838]
 layout_mode = 2
 text = "- "
 
-[node name="Label Button Value Changed" type="Label" parent="Panel/VBoxContainer" unique_id=1233770635]
+[node name="Label Button Value Changed" type="Label" parent="ScrollContainer/Panel/VBoxContainer" unique_id=1233770635]
 layout_mode = 2
 text = "- "
 
-[node name="LineEdit Device Name" type="LineEdit" parent="Panel/VBoxContainer" unique_id=1937132741]
+[node name="LineEdit Device Name" type="LineEdit" parent="ScrollContainer/Panel/VBoxContainer" unique_id=1937132741]
 layout_mode = 2
 
-[connection signal="on_last_device_axis_debug_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Axis Value Changed" method="set_text"]
-[connection signal="on_last_device_axis_id_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Axis Changed" method="set_text"]
-[connection signal="on_last_device_button_debug_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Button Value Changed" method="set_text"]
-[connection signal="on_last_device_button_id_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Button Changed" method="set_text"]
-[connection signal="on_last_device_name_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Last Device Used" method="set_text"]
-[connection signal="on_last_device_name_to_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/LineEdit Device Name" method="set_text"]
-[connection signal="on_last_device_name_to_have_button_changed" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Last Button Device Used" method="set_text"]
-[connection signal="on_new_device_name_detected" from="Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="Panel/VBoxContainer/Label Name" method="set_text"]
+[connection signal="on_last_device_axis_debug_to_changed" from="ScrollContainer/Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="ScrollContainer/Panel/VBoxContainer/Label Axis Value Changed" method="set_text"]
+[connection signal="on_last_device_axis_id_to_changed" from="ScrollContainer/Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="ScrollContainer/Panel/VBoxContainer/Label Axis Changed" method="set_text"]
+[connection signal="on_last_device_button_debug_to_changed" from="ScrollContainer/Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="ScrollContainer/Panel/VBoxContainer/Label Button Value Changed" method="set_text"]
+[connection signal="on_last_device_button_id_to_changed" from="ScrollContainer/Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="ScrollContainer/Panel/VBoxContainer/Label Button Changed" method="set_text"]
+[connection signal="on_last_device_name_to_changed" from="ScrollContainer/Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="ScrollContainer/Panel/VBoxContainer/Label Last Device Used" method="set_text"]
+[connection signal="on_last_device_name_to_changed" from="ScrollContainer/Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="ScrollContainer/Panel/VBoxContainer/LineEdit Device Name" method="set_text"]
+[connection signal="on_last_device_name_to_have_button_changed" from="ScrollContainer/Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="ScrollContainer/Panel/VBoxContainer/Label Last Button Device Used" method="set_text"]
+[connection signal="on_new_device_name_detected" from="ScrollContainer/Panel/ListenToDevicesAxisAndButtonsTextDebugger" to="ScrollContainer/Panel/VBoxContainer/Label Name" method="set_text"]

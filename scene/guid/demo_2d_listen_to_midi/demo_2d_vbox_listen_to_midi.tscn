@@ -31,67 +31,73 @@ _midi_info_as_text = "MIDI Device Info:
 "
 metadata/_custom_type_script = "uid://cowds1iqtydsg"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1687573911]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=31983167]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.326
-anchor_bottom = 0.26500002
-offset_right = -0.55200195
-offset_bottom = 0.27998352
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label Note Title" type="Label" parent="VBoxContainer" unique_id=81180369]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=1687573911]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label Note Title" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=81180369]
 layout_mode = 2
 text = "MIDI NOTE"
 
-[node name="Label Note" type="Label" parent="VBoxContainer" unique_id=1668922265]
+[node name="Label Note" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1668922265]
 layout_mode = 2
 
-[node name="Label Controller Title" type="Label" parent="VBoxContainer" unique_id=97690334]
+[node name="Label Controller Title" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=97690334]
 layout_mode = 2
 text = "MIDI  CONTROLLER"
 
-[node name="Label Controller" type="Label" parent="VBoxContainer" unique_id=1421244011]
+[node name="Label Controller" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1421244011]
 layout_mode = 2
 
-[node name="Label Device" type="Label" parent="VBoxContainer" unique_id=1511229150]
+[node name="Label Device" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1511229150]
 layout_mode = 2
 text = "NEW DEVICE"
 
-[node name="Label Add Device" type="Label" parent="VBoxContainer" unique_id=1599149044]
+[node name="Label Add Device" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1599149044]
 layout_mode = 2
 
-[node name="Label Ref Array Title" type="Label" parent="VBoxContainer" unique_id=490344232]
+[node name="Label Ref Array Title" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=490344232]
 layout_mode = 2
 text = "DEVICE AS TEXT"
 
-[node name="Label ref  Array" type="Label" parent="VBoxContainer" unique_id=48675759]
+[node name="Label ref  Array" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=48675759]
 layout_mode = 2
 theme_override_font_sizes/font_size = 7
 
-[node name="Label Note Value" type="Label" parent="VBoxContainer" unique_id=1212592797]
+[node name="Label Note Value" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1212592797]
 layout_mode = 2
 
-[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="VBoxContainer/Label Note Value" unique_id=275534050]
+[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="ScrollContainer/VBoxContainer/Label Note Value" unique_id=275534050]
 script = ExtResource("4_jd70v")
 _format_string = "Note Key: {key}, Value: {value}"
 metadata/_custom_type_script = "uid://cnx2af0athnyy"
 
-[node name="Label Control Value" type="Label" parent="VBoxContainer" unique_id=633199033]
+[node name="Label Control Value" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=633199033]
 layout_mode = 2
 
-[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="VBoxContainer/Label Control Value" unique_id=937817310]
+[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="ScrollContainer/VBoxContainer/Label Control Value" unique_id=937817310]
 script = ExtResource("4_jd70v")
 _format_string = "Control Key: {key}, Value: {value}"
 metadata/_custom_type_script = "uid://cnx2af0athnyy"
 
 [connection signal="on_any_midi_in_control_changed" from="InputListenToMidi" to="InputListenToMidi/InputMidiDevicesKeyControlDictionary" method="push_in_midi_control"]
-[connection signal="on_any_midi_in_control_changed_as_string" from="InputListenToMidi" to="VBoxContainer/Label Controller" method="set_text"]
+[connection signal="on_any_midi_in_control_changed_as_string" from="InputListenToMidi" to="ScrollContainer/VBoxContainer/Label Controller" method="set_text"]
 [connection signal="on_any_midi_in_note_changed" from="InputListenToMidi" to="InputListenToMidi/InputMidiDevicesKeyControlDictionary" method="push_in_midi_note"]
-[connection signal="on_any_midi_in_note_changed_as_string" from="InputListenToMidi" to="VBoxContainer/Label Note" method="set_text"]
-[connection signal="on_unsourced_midi_control_changed" from="InputListenToMidi" to="VBoxContainer/Label Control Value/InputParseKeyValueVariantToStringFormat" method="push_in_int_int"]
-[connection signal="on_unsourced_midi_note_changed" from="InputListenToMidi" to="VBoxContainer/Label Note Value/InputParseKeyValueVariantToStringFormat" method="push_in_int_int"]
+[connection signal="on_any_midi_in_note_changed_as_string" from="InputListenToMidi" to="ScrollContainer/VBoxContainer/Label Note" method="set_text"]
+[connection signal="on_unsourced_midi_control_changed" from="InputListenToMidi" to="ScrollContainer/VBoxContainer/Label Control Value/InputParseKeyValueVariantToStringFormat" method="push_in_int_int"]
+[connection signal="on_unsourced_midi_note_changed" from="InputListenToMidi" to="ScrollContainer/VBoxContainer/Label Note Value/InputParseKeyValueVariantToStringFormat" method="push_in_int_int"]
 [connection signal="on_midi_device_as_array_ref_changed" from="InputListenToMidi/InputMidiDevicesKeyControlDictionary" to="InputListenToMidi/InputMidiDevicesKeyControlDictionary/InputMidiDeviceAsThreeTextLine" method="push_in_device_info"]
-[connection signal="on_new_device_added" from="InputListenToMidi/InputMidiDevicesKeyControlDictionary" to="VBoxContainer/Label Add Device" method="set_text"]
-[connection signal="on_midi_as_string_updated" from="InputListenToMidi/InputMidiDevicesKeyControlDictionary/InputMidiDeviceAsThreeTextLine" to="VBoxContainer/Label ref  Array" method="set_text"]
-[connection signal="on_key_value_variant_to_string_format" from="VBoxContainer/Label Note Value/InputParseKeyValueVariantToStringFormat" to="VBoxContainer/Label Note Value" method="set_text"]
-[connection signal="on_key_value_variant_to_string_format" from="VBoxContainer/Label Control Value/InputParseKeyValueVariantToStringFormat" to="VBoxContainer/Label Control Value" method="set_text"]
+[connection signal="on_new_device_added" from="InputListenToMidi/InputMidiDevicesKeyControlDictionary" to="ScrollContainer/VBoxContainer/Label Add Device" method="set_text"]
+[connection signal="on_midi_as_string_updated" from="InputListenToMidi/InputMidiDevicesKeyControlDictionary/InputMidiDeviceAsThreeTextLine" to="ScrollContainer/VBoxContainer/Label ref  Array" method="set_text"]
+[connection signal="on_key_value_variant_to_string_format" from="ScrollContainer/VBoxContainer/Label Note Value/InputParseKeyValueVariantToStringFormat" to="ScrollContainer/VBoxContainer/Label Note Value" method="set_text"]
+[connection signal="on_key_value_variant_to_string_format" from="ScrollContainer/VBoxContainer/Label Control Value/InputParseKeyValueVariantToStringFormat" to="ScrollContainer/VBoxContainer/Label Control Value" method="set_text"]

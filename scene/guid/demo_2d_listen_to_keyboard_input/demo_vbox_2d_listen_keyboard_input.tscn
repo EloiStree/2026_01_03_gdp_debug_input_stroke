@@ -16,58 +16,53 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=755142253]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1693930928]
 layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.26500002
-anchor_bottom = 0.34
-offset_right = 4.7199707
-offset_bottom = 1.6799927
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1738832535]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=755142253]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1738832535]
 layout_mode = 2
 text = "Unicode String"
 
-[node name="Label2" type="Label" parent="VBoxContainer" unique_id=589398528]
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=589398528]
 layout_mode = 2
 
-[node name="Label3" type="Label" parent="VBoxContainer" unique_id=888512717]
+[node name="Label3" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=888512717]
 layout_mode = 2
 text = "Unicode Int"
 
-[node name="Label4" type="Label" parent="VBoxContainer" unique_id=894606129]
+[node name="Label4" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=894606129]
 layout_mode = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=2082496034]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.2907986
-anchor_top = 0.010802469
-anchor_right = 0.55579865
-anchor_bottom = 0.35080248
-offset_right = 4.7199707
-offset_bottom = 1.6799927
-metadata/_edit_use_anchors_ = true
-
-[node name="Label" type="Label" parent="VBoxContainer2" unique_id=1609159934]
+[node name="Label5" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1609159934]
 layout_mode = 2
 text = "Keyboard as Raw value"
 
-[node name="Label2" type="Label" parent="VBoxContainer2" unique_id=1975996843]
+[node name="Label6" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1975996843]
 layout_mode = 2
 
-[node name="InputParseKeyStringAndBoolToStringFormat" type="Node" parent="VBoxContainer2/Label2" unique_id=948617923]
+[node name="InputParseKeyStringAndBoolToStringFormat" type="Node" parent="ScrollContainer/VBoxContainer/Label6" unique_id=948617923]
 script = ExtResource("1_nsrbd")
 metadata/_custom_type_script = "uid://c0bkv6n4r6ifr"
 
-[node name="Label3" type="Label" parent="VBoxContainer2" unique_id=636885135]
+[node name="Label7" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=636885135]
 layout_mode = 2
 text = "Keyboard as low spaced value"
 
-[node name="Label4" type="Label" parent="VBoxContainer2" unique_id=1351629366]
+[node name="Label8" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1351629366]
 layout_mode = 2
 
-[node name="InputParseKeyStringAndBoolToStringFormat2" type="Node" parent="VBoxContainer2/Label4" unique_id=91086780]
+[node name="InputParseKeyStringAndBoolToStringFormat2" type="Node" parent="ScrollContainer/VBoxContainer/Label8" unique_id=91086780]
 script = ExtResource("1_nsrbd")
 metadata/_custom_type_script = "uid://c0bkv6n4r6ifr"
 
@@ -81,7 +76,6 @@ metadata/_custom_type_script = "uid://dx8dqqoicsdss"
 
 [node name="InputOnOffKeyboardKeyLabelByEnum" type="Node" parent="." unique_id=1889303632]
 script = ExtResource("5_oryim")
-use_print_debug = false
 metadata/_custom_type_script = "uid://dbx6thcax6vo1"
 
 [node name="As Unicode Typed" type="Node" parent="." unique_id=1192952613]
@@ -102,17 +96,16 @@ metadata/_custom_type_script = "uid://3d6kwndfwv20"
 
 [node name="Input Listen To Keyboard" type="Node" parent="As Keyboard Typed" unique_id=776076136]
 script = ExtResource("6_nsrbd")
-use_print_debug = false
 metadata/_custom_type_script = "uid://b6d0lxvq0uju0"
 
 [node name="Keyboard Down Up To Actions" type="Node" parent="As Keyboard Typed/Input Listen To Keyboard" unique_id=1446956370]
 
-[connection signal="on_key_bool_parsed_to_string" from="VBoxContainer2/Label2/InputParseKeyStringAndBoolToStringFormat" to="VBoxContainer2/Label2" method="set_text"]
-[connection signal="on_key_bool_parsed_to_string" from="VBoxContainer2/Label4/InputParseKeyStringAndBoolToStringFormat2" to="VBoxContainer2/Label4" method="set_text"]
-[connection signal="on_any_unicode_char_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsString" to="VBoxContainer/Label2" method="set_text"]
+[connection signal="on_key_bool_parsed_to_string" from="ScrollContainer/VBoxContainer/Label6/InputParseKeyStringAndBoolToStringFormat" to="ScrollContainer/VBoxContainer/Label6" method="set_text"]
+[connection signal="on_key_bool_parsed_to_string" from="ScrollContainer/VBoxContainer/Label8/InputParseKeyStringAndBoolToStringFormat2" to="ScrollContainer/VBoxContainer/Label8" method="set_text"]
+[connection signal="on_any_unicode_char_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsString" to="ScrollContainer/VBoxContainer/Label2" method="set_text"]
 [connection signal="on_any_unicode_char_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsString" to="As Unicode Typed/InputListenToKeyboardUnicodeAsString/Unicode Char To Actions" method="try_to_emit_store_text_from_key"]
-[connection signal="on_any_unicode_integer_as_string_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsInteger" to="VBoxContainer/Label4" method="set_text"]
+[connection signal="on_any_unicode_integer_as_string_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsInteger" to="ScrollContainer/VBoxContainer/Label4" method="set_text"]
 [connection signal="on_any_unicode_integer_as_string_found" from="As Unicode Typed/InputListenToKeyboardUnicodeAsInteger" to="As Unicode Typed/InputListenToKeyboardUnicodeAsInteger/Integer Char To Actions" method="try_to_emit_store_text_from_key"]
-[connection signal="on_event_key_stroke_as_given_by_godot" from="As Keyboard Typed/Input Listen To Keyboard" to="VBoxContainer2/Label2/InputParseKeyStringAndBoolToStringFormat" method="push_in_key_string_and_bool"]
-[connection signal="on_event_key_stroke_label_without_modifiers" from="As Keyboard Typed/Input Listen To Keyboard" to="VBoxContainer2/Label4/InputParseKeyStringAndBoolToStringFormat2" method="push_in_key_string_and_bool"]
+[connection signal="on_event_key_stroke_as_given_by_godot" from="As Keyboard Typed/Input Listen To Keyboard" to="ScrollContainer/VBoxContainer/Label6/InputParseKeyStringAndBoolToStringFormat" method="push_in_key_string_and_bool"]
+[connection signal="on_event_key_stroke_label_without_modifiers" from="As Keyboard Typed/Input Listen To Keyboard" to="ScrollContainer/VBoxContainer/Label8/InputParseKeyStringAndBoolToStringFormat2" method="push_in_key_string_and_bool"]
 [connection signal="on_event_key_stroke_label_without_modifiers" from="As Keyboard Typed/Input Listen To Keyboard" to="As Keyboard Typed/Input Listen To Keyboard/Keyboard Down Up To Actions" method="try_to_emit_store_text_from_key_condition"]

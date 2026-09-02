@@ -27,41 +27,47 @@ metadata/_custom_type_script = "uid://dy6v5butthvf6"
 script = ExtResource("3_jdgc7")
 metadata/_custom_type_script = "uid://cm76n7hcopjcs"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=751912880]
+[node name="Test GamepadInfo" type="Node" parent="." unique_id=1352108612]
+script = ExtResource("5_nnfxt")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=2105558061]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="LabelStringBuilder" type="Label" parent="VBoxContainer" unique_id=1287591117]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=751912880]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LabelStringBuilder" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1287591117]
 layout_mode = 2
 
-[node name="LabelChar" type="Label" parent="VBoxContainer" unique_id=2123084908]
+[node name="LabelChar" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=2123084908]
 layout_mode = 2
 
-[node name="LabelInt" type="Label" parent="VBoxContainer" unique_id=1519291009]
+[node name="LabelInt" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1519291009]
 layout_mode = 2
 
-[node name="InputParsePrimitiveToString" type="Node" parent="VBoxContainer/LabelInt" unique_id=701771275]
+[node name="InputParsePrimitiveToString" type="Node" parent="ScrollContainer/VBoxContainer/LabelInt" unique_id=701771275]
 script = ExtResource("2_piitx")
 metadata/_custom_type_script = "uid://7dcxq5c1203w"
 
-[node name="LabelStringBuilder2" type="Label" parent="VBoxContainer" unique_id=381382073]
+[node name="LabelStringBuilder2" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=381382073]
 layout_mode = 2
 
-[node name="LabelChar2" type="Label" parent="VBoxContainer" unique_id=1064041844]
+[node name="LabelChar2" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1064041844]
 layout_mode = 2
-
-[node name="Test GamepadInfo" type="Node" parent="." unique_id=1352108612]
-script = ExtResource("5_nnfxt")
 
 [connection signal="on_any_unicode_character_found" from="InputKeyboardLocalUnicodeTypingLogger" to="InputAbstractTypingKeyLogger" method="inject_key_as_string"]
-[connection signal="on_any_unicode_character_found" from="InputKeyboardLocalUnicodeTypingLogger" to="VBoxContainer/LabelChar" method="set_text"]
-[connection signal="on_any_unicode_integer_found" from="InputKeyboardLocalUnicodeTypingLogger" to="VBoxContainer/LabelInt/InputParsePrimitiveToString" method="push_in_primitive_int"]
-[connection signal="on_string_builder_changed" from="InputKeyboardLocalUnicodeTypingLogger" to="VBoxContainer/LabelStringBuilder" method="set_text"]
-[connection signal="on_key_string_appended" from="InputAbstractTypingKeyLogger" to="VBoxContainer/LabelChar2" method="set_text"]
-[connection signal="on_string_builder_changed" from="InputAbstractTypingKeyLogger" to="VBoxContainer/LabelStringBuilder2" method="set_text"]
+[connection signal="on_any_unicode_character_found" from="InputKeyboardLocalUnicodeTypingLogger" to="ScrollContainer/VBoxContainer/LabelChar" method="set_text"]
+[connection signal="on_any_unicode_integer_found" from="InputKeyboardLocalUnicodeTypingLogger" to="ScrollContainer/VBoxContainer/LabelInt/InputParsePrimitiveToString" method="push_in_primitive_int"]
+[connection signal="on_string_builder_changed" from="InputKeyboardLocalUnicodeTypingLogger" to="ScrollContainer/VBoxContainer/LabelStringBuilder" method="set_text"]
+[connection signal="on_key_string_appended" from="InputAbstractTypingKeyLogger" to="ScrollContainer/VBoxContainer/LabelChar2" method="set_text"]
+[connection signal="on_string_builder_changed" from="InputAbstractTypingKeyLogger" to="ScrollContainer/VBoxContainer/LabelStringBuilder2" method="set_text"]
 [connection signal="on_new_input_detected" from="InputAbstractTypingKeyLogger/InputToAliasGamepad" to="InputAbstractTypingKeyLogger" method="inject_key_as_string_with_splitter"]
-[connection signal="on_string_parsed" from="VBoxContainer/LabelInt/InputParsePrimitiveToString" to="VBoxContainer/LabelInt" method="set_text"]
+[connection signal="on_string_parsed" from="ScrollContainer/VBoxContainer/LabelInt/InputParsePrimitiveToString" to="ScrollContainer/VBoxContainer/LabelInt" method="set_text"]

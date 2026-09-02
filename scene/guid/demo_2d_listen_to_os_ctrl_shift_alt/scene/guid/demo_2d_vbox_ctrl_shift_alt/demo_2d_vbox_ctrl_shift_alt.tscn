@@ -14,35 +14,41 @@ grow_vertical = 2
 script = ExtResource("1_nam8u")
 metadata/_custom_type_script = "uid://7f57e4spy0hy"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2064729980]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1293316029]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=320528131]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=2064729980]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=320528131]
 layout_mode = 2
 
-[node name="CheckButtonControl" type="CheckButton" parent="VBoxContainer" unique_id=160390032]
+[node name="CheckButtonControl" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=160390032]
 layout_mode = 2
 text = "Ctrl"
 
-[node name="CheckButtonShift" type="CheckButton" parent="VBoxContainer" unique_id=844985992]
+[node name="CheckButtonShift" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=844985992]
 layout_mode = 2
 text = "Shift"
 
-[node name="CheckButtonAlt" type="CheckButton" parent="VBoxContainer" unique_id=2045367181]
+[node name="CheckButtonAlt" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=2045367181]
 layout_mode = 2
 text = "Alt"
 
-[node name="CheckButtonOsButton" type="CheckButton" parent="VBoxContainer" unique_id=1934882346]
+[node name="CheckButtonOsButton" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1934882346]
 layout_mode = 2
 text = "OS"
 
-[connection signal="on_alt_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/CheckButtonAlt" method="set_pressed"]
-[connection signal="on_control_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/CheckButtonControl" method="set_pressed"]
-[connection signal="on_os_key_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/CheckButtonOsButton" method="set_pressed"]
-[connection signal="on_shift_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/CheckButtonShift" method="set_pressed"]
-[connection signal="on_value_changed_as_debug_string" from="InputOnOffKeyboardCtrlShiftAlt" to="VBoxContainer/Label" method="set_text"]
+[connection signal="on_alt_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="ScrollContainer/VBoxContainer/CheckButtonAlt" method="set_pressed"]
+[connection signal="on_control_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="ScrollContainer/VBoxContainer/CheckButtonControl" method="set_pressed"]
+[connection signal="on_os_key_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="ScrollContainer/VBoxContainer/CheckButtonOsButton" method="set_pressed"]
+[connection signal="on_shift_changed" from="InputOnOffKeyboardCtrlShiftAlt" to="ScrollContainer/VBoxContainer/CheckButtonShift" method="set_pressed"]
+[connection signal="on_value_changed_as_debug_string" from="InputOnOffKeyboardCtrlShiftAlt" to="ScrollContainer/VBoxContainer/Label" method="set_text"]

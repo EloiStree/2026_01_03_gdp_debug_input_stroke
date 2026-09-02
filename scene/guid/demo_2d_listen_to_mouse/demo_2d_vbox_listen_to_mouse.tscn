@@ -15,49 +15,55 @@ grow_vertical = 2
 script = ExtResource("1_rqvio")
 metadata/_custom_type_script = "uid://buabu81k2m1m5"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=877311670]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=87423185]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label Position" type="Label" parent="VBoxContainer" unique_id=899095544]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=877311670]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label Position" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=899095544]
 layout_mode = 2
 text = "MOUSE POSITION"
 
-[node name="Label2" type="Label" parent="VBoxContainer" unique_id=2097799232]
+[node name="Label2" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=2097799232]
 layout_mode = 2
 
-[node name="Label Key Value" type="Label" parent="VBoxContainer" unique_id=977990663]
+[node name="Label Key Value" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=977990663]
 layout_mode = 2
 text = "MOUSE KEY VALUE"
 
-[node name="Label5" type="Label" parent="VBoxContainer" unique_id=105060521]
+[node name="Label5" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=105060521]
 layout_mode = 2
 
-[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="VBoxContainer/Label5" unique_id=1835745152]
+[node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="ScrollContainer/VBoxContainer/Label5" unique_id=1835745152]
 script = ExtResource("2_fht6u")
 metadata/_custom_type_script = "uid://cnx2af0athnyy"
 
-[node name="Label Scroll" type="Label" parent="VBoxContainer" unique_id=642225646]
+[node name="Label Scroll" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=642225646]
 layout_mode = 2
 text = "MOUSE SCROLL"
 
-[node name="Label7" type="Label" parent="VBoxContainer" unique_id=1533446356]
+[node name="Label7" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1533446356]
 layout_mode = 2
 
-[node name="Label6" type="Label" parent="VBoxContainer" unique_id=1690832997]
+[node name="Label6" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1690832997]
 layout_mode = 2
 
-[node name="TextEdit" type="TextEdit" parent="VBoxContainer" unique_id=1012756397]
+[node name="TextEdit" type="TextEdit" parent="ScrollContainer/VBoxContainer" unique_id=1012756397]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[connection signal="on_mouse_button_action" from="InputListenToMouse" to="VBoxContainer/Label5/InputParseKeyValueVariantToStringFormat" method="push_in_string_bool"]
-[connection signal="on_mouse_event_received_as_string" from="InputListenToMouse" to="VBoxContainer/Label6" method="set_text"]
-[connection signal="on_mouse_position_changed_as_string" from="InputListenToMouse" to="VBoxContainer/Label2" method="set_text"]
-[connection signal="on_mouse_state_debug_as_string" from="InputListenToMouse" to="VBoxContainer/TextEdit" method="set_text"]
-[connection signal="on_scroll_named_action" from="InputListenToMouse" to="VBoxContainer/Label7" method="set_text"]
-[connection signal="on_key_value_variant_to_string_format" from="VBoxContainer/Label5/InputParseKeyValueVariantToStringFormat" to="VBoxContainer/Label5" method="set_text"]
+[connection signal="on_mouse_button_action" from="InputListenToMouse" to="ScrollContainer/VBoxContainer/Label5/InputParseKeyValueVariantToStringFormat" method="push_in_string_bool"]
+[connection signal="on_mouse_event_received_as_string" from="InputListenToMouse" to="ScrollContainer/VBoxContainer/Label6" method="set_text"]
+[connection signal="on_mouse_position_changed_as_string" from="InputListenToMouse" to="ScrollContainer/VBoxContainer/Label2" method="set_text"]
+[connection signal="on_mouse_state_debug_as_string" from="InputListenToMouse" to="ScrollContainer/VBoxContainer/TextEdit" method="set_text"]
+[connection signal="on_scroll_named_action" from="InputListenToMouse" to="ScrollContainer/VBoxContainer/Label7" method="set_text"]
+[connection signal="on_key_value_variant_to_string_format" from="ScrollContainer/VBoxContainer/Label5/InputParseKeyValueVariantToStringFormat" to="ScrollContainer/VBoxContainer/Label5" method="set_text"]

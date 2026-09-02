@@ -14,55 +14,61 @@ grow_vertical = 2
 script = ExtResource("1_nsb1t")
 metadata/_custom_type_script = "uid://b6i1l1vu5bbrw"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=631868406]
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=1640995053]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label Last Key Press" type="Label" parent="VBoxContainer" unique_id=2063822226]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=631868406]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label Last Key Press" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=2063822226]
 layout_mode = 2
 text = "Last TV key pressed"
 
-[node name="Label Name" type="Label" parent="VBoxContainer" unique_id=349742106]
+[node name="Label Name" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=349742106]
 layout_mode = 2
 text = "-"
 
-[node name="Label Int" type="Label" parent="VBoxContainer" unique_id=1962118174]
+[node name="Label Int" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1962118174]
 layout_mode = 2
 text = "-"
 
-[node name="CheckButton Up" type="CheckButton" parent="VBoxContainer" unique_id=1794672467]
+[node name="CheckButton Up" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1794672467]
 layout_mode = 2
 text = "Arrow Up"
 
-[node name="CheckButton Right" type="CheckButton" parent="VBoxContainer" unique_id=1351331078]
+[node name="CheckButton Right" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1351331078]
 layout_mode = 2
 text = "Arrow Right"
 
-[node name="CheckButton Down" type="CheckButton" parent="VBoxContainer" unique_id=670465361]
+[node name="CheckButton Down" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=670465361]
 layout_mode = 2
 text = "Arrow Down"
 
-[node name="CheckButton Left" type="CheckButton" parent="VBoxContainer" unique_id=1654113688]
+[node name="CheckButton Left" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1654113688]
 layout_mode = 2
 text = "Arrow Left"
 
-[node name="CheckButton Accept" type="CheckButton" parent="VBoxContainer" unique_id=29287928]
+[node name="CheckButton Accept" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=29287928]
 layout_mode = 2
 text = "Arrow Accept"
 
-[node name="CheckButton Cancel" type="CheckButton" parent="VBoxContainer" unique_id=1309749335]
+[node name="CheckButton Cancel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1309749335]
 layout_mode = 2
 text = "Arrow Cancel"
 
-[connection signal="on_tv_pressed_key_accept_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Accept" method="set_pressed"]
-[connection signal="on_tv_pressed_key_back_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Cancel" method="set_pressed"]
-[connection signal="on_tv_pressed_key_down_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Down" method="set_pressed"]
-[connection signal="on_tv_pressed_key_left_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Left" method="set_pressed"]
-[connection signal="on_tv_pressed_key_right_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Right" method="set_pressed"]
-[connection signal="on_tv_pressed_key_up_value" from="InputListenToTvRemote" to="VBoxContainer/CheckButton Up" method="set_pressed"]
-[connection signal="on_tv_remote_pressed_int_as_string" from="InputListenToTvRemote" to="VBoxContainer/Label Int" method="set_text"]
-[connection signal="on_tv_remote_pressed_name_as_string" from="InputListenToTvRemote" to="VBoxContainer/Label Name" method="set_text"]
+[connection signal="on_tv_pressed_key_accept_value" from="InputListenToTvRemote" to="ScrollContainer/VBoxContainer/CheckButton Accept" method="set_pressed"]
+[connection signal="on_tv_pressed_key_back_value" from="InputListenToTvRemote" to="ScrollContainer/VBoxContainer/CheckButton Cancel" method="set_pressed"]
+[connection signal="on_tv_pressed_key_down_value" from="InputListenToTvRemote" to="ScrollContainer/VBoxContainer/CheckButton Down" method="set_pressed"]
+[connection signal="on_tv_pressed_key_left_value" from="InputListenToTvRemote" to="ScrollContainer/VBoxContainer/CheckButton Left" method="set_pressed"]
+[connection signal="on_tv_pressed_key_right_value" from="InputListenToTvRemote" to="ScrollContainer/VBoxContainer/CheckButton Right" method="set_pressed"]
+[connection signal="on_tv_pressed_key_up_value" from="InputListenToTvRemote" to="ScrollContainer/VBoxContainer/CheckButton Up" method="set_pressed"]
+[connection signal="on_tv_remote_pressed_int_as_string" from="InputListenToTvRemote" to="ScrollContainer/VBoxContainer/Label Int" method="set_text"]
+[connection signal="on_tv_remote_pressed_name_as_string" from="InputListenToTvRemote" to="ScrollContainer/VBoxContainer/Label Name" method="set_text"]

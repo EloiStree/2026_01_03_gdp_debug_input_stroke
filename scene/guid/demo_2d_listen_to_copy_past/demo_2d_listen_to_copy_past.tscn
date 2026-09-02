@@ -38,40 +38,49 @@ _dictionary_text_false_to_action = Dictionary[String, Array]({
 "DEVICE_PAST": ["DEVICE PAST FALSE"]
 })
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=305046397]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ScrollContainer" type="ScrollContainer" parent="." unique_id=76659137]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
 
-[node name="Label Title" type="Label" parent="VBoxContainer" unique_id=1120289022]
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer" unique_id=305046397]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Label Title" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1120289022]
 layout_mode = 2
 text = "Listen to Copy Past Action"
 
-[node name="Label Last Found Trigger" type="Label" parent="VBoxContainer" unique_id=1632889041]
+[node name="Label Last Found Trigger" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1632889041]
 layout_mode = 2
 text = "-"
 
-[node name="Label Last Found True False" type="Label" parent="VBoxContainer" unique_id=348366268]
+[node name="Label Last Found True False" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=348366268]
 layout_mode = 2
 text = "-"
 
-[node name="CheckButton Copy" type="CheckButton" parent="VBoxContainer" unique_id=1129570900]
+[node name="CheckButton Copy" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1129570900]
 layout_mode = 2
 text = "Copy"
 
-[node name="CheckButton Past" type="CheckButton" parent="VBoxContainer" unique_id=345467052]
+[node name="CheckButton Past" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=345467052]
 layout_mode = 2
 text = "Past"
 
-[node name="CheckButton Cut" type="CheckButton" parent="VBoxContainer" unique_id=977144175]
+[node name="CheckButton Cut" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=977144175]
 layout_mode = 2
 text = "Cut"
 
 [connection signal="on_copy_past_key_value_on_off" from="InputListenToCopyPast" to="InputListenToCopyPast/If Text Value Equals To Key" method="emit_if_equals_to_text_in_true_or_false_dictionary"]
 [connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="InputListenToCopyPast/If Text Equals To Key" method="emit_if_text_equals_to_one_key"]
-[connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="VBoxContainer/Label Last Found Trigger" method="set_text"]
-[connection signal="on_copy_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Copy" method="set_pressed"]
-[connection signal="on_cut_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Cut" method="set_pressed"]
-[connection signal="on_past_pressed_changed" from="InputListenToCopyPast" to="VBoxContainer/CheckButton Past" method="set_pressed"]
-[connection signal="on_action_found" from="InputListenToCopyPast/If Text Equals To Key" to="VBoxContainer/Label Last Found Trigger" method="set_text"]
-[connection signal="on_action_found" from="InputListenToCopyPast/If Text Value Equals To Key" to="VBoxContainer/Label Last Found True False" method="set_text"]
+[connection signal="on_copy_past_pressed_name_as_string" from="InputListenToCopyPast" to="ScrollContainer/VBoxContainer/Label Last Found Trigger" method="set_text"]
+[connection signal="on_copy_pressed_changed" from="InputListenToCopyPast" to="ScrollContainer/VBoxContainer/CheckButton Copy" method="set_pressed"]
+[connection signal="on_cut_pressed_changed" from="InputListenToCopyPast" to="ScrollContainer/VBoxContainer/CheckButton Cut" method="set_pressed"]
+[connection signal="on_past_pressed_changed" from="InputListenToCopyPast" to="ScrollContainer/VBoxContainer/CheckButton Past" method="set_pressed"]
+[connection signal="on_action_found" from="InputListenToCopyPast/If Text Equals To Key" to="ScrollContainer/VBoxContainer/Label Last Found Trigger" method="set_text"]
+[connection signal="on_action_found" from="InputListenToCopyPast/If Text Value Equals To Key" to="ScrollContainer/VBoxContainer/Label Last Found True False" method="set_text"]

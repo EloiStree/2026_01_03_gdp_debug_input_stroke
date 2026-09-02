@@ -205,8 +205,32 @@ func get_device_with_name_containing(device_name_part: String, use_lowercase: bo
 			matching_devices.append(device)
 	return matching_devices
 
+@export var _axis_decimal_precision: int = 2
+@export var _received_axis_value_count: int = 0
+
+@export var _emit_every_frame_if_changed_instead_of_on_changed: bool = true
+
+func _process(delta: float) -> void:
+	if _emit_every_frame_if_changed_instead_of_on_changed:
+		for device in _list_of_all_devices:
+			if device == null:
+				continue
+			for axis in device._axis_list:
+				if axis == null:
+					continue
+				var last_check_value := axis.value_at_last_check
+				var current_value := axis.axis_value
+				var changed := last_check_value != current_value
+				
+				if changed:
+					axis.value_at_last_check = current_value
+					on_axis_changed.emit(device._joystick_godot_index, device._joystick_apparition_index, axis.axis_index, last_check_value, current_value)
+					on_any_event_to_device_reference.emit(device)
+					on_any_event_to_device_and_manager_reference.emit(device, self)
 
 func _set_axis_value_for_device(device_index: int, axis_index: int, axis_value: float) -> void:
+	
+	_received_axis_value_count += 1
 	var is_tracked := is_device_tracked(device_index)
 	if not is_tracked:
 		_add_tracked_device(device_index)
@@ -218,12 +242,18 @@ func _set_axis_value_for_device(device_index: int, axis_index: int, axis_value: 
 		if axis == null:
 			continue
 		if axis.axis_index == axis_index:
-			var previous_axis_value := axis.axis_value
-			axis.axis_value = axis_value
-			on_axis_changed.emit(device_index, device._joystick_apparition_index, axis_index, previous_axis_value, axis_value)
-			on_any_event_to_device_reference.emit(device)
-			on_any_event_to_device_and_manager_reference.emit(device, self)
-			return
+			# Round the axis value to the specified decimal precision
+			axis_value = round(axis_value * pow(10, _axis_decimal_precision)) / pow(10, _axis_decimal_precision)
+			if axis.axis_value != axis_value:	
+				var previous_axis_value := axis.axis_value
+				axis.axis_value = axis_value
+				#print ("VALUE_CHANGED_COUNT: ", device_index, " Axis: ", axis_index, " Previous Value: ", previous_axis_value, " New Value: ", axis_value)
+				if not _emit_every_frame_if_changed_instead_of_on_changed:
+					on_axis_changed.emit(device_index, device._joystick_apparition_index, axis_index, previous_axis_value, axis_value)
+					on_any_event_to_device_reference.emit(device)
+					on_any_event_to_device_and_manager_reference.emit(device, self)
+				return
+	print("ADD AXIS: ", axis_index, " VALUE: ", axis_value, " FOR DEVICE: ", device_index)
 	var new_axis := DeviceAxis.new()
 	new_axis.linked_device = device
 	new_axis.axis_name = "Axis " + str(axis_index)
@@ -262,6 +292,7 @@ func _set_button_value_for_device(device_index: int, button_index: int, button_v
 			on_any_event_to_device_and_manager_reference.emit(device, self)
 			return
 
+	print("ADD BUTTON: ", button_index, " VALUE: ", button_value, " FOR DEVICE: ", device_index)
 	var new_button := DeviceButton.new()
 	new_button.linked_device = device
 	new_button.button_name = "Button " + str(button_index)
@@ -305,6 +336,8 @@ class DeviceAxis:
 	var axis_name: String
 	var axis_index: int
 	var axis_value: float
+
+	var value_at_last_check: float
 	func get_apparition_index(): 
 		return linked_device._joystick_apparition_index
 	func get_axis_index():

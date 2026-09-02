@@ -19,11 +19,8 @@ func emit_if_text_equals_to_one_key(text:String):
 	_last_received = text
 	if _dictionary_text_to_action.has(text):
 		var action_names:Array = _dictionary_text_to_action[text]
-		on_action_found_with_key.emit(text, action_names)
-		on_action_found.emit(action_names)
-		_last_found_value = action_names
-		on_action_found_with_key_as_array.emit(text, action_names)
 		on_action_found_as_array.emit(action_names)
+		_last_found_value = action_names
 		for action_name in action_names:
 			on_action_found_with_key.emit(text, action_name)
 			on_action_found.emit(action_name)

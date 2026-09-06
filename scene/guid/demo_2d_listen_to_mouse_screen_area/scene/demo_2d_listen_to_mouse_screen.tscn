@@ -77,8 +77,6 @@ _enter_exit_trigger_boolean_name = Array[String](["SCREEN_RECT_CENTER"])
 
 [sub_resource type="Resource" id="Resource_brg1i"]
 script = ExtResource("6_8tdpg")
-_vertical_percent_from_corner = 0.05
-_horizontal_percent_from_corner = 0.05
 metadata/_custom_type_script = "uid://bkpfwox42lj6o"
 
 [node name="Demo2dListenToMouseScreen" type="Control" unique_id=2143746156]
@@ -114,95 +112,6 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Border Left Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=152948992]
-layout_mode = 2
-text = "Border Left"
-
-[node name="InputListenToMouseAreaSinglePixels" type="Node" parent="ScrollContainer/VBoxContainer/Border Left Pixel" unique_id=1704891806 node_paths=PackedStringArray("_check_button")]
-script = ExtResource("2_brg1i")
-_area_border_pixels = SubResource("Resource_wxvfp")
-_check_button = [NodePath("..")]
-
-[node name="Border Up Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=294933482]
-layout_mode = 2
-text = "Border Up"
-
-[node name="InputListenToMouseAreaSinglePixels2" type="Node" parent="ScrollContainer/VBoxContainer/Border Up Pixel" unique_id=1860760049 node_paths=PackedStringArray("_check_button")]
-script = ExtResource("2_brg1i")
-_area_border_pixels = SubResource("Resource_rmbtn")
-_check_button = [NodePath("..")]
-
-[node name="Border Right Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1607355839]
-layout_mode = 2
-text = "Border Right"
-
-[node name="InputListenToMouseAreaSinglePixels3" type="Node" parent="ScrollContainer/VBoxContainer/Border Right Pixel" unique_id=1545136303 node_paths=PackedStringArray("_check_button")]
-script = ExtResource("2_brg1i")
-_area_border_pixels = SubResource("Resource_8tdpg")
-_check_button = [NodePath("..")]
-
-[node name="Border Down Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=505679718]
-layout_mode = 2
-text = "Border Down"
-
-[node name="InputListenToMouseAreaSinglePixels4" type="Node" parent="ScrollContainer/VBoxContainer/Border Down Pixel" unique_id=1179043343 node_paths=PackedStringArray("_check_button")]
-script = ExtResource("2_brg1i")
-_area_border_pixels = SubResource("Resource_bhtlc")
-_check_button = [NodePath("..")]
-
-[node name="Border Left Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1450552004]
-layout_mode = 2
-text = "Border Left"
-
-[node name="InputListenToMouseAreaSinglePercent" type="Node" parent="ScrollContainer/VBoxContainer/Border Left Percent" unique_id=1618951833 node_paths=PackedStringArray("_check_button")]
-script = ExtResource("3_sdos5")
-_area_border_percent = SubResource("Resource_4bqs5")
-_check_button = [NodePath("..")]
-
-[node name="Border Up  Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=520804808]
-layout_mode = 2
-text = "Border Up"
-
-[node name="InputListenToMouseAreaSinglePercent2" type="Node" parent="ScrollContainer/VBoxContainer/Border Up  Percent" unique_id=765789257 node_paths=PackedStringArray("_check_button")]
-script = ExtResource("3_sdos5")
-_area_border_percent = SubResource("Resource_eth33")
-_check_button = [NodePath("..")]
-
-[node name="Border Right  Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=28962787]
-layout_mode = 2
-text = "Border Right"
-
-[node name="InputListenToMouseAreaSinglePercent3" type="Node" parent="ScrollContainer/VBoxContainer/Border Right  Percent" unique_id=146444500 node_paths=PackedStringArray("_check_button")]
-script = ExtResource("3_sdos5")
-_area_border_percent = SubResource("Resource_eqmda")
-_check_button = [NodePath("..")]
-
-[node name="Border Down  Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1096477700]
-layout_mode = 2
-text = "Border Down"
-
-[node name="InputListenToMouseAreaSinglePercent4" type="Node" parent="ScrollContainer/VBoxContainer/Border Down  Percent" unique_id=179488990 node_paths=PackedStringArray("_check_button")]
-script = ExtResource("3_sdos5")
-_area_border_percent = SubResource("Resource_sdos5")
-_check_button = [NodePath("..")]
-
-[node name="Border Center" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1342570580]
-layout_mode = 2
-text = "Border Down"
-
-[node name="InputListenToMouseAreaSingleRectangle" type="Node" parent="ScrollContainer/VBoxContainer/Border Center" unique_id=2013668347 node_paths=PackedStringArray("_check_button")]
-script = ExtResource("6_bhtlc")
-_area_corner_percent = SubResource("Resource_0xn7k")
-_check_button = [NodePath("..")]
-
-[node name="Corner Down Left" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1621481185]
-layout_mode = 2
-text = "Border Down"
-
-[node name="InputListenToMouseAreaSingleCorner" type="Node" parent="ScrollContainer/VBoxContainer/Corner Down Left" unique_id=886755369]
-script = ExtResource("4_wxvfp")
-_area_corner_percent = SubResource("Resource_brg1i")
 
 [node name="Label Position in Pixel" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=2090221757]
 layout_mode = 2
@@ -240,6 +149,102 @@ text = "-"
 [node name="InputParseKeyValueVariantToStringFormat" type="Node" parent="ScrollContainer/VBoxContainer/Label Value Changed" unique_id=356812813]
 script = ExtResource("2_b3a80")
 metadata/_custom_type_script = "uid://cnx2af0athnyy"
+
+[node name="Label  Spliter" type="Label" parent="ScrollContainer/VBoxContainer" unique_id=1135660700]
+layout_mode = 2
+text = "- - - - - - - - - - - - - - - - - - - -"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Border Left Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=152948992]
+layout_mode = 2
+text = "Border Left PX"
+
+[node name="InputListenToMouseAreaSinglePixels" type="Node" parent="ScrollContainer/VBoxContainer/Border Left Pixel" unique_id=1704891806 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("2_brg1i")
+_area_border_pixels = SubResource("Resource_wxvfp")
+_check_button = [NodePath("..")]
+
+[node name="Border Up Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=294933482]
+layout_mode = 2
+text = "Border Up PX"
+
+[node name="InputListenToMouseAreaSinglePixels2" type="Node" parent="ScrollContainer/VBoxContainer/Border Up Pixel" unique_id=1860760049 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("2_brg1i")
+_area_border_pixels = SubResource("Resource_rmbtn")
+_check_button = [NodePath("..")]
+
+[node name="Border Right Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1607355839]
+layout_mode = 2
+text = "Border Right"
+
+[node name="InputListenToMouseAreaSinglePixels3" type="Node" parent="ScrollContainer/VBoxContainer/Border Right Pixel" unique_id=1545136303 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("2_brg1i")
+_area_border_pixels = SubResource("Resource_8tdpg")
+_check_button = [NodePath("..")]
+
+[node name="Border Down Pixel" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=505679718]
+layout_mode = 2
+text = "Border Down PX"
+
+[node name="InputListenToMouseAreaSinglePixels4" type="Node" parent="ScrollContainer/VBoxContainer/Border Down Pixel" unique_id=1179043343 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("2_brg1i")
+_area_border_pixels = SubResource("Resource_bhtlc")
+_check_button = [NodePath("..")]
+
+[node name="Border Left Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1450552004]
+layout_mode = 2
+text = "Border Left %"
+
+[node name="InputListenToMouseAreaSinglePercent" type="Node" parent="ScrollContainer/VBoxContainer/Border Left Percent" unique_id=1618951833 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("3_sdos5")
+_area_border_percent = SubResource("Resource_4bqs5")
+_check_button = [NodePath("..")]
+
+[node name="Border Up  Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=520804808]
+layout_mode = 2
+text = "Border Up %"
+
+[node name="InputListenToMouseAreaSinglePercent2" type="Node" parent="ScrollContainer/VBoxContainer/Border Up  Percent" unique_id=765789257 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("3_sdos5")
+_area_border_percent = SubResource("Resource_eth33")
+_check_button = [NodePath("..")]
+
+[node name="Border Right  Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=28962787]
+layout_mode = 2
+text = "Border Right %"
+
+[node name="InputListenToMouseAreaSinglePercent3" type="Node" parent="ScrollContainer/VBoxContainer/Border Right  Percent" unique_id=146444500 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("3_sdos5")
+_area_border_percent = SubResource("Resource_eqmda")
+_check_button = [NodePath("..")]
+
+[node name="Border Down  Percent" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1096477700]
+layout_mode = 2
+text = "Border Down %"
+
+[node name="InputListenToMouseAreaSinglePercent4" type="Node" parent="ScrollContainer/VBoxContainer/Border Down  Percent" unique_id=179488990 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("3_sdos5")
+_area_border_percent = SubResource("Resource_sdos5")
+_check_button = [NodePath("..")]
+
+[node name="Border Center" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1342570580]
+layout_mode = 2
+text = "Border Center %"
+
+[node name="InputListenToMouseAreaSingleRectangle" type="Node" parent="ScrollContainer/VBoxContainer/Border Center" unique_id=2013668347 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("6_bhtlc")
+_area_corner_percent = SubResource("Resource_0xn7k")
+_check_button = [NodePath("..")]
+
+[node name="Corner Down Left" type="CheckButton" parent="ScrollContainer/VBoxContainer" unique_id=1621481185]
+layout_mode = 2
+text = "Border Down Left %"
+
+[node name="InputListenToMouseAreaSingleCorner" type="Node" parent="ScrollContainer/VBoxContainer/Corner Down Left" unique_id=886755369 node_paths=PackedStringArray("_check_button")]
+script = ExtResource("4_wxvfp")
+_area_corner_percent = SubResource("Resource_brg1i")
+_check_button = [NodePath("..")]
 
 [connection signal="on_mouse_format_text_updated_percent" from="InputListenToMouseInfo" to="ScrollContainer/VBoxContainer/Label Position in Percent" method="set_text"]
 [connection signal="on_mouse_format_text_updated_pixel" from="InputListenToMouseInfo" to="ScrollContainer/VBoxContainer/Label Position in Pixel" method="set_text"]

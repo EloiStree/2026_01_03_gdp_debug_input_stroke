@@ -17,14 +17,14 @@ signal on_mouse_format_text_updated_screen_size(text_format:String)
 @export var _mouse_pixel_lrdt:Vector2i
 @export var _mouse_percent_lrdt:Vector2
 @export var _format_mouse_position_pixel:String = "Mouse X: %s pixels, Mouse Y: %s pixels"
-@export var _format_mouse_position_percent:String = "Mouse X: %s percents, Mouse Y: %s percents"
+@export var _format_mouse_position_percent:String = "Mouse X: %.01f percents, Mouse Y: %.01f percents"
 @export var _format_screen_size_pixel:String = "Screen Width: %s pixels, Screen Height: %s pixels"
 
 
 @export_group("Broadcasting")
 @export var _node_to_broadcast:Array[Node] = []
-@export var _receive_pixels_screen_lrdt_method:String = "push_in_pixels_lrdt_mouse_position_and_size"
-@export var _receive_percent_screen_lrdt_method:String = "push_in_percent_lrdt_mouse_position"
+@export var _receive_pixels_screen_lrdt_method:String = "push_in_pixels_lrdt_mouse_position_and_size_lrdt"
+@export var _receive_percent_screen_lrdt_method:String = "push_in_percent_lrdt_mouse_position_lrdt"
 
 
 

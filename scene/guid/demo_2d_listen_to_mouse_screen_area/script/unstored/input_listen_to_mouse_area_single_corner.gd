@@ -13,7 +13,7 @@ var _previous_is_in_area:bool = false
 
 
 
-func push_in_percent_lrdt_mouse_position(mouse_position_percent_lrdt:Vector2) -> void:
+func push_in_percent_lrdt_mouse_position_lrdt(mouse_position_percent_lrdt:Vector2) -> void:
 	_previous_is_in_area = _current_is_in_area
 	_current_is_in_area = _area_corner_percent.is_mouse_in_area_from_percent_lrdt(mouse_position_percent_lrdt)
 	if _previous_is_in_area != _current_is_in_area:

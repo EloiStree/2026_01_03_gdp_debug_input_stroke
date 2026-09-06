@@ -30,8 +30,11 @@ func is_mouse_in_area_from_pixels_lrdt(mouse_position_lrdt: Vector2, screen_size
 	return is_mouse_in_area_from_percent_lrdt(Vector2(mouse_position_lrdt.x / screen_size.x, mouse_position_lrdt.y / screen_size.y))
 
 func is_mouse_in_area_from_percent_lrdt(mouse_position_lrdt_percent: Vector2) -> bool:
-	var horizontal_limit = 0.0
-	var vertical_limit = 0.0
+	
+	var horizontal_limit = 0
+	var vertical_limit = 0
+	print("X Y : ", mouse_position_lrdt_percent, " direction: ", _direction_from_corner)
+	print ("horizontal_limit: ", horizontal_limit, " vertical_limit: ", vertical_limit)
 	match _direction_from_corner:
 		DirectionFromCorner.LEFT_RIGHT_DOWN_TOP:
 			horizontal_limit = _horizontal_percent_from_corner
@@ -40,14 +43,13 @@ func is_mouse_in_area_from_percent_lrdt(mouse_position_lrdt_percent: Vector2) ->
 		DirectionFromCorner.LEFT_RIGHT_TOP_DOWN:
 			horizontal_limit = _horizontal_percent_from_corner
 			vertical_limit = 1.0 - _vertical_percent_from_corner
-			return mouse_position_lrdt_percent.x <= horizontal_limit and mouse_position_lrdt_percent.y >= vertical_limit
+			return mouse_position_lrdt_percent.x <= horizontal_limit and mouse_position_lrdt_percent.y <= vertical_limit
 		DirectionFromCorner.RIGHT_LEFT_TOP_DOWN:
 			horizontal_limit = 1.0 - _horizontal_percent_from_corner
 			vertical_limit = 1.0 - _vertical_percent_from_corner
-			return mouse_position_lrdt_percent.x >= horizontal_limit and mouse_position_lrdt_percent.y >= vertical_limit
+			return mouse_position_lrdt_percent.x <= horizontal_limit and mouse_position_lrdt_percent.y <= vertical_limit
 		DirectionFromCorner.RIGHT_LEFT_DOWN_TOP:
 			horizontal_limit = 1.0 - _horizontal_percent_from_corner
 			vertical_limit = _vertical_percent_from_corner
-			return mouse_position_lrdt_percent.x >= horizontal_limit and mouse_position_lrdt_percent.y <= vertical_limit
-
+			return mouse_position_lrdt_percent.x <= horizontal_limit and mouse_position_lrdt_percent.y <= vertical_limit
 	return false

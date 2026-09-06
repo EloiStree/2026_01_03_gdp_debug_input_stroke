@@ -11,9 +11,9 @@ var _previous_is_in_area:bool = false
 @export var _check_button:Array[CheckButton] = []
 
 
-func push_in_percent_lrdt_mouse_position(mouse_position_percent_lrdt:Vector2) -> void:
+func push_in_percent_lrdt_mouse_position_lrdt(mouse_position_percent_lrdt:Vector2) -> void:
 	_previous_is_in_area = _current_is_in_area
-	_current_is_in_area = _area_border_percent.is_mouse_in_area_from_percents(mouse_position_percent_lrdt)
+	_current_is_in_area = _area_border_percent.is_mouse_in_area_from_percents_lrdt(mouse_position_percent_lrdt)
 	if _previous_is_in_area != _current_is_in_area:
 		if _current_is_in_area:
 			for trigger_name in _area_border_percent._enter_text_trigger:

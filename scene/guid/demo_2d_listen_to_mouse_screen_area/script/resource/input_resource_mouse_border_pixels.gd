@@ -13,29 +13,27 @@ extends Resource
 @export var _enter_exit_trigger_boolean_name:Array[String] = ["SCREEN_BORDER_PX_LEFT"]
 
 enum BorderAreaPixels {
-    LEFT,
-    RIGHT,
-    TOP,
-    BOTTOM,
+	LEFT,
+	RIGHT,
+	TOP,
+	BOTTOM,
 }
 
+func is_mouse_in_area_from_pixels_lrdt(mouse_position_lrdt: Vector2, screen_size: Vector2) -> bool:
+	var horizontal_limit = 0
+	var vertical_limit = 0
+	match _start_border:
+		BorderAreaPixels.LEFT:
+			horizontal_limit = _pixels_from_border
+			return mouse_position_lrdt.x <= horizontal_limit
+		BorderAreaPixels.RIGHT:
+			horizontal_limit = screen_size.x - _pixels_from_border
+			return mouse_position_lrdt.x >= horizontal_limit
+		BorderAreaPixels.TOP:
+			vertical_limit = screen_size.y - _pixels_from_border
+			return mouse_position_lrdt.y >= vertical_limit
+		BorderAreaPixels.BOTTOM:
+			vertical_limit = _pixels_from_border
+			return mouse_position_lrdt.y <= vertical_limit
 
-
-func is_mouse_in_area_from_pixels(mouse_position: Vector2, screen_size: Vector2) -> bool:
-    var horizontal_limit = 0
-    var vertical_limit = 0
-    match _start_border:
-        BorderAreaPixels.LEFT:
-            horizontal_limit = _pixels_from_border
-            return mouse_position.x <= horizontal_limit
-        BorderAreaPixels.RIGHT:
-            horizontal_limit = screen_size.x - _pixels_from_border
-            return mouse_position.x >= horizontal_limit
-        BorderAreaPixels.TOP:
-            vertical_limit = _pixels_from_border
-            return mouse_position.y <= vertical_limit
-        BorderAreaPixels.BOTTOM:
-            vertical_limit = screen_size.y - _pixels_from_border
-            return mouse_position.y >= vertical_limit
-
-    return false
+	return false

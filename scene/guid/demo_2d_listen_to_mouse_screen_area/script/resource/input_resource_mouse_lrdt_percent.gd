@@ -33,8 +33,6 @@ func is_mouse_in_area_from_percent_lrdt(mouse_position_lrdt_percent: Vector2) ->
 	
 	var horizontal_limit = 0
 	var vertical_limit = 0
-	print("X Y : ", mouse_position_lrdt_percent, " direction: ", _direction_from_corner)
-	print ("horizontal_limit: ", horizontal_limit, " vertical_limit: ", vertical_limit)
 	match _direction_from_corner:
 		DirectionFromCorner.LEFT_RIGHT_DOWN_TOP:
 			horizontal_limit = _horizontal_percent_from_corner
